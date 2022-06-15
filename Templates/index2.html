@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title >Valactif Learning</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.14.3/video-js.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.14.3/video.min.js"></script>
+    <script src="https://player.live-video.net/1.7.0/amazon-ivs-videojs-tech.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>S3 Example Static Only</h1>
+    </header>
+    <main>
+        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="1600" height="900" poster="http://mys3bucket.s3.amazonaws.com/videoImage.jpg" data-setup='{"example_option":true}'>
+            <source src="{% static 'videos/Présentation_de_la_formation.mp4' %}" type='video/mp4' />
+        </video>
+        <img src="{% static 'videos/Présentation_de_la_formation.mp4' %}">
+        <h2>It's working!</h2>
+    </main>
+    <footer>
+        <a href="https://simpleisbetterthancomplex.com">www.SimpleIsBetterThanComplex.com</a>
+    </footer>
+</body>
+</html>

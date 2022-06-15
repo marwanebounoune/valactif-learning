@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Accounts.apps.AccountsConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'Valactif_Learning.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,10 +77,15 @@ WSGI_APPLICATION = 'Valactif_Learning.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'postgres',
+        'PASSWORD' : 'admin',
+        'HOST': 'localhost'
     }
 }
+AUTH_USER_MODEL="Accounts.User"
 
 
 # Password validation
@@ -114,10 +121,82 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+'''
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
 
-STATIC_URL = 'static/'
+if USE_S3:
+    AWS_ACCESS_KEY_ID = os.getenv('AKIATCPZDSK372JFDNOT')
+    AWS_SECRET_ACCESS_KEY = os.getenv('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')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('valactif-crm1')
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_DEFAULT_ACL = None
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+    # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    # AWS_DEFAULT_ACL = 'public-read'
+    # AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # AWS_LOCATION = 'static'
+    # AWS_QUERYSTRING_AUTH = False
+    # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Valactif_Learning/static')]
+'''
+STATIC_URL = '/static/'
+
+MEDIA_URL = '/images/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#S3 BUCKETS CONFIG
+AWS_ACCESS_KEY_ID = 'AKIATCPZDSK3RXB7AF55'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME = "eu-west-3"
+
+# AWS_S3_SIGNATURE_VERSION = "s3v4"
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
+# AWS_DEFAULT_ACL = 'public-read'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# # AWS_LOCATION = ''
+# AWS_QUERYSTRING_AUTH = False
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+# # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+
+
+# AWS_ACCESS_KEY_ID = os.getenv('AKIATCPZDSK3RXB7AF55')
+# AWS_SECRET_ACCESS_KEY = os.getenv('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')
+# AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
+# AWS_DEFAULT_ACL = 'public-read'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# # AWS_LOCATION = 'static'
+# AWS_QUERYSTRING_AUTH = False
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
