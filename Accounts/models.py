@@ -14,16 +14,6 @@ class User(AbstractUser):
     adresse = models.CharField(max_length=500, null=True, blank=True)
     url = models.CharField(max_length=500, null=True, blank=True)
     pass
+    class Meta:
+        db_table = "User" 
 
-
-class Document(models.Model):
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-    upload = models.FileField()
-
-class BlogPost(models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-    title = models.ImageField(upload_to='blog_images/')
-
-    def __str__(self):
-        return self.title

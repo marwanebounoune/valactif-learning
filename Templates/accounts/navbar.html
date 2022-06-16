@@ -9,8 +9,8 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <img src="{% static 'images/Sans.png' %}" height="30" href="{% url 'account' %}">
+<div class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="{% static 'images/V-L.png' %}" height="30" href="{% url 'account' %}">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -30,7 +30,7 @@
       {% endif %}
     </ul>
   </div>
-  <span class="hello-msg">Hello, {{request.user.username}}</span>
+  <span class="hello-msg">Hello, {{request.user.first_name}} {{request.user.last_name}}</span>
   <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
 
-</nav>
+</div>

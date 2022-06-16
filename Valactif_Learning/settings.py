@@ -145,14 +145,14 @@ else:
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Valactif_Learning/static')]
 '''
+# print("OK", os.path.join(BASE_DIR, 'static'))
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
-MEDIA_URL = '/images/'
-
+# STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
+MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 # Default primary key field type
@@ -169,10 +169,9 @@ AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = "eu-west-3"
-
-# AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
 # AWS_DEFAULT_ACL = 'public-read'
