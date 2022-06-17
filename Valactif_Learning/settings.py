@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+# from getsecret import get_secret
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-ktmw&&tak^$#_9&3i9i++a*^*73245tz^k2k%gx_)p_pr9%(um
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Accounts.apps.AccountsConfig',
     'storages',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware'
+]
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://google.com',
+    'http://valactif-crm1.s3.amazonaws.com',
+    'http://localhost:8000',
+    'http://127.0.0.1:9000'
 ]
 
 ROOT_URLCONF = 'Valactif_Learning.urls'
@@ -121,6 +133,148 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+print("OK", os.path.join(BASE_DIR, 'static'))
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# print("BASE_DIR2", BASE_DIR2)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(MEDIA_URL, 'static/images')
+#S3 BUCKETS CONFIG
+AWS_ACCESS_KEY_ID = 'AKIATCPZDSK3RXB7AF55'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME = "eu-west-3"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+
+
+# AWS_ACCESS_KEY_ID = 'AKIATCPZDSK3RXB7AF55'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_S3_CUSTOM_DOMAIN = 'dvepu9ka3eyf8.cloudfront.net'
+# AWS_S3_SECURE_URLS = True
+# AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
+# COMPRESS_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_IS_GZIPPED = True
+# STATIC_URL = 'https://dvepu9ka3eyf8.cloudfront.net/'
+# COMPRESS_URL = STATIC_URL
+#############################################################################
+# AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
+# AWS_CLOUDFRONT_DOMAIN = 'dvepu9ka3eyf8.cloudfront.net'
+# AWS_ACCESS_KEY_ID = 'AKIATCPZDSK3RXB7AF55'
+# AWS_SECRET_ACCESS_KEY = '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'
+
+# MEDIAFILES_LOCATION = 'media'
+# MEDIA_ROOT = '/%s/' % MEDIAFILES_LOCATION
+# MEDIA_URL = '//%s/%s/' % (AWS_CLOUDFRONT_DOMAIN, MEDIAFILES_LOCATION)
+# DEFAULT_FILE_STORAGE = 'app.custom_storages.MediaStorage'
+
+# STATICFILES_LOCATION = 'static'
+# STATIC_ROOT = '/%s/' % STATICFILES_LOCATION
+# STATIC_URL = '//%s/%s/' % (AWS_CLOUDFRONT_DOMAIN, STATICFILES_LOCATION)
+# STATICFILES_STORAGE = 'app.custom_storages.StaticStorage'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
+# AWS_DEFAULT_ACL = 'public-read'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# AWS_LOCATION = ''
+# AWS_QUERYSTRING_AUTH = False
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+# BASE_DIR2 = Path(__file__).resolve().parent.parent
+# MEDIA_ROOT = os.path.join(BASE_DIR2, '')
+# print("MEDIA_ROOT", MEDIA_ROOT)
+# MEDIAFILES_STORAGE  = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# AWS_ACCESS_KEY_ID = os.getenv('AKIATCPZDSK3RXB7AF55')
+# AWS_SECRET_ACCESS_KEY = os.getenv('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')
+# AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
+# AWS_DEFAULT_ACL = 'public-read'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# # AWS_LOCATION = 'static'
+# AWS_QUERYSTRING_AUTH = False
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 '''
 USE_S3 = os.getenv('USE_S3') == 'TRUE'
 
@@ -145,57 +299,3 @@ else:
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Valactif_Learning/static')]
 '''
-# print("OK", os.path.join(BASE_DIR, 'static'))
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-# STATIC_ROOT = 'static'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-#S3 BUCKETS CONFIG
-AWS_ACCESS_KEY_ID = 'AKIATCPZDSK3RXB7AF55'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-AWS_S3_REGION_NAME = "eu-west-3"
-AWS_S3_SIGNATURE_VERSION = "s3v4"
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
-# AWS_DEFAULT_ACL = 'public-read'
-# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# # AWS_LOCATION = ''
-# AWS_QUERYSTRING_AUTH = False
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
-# # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-
-
-
-# AWS_ACCESS_KEY_ID = os.getenv('AKIATCPZDSK3RXB7AF55')
-# AWS_SECRET_ACCESS_KEY = os.getenv('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')
-# AWS_STORAGE_BUCKET_NAME = 'valactif-crm1'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
-# AWS_DEFAULT_ACL = 'public-read'
-# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# # AWS_LOCATION = 'static'
-# AWS_QUERYSTRING_AUTH = False
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

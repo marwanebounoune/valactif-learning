@@ -12,7 +12,7 @@ def login(request):
         return redirect('home')
     else:
         if request.method == 'GET':
-            return render(request, 'accounts/login.html')
+            return render(request, 'accounts/login2.html')
         if request.method == 'POST':
             erreur=0
             username = request.POST['username']
@@ -27,9 +27,9 @@ def login(request):
             else:
                 erreur=1
                 messages.error(request, "Votre login ou mot de passe et incorrect.")
-                return render(request, 'accounts/login.html', {'erreur':erreur})
+                return render(request, 'accounts/login2.html', {'erreur':erreur})
         else:
-            return render(request, 'accounts/login.html')
+            return render(request, 'accounts/login2.html')
 
 def logout_custumized(request):
     auth.logout(request)

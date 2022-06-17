@@ -1,7 +1,32 @@
 {% extends "libraries.html" %}
+<script src="https://cdn.plyr.io/3.7.2/plyr.polyfilled.js' %}" ></script>
+<link href="https://cdn.plyr.io/3.7.2/plyr.css' %}"/>
 {%load static%}
-<!DOCTYPE html>
-<html lang="fr">
 {% block content %}
+<div class="row">
+	<div class="col-md-1">
+	</div>
+	<div class="col-md-2">
+		<br>
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Profile</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
+		
+		</div>
+	</div>
+	<div class="col-md-8">
+		<br>
+		<div class="card card-body" >
+			<!-- <video preload="auto" playsinline id="player" _msthidden="2"> -->
+			<video id="example_video_1" class="video-js vjs-default-skin" controls controlsList="nodownload" preload="auto" data-setup='{}'>
+				<source src="{% static 'videos/Présentation_de_la_formation.mp4' %}" type="video/mp4" size="1080" />
+				<!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
+			</video>
+		</div>
+	</div>
+</div>
 {% endblock %}
 </html>
