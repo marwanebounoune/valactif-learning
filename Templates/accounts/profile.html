@@ -1,0 +1,83 @@
+{%load static%}
+{% csrf_token %}
+<div class="card">
+    <div class="card-header">
+        <h6 class="card-title">Profile information</h6>
+    </div>
+
+    <div class="card-body">
+        <form action="#">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>First Name :  {{User.first_name}}</label>
+                        <input type="text" class="form-control">
+                    </div> 
+                    <div class="col-lg-6">
+                        <label>Last Name: {{User.last_name}}</label>
+                        <input type="text"  class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>Username : {{User.username}}</label>
+                        <input type="text"  class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Email: {{user.email}}</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>Téléphone: {{User.tel1}}</label>
+                        <input type="text"  class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Adresse: {{User.adresse}}</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>Date de naissance: {{User.dateNaissance}}</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Genre: {{User.genre}}</label>
+                        <select class="custom-select">
+                            <option value="Homme" >Homme</option> 
+                            <option value="Femme">Femme</option> 
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                    <div class="col-lg-8">
+                        <label>Upload profile image {{User.photoProfile}}</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                        <span class="form-text text-muted">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /profile info -->

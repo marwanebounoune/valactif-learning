@@ -19,10 +19,11 @@ from Accounts import views as blog_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Accounts.urls')),
-    # path('', blog_views.home, name='home')
+   # path('', blog_views.home, name='home')
 ]
 
 if settings.DEBUG:

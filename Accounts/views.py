@@ -4,8 +4,25 @@ from django.contrib.auth.decorators import login_required
 from .models import User
 from django.contrib import messages, auth
 from django.urls import reverse_lazy
+from .forms import EditUserProfileForm
+from django.views import generic
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+
 
 # Create your views here.
+def index(request):
+    return render (request, 'home.html',{})
+    
+def lecons(request):
+    return render (request, 'Lecons/indexDec.html',{})    
+
+# def store(request):
+#     context = {}
+#     return render(request,'store/store.html',context)
+
    
 def login(request):
     if request.user.is_authenticated:
@@ -58,3 +75,18 @@ def home(request):
 
 # def home(request):
 #     return render(request, 'home.html', {'posts': BlogPost.objects.all()})
+class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+    form_class = EditUserProfileForm
+    login_url = 'login'
+    template_name = "Accounts/edit_user_profile.html"
+    success_url = reverse_lazy('home')
+    success_message = "User updated"
+    
+    def get_object(slef):
+        return slef.request.user 
+    
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Please submit the form carefully")
+        return redirect('home') 
+
+
