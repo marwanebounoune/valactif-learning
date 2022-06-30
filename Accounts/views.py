@@ -1,7 +1,7 @@
 import imp
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import User
+from .models import Desc, User
 from django.contrib import messages, auth
 from django.urls import reverse_lazy
 from .forms import EditUserProfileForm
@@ -18,6 +18,7 @@ def index(request):
     
 def lecons(request):
     return render (request, 'Lecons/indexDec.html',{})    
+
 
 # def store(request):
 #     context = {}
@@ -89,4 +90,10 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
         messages.add_message(self.request, messages.ERROR, "Please submit the form carefully")
         return redirect('home') 
 
-
+def index(request):
+    Desc = {
+        'overview_dec' : request.Desc.overview_dec,
+        'first_dec' : request.Desc.first_dec,
+        'second_dec' : request.Desc.second_dec,
+    }
+    return render(request, 'Lecons/indexDec.html',{'Desc':Desc})

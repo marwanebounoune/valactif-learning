@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'Accounts.apps.AccountsConfig',
     'storages',
     'corsheaders',
+    
+
+
 
 
 ]

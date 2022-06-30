@@ -26,6 +26,8 @@
 	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
 	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
 	<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
+	<script src="https://kit.fontawesome.com/e81d17d39f.js" crossorigin="anonymous"></script>
+
 
 	<script src="{% static 'js/app.js' %}"></script>
 	<script src="{% static 'js/demo_pages/learning_detailed.js' %}"></script>
@@ -141,11 +143,11 @@
 			<li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
 				<a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">
 					<img src="{% static 'images/placeholders/placeholder.jpg' %}"  class="rounded-pill mr-lg-2" height="34" alt="">
-					<span class="d-none d-lg-inline-block">Victoria</span>
+					<span class="d-none d-lg-inline-block">{{User.Username}}</span>
 				</a>
 
 				<div class="dropdown-menu dropdown-menu-right">
-					<a href="http://127.0.0.1:8000/edit_profile" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+					<a href="{http://127.0.0.1:8000/edit_profile}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
 					<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
 				</div>
 			</li>
@@ -207,38 +209,37 @@
 							<div class="tab-pane fade show active" id="course-overview">
 								<div class="card-body">
 									<div class="mt-1 mb-4">
-										<h6 class="font-weight-semibold">Course overview</h6>
-										<p>Then sluggishly this camel learned woodchuck far stretched unspeakable notwithstanding the walked owing stung mellifluously glumly rooster more examined one that combed until a less less witless pouted up voluble timorously glared elaborate giraffe steady while grinned and got one beaver to walked. Connected picked rashly ocelot flirted while wherever unwound much more one inside emotionally well much woolly amidst upon far burned ouch sadistically became.</p>
-										<p>A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather.</p>
+										<h6 class="font-weight-semibold">Course overview </h6>
+										<p> {{request.Desc.overview_dec}} </p>
 									</div>
 
 									<h6 class="font-weight-semibold">What you will learn</h6>
-									<p class="mb-3">Some cow goose out and sweeping wow the skillfully goodness one crazily far some jeez darn well so peevish pending nudged categorically in between about much alas handsome intolerable devotedly helpfully smiled momentously next much this this next sweepingly far. Together prim and limpet much extravagantly quail longing a ouch that walking a jeepers flamingo more.</p>
+									<p class="mb-3"> {{request.Desc.first_dec}} </p>
 
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="mb-4">
 												<dl>
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Salamander much that on much
 				                                	</dt>
 					                                <dd>Like partook magic this enthusiastic tasteful far crud otter this the ferret honey iguana. Together prim and limpet much extravagantly quail longing.</dd>
 
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Well far some raccoon
 				                                	</dt>
 					                                <dd>Python laudably euphemistically since this copious much human this briefly hello ouch less one diligent however impotently made gave a slick up much.</dd>
 
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Goldfish rapidly that far
 				                                	</dt>
 					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
 
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Gregor then turned to look out
 				                                	</dt>
 					                                <dd>Then sluggishly this camel learned woodchuck far stretched unspeakable notwithstanding the walked owing stung mellifluously glumly rooster.</dd>
@@ -250,25 +251,25 @@
 											<div class="mb-4">
 												<dl>
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Misunderstood cuffed more depending
 				                                	</dt>
 					                                <dd>And earthworm dear arose bald agilely sad so below cowered within ceremonially therefore via much this symbolically and newt capably.</dd>
 
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Voluble much saddled mechanic
 				                                	</dt>
 					                                <dd>Much took between less goodness jay mallard kneeled gnashed this up strong cooperative. A collection of textile samples lay spread.</dd>
 
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	Before some one more
 				                                	</dt>
 					                                <dd>Pending some contrary rabbit up that the more conditionally ouch confidently far so was darn logic thus dove the juicily because that placed otter.</dd>
 
 					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
+														<i class="fas fa-check"></i>
 					                                	So slit more darn hey well wore
 				                                	</dt>
 					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
@@ -649,128 +650,65 @@
 				<!-- Attendees -->
 				<div class="sidebar-section">
 					<div class="sidebar-section-header">
-						<span class="font-weight-semibold">Attendees</span>
+						<span class="font-weight-semibold">Course : </span>
 					</div>
 
 					<div class="sidebar-section-body">
 						<ul class="media-list">
 							<li class="media">
 								<a href="#" class="mr-3">
-									<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="40" height="40" class="rounded-circle" alt="">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
 								<div class="media-body">
-									<div class="font-weight-semibold">Rebecca Jameson</div>
-									<span class="font-size-sm text-muted">Web developer</span>
+									<a class="font-weight-semibold" href="#">Chapitre 1</a>
 								</div>
 
 								<div class="ml-3 align-self-center">
 									<div class="dropdown">
-										<a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-											<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-											<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item"><i class="icon-stars"></i> Rate trainer</a>
-										</div>
+									<!--- <a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a> -->
 									</div>
 								</div>
 							</li>
 
 							<li class="media">
 								<a href="#" class="mr-3">
-									<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="40" height="40" class="rounded-circle" alt="">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
 								<div class="media-body">
-									<div class="font-weight-semibold">Walter Sommers</div>
-									<span class="font-size-sm text-muted">Lead developer</span>
-								</div>
-
-								<div class="ml-3 align-self-center">
-									<div class="dropdown">
-										<a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-											<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-											<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item"><i class="icon-stars"></i> Rate trainer</a>
-										</div>
-									</div>
+									<a class="font-weight-semibold" href="#">Chapitre 2</a>
 								</div>
 							</li>
 
 							<li class="media">
 								<a href="#" class="mr-3">
-									<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="40" height="40" class="rounded-circle" alt="">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
-								<div class="media-body">
-									<div class="font-weight-semibold">Otto Gerwald</div>
-									<span class="font-size-sm text-muted">Front end developer</span>
-								</div>
-
-								<div class="ml-3 align-self-center">
-									<div class="dropdown">
-										<a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-											<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-											<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item"><i class="icon-stars"></i> Rate trainer</a>
-										</div>
-									</div>
-								</div>
+								<div class="media-body">								
+									<a class="font-weight-semibold" href="#">Chapitre 3</a>
+                                </div>
 							</li>
 
 							<li class="media">
 								<a href="#" class="mr-3">
-									<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="40" height="40" class="rounded-circle" alt="">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
 								<div class="media-body">
-									<div class="font-weight-semibold">Vince Satmann</div>
-									<span class="font-size-sm text-muted">UX expert</span>
+									<a class="font-weight-semibold" href="#">Chapitre 4</a>
 								</div>
-
-								<div class="ml-3 align-self-center">
-									<div class="dropdown">
-										<a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-											<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-											<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item"><i class="icon-stars"></i> Rate trainer</a>
-										</div>
-									</div>
-								</div>
-							</li>
+                            </li>
 
 							<li class="media">
 								<a href="#" class="mr-3">
-									<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="40" height="40" class="rounded-circle" alt="">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
 								<div class="media-body">
-									<div class="font-weight-semibold">Jason Leroy</div>
-									<span class="font-size-sm text-muted">SEO specialist</span>
-								</div>
+									<a class="font-weight-semibold" href="#">Chapitre 5</a>
 
-								<div class="ml-3 align-self-center">
-									<div class="dropdown">
-										<a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-											<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-											<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item"><i class="icon-stars"></i> Rate trainer</a>
-										</div>
-									</div>
 								</div>
 							</li>
 						</ul>
