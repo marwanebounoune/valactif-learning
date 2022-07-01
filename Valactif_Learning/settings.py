@@ -39,13 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Accounts.apps.AccountsConfig',
+    'Learning.apps.LearningConfig',
     'storages',
     'corsheaders',
-    
-
-
-
-
 ]
 
 MIDDLEWARE = [
@@ -95,9 +91,9 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb1',
+        'NAME': 'mydb',
         'USER': 'postgres',
-        'PASSWORD' : 'mixside',
+        'PASSWORD' : 'admin',
         'HOST': 'localhost'
     }
 }

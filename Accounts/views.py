@@ -1,7 +1,9 @@
 import imp
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Desc, User
+
+from Learning.models import Lecons, Desc
+from .models import User
 from django.contrib import messages, auth
 from django.urls import reverse_lazy
 from .forms import EditUserProfileForm
@@ -17,7 +19,13 @@ def index(request):
     return render (request, 'home.html',{})
     
 def lecons(request):
-    return render (request, 'Lecons/indexDec.html',{})    
+    descriptions = Desc.objects.get(lecon_id=1)
+    lecon = Lecons.objects.filter(id = 1)
+    context = {
+        'descriptions' : descriptions,
+        'lecon': lecon
+    }
+    return render(request, 'Lecons/indexDec.html',context)
 
 
 # def store(request):
@@ -38,8 +46,9 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             # user.save()
             if (user is not None):
+                print(user.is_connected)
+                user.is_connected = True
                 user.save()
-                print("Hello")
                 auth.login(request, user)
                 return redirect('home')
             else:
@@ -50,10 +59,14 @@ def login(request):
             return render(request, 'accounts/login2.html')
 
 def logout_custumized(request):
+    user = request.user
+    print(user)
+    user.is_connected = False
+    user.save()
     auth.logout(request)
     return redirect('login')
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def home(request):
     user = User.objects.filter(id=request.user.id)
     context = {

@@ -1,3 +1,4 @@
+{% extends "libraries.html" %}
 {%load static%}
 {% block content %}
 <!DOCTYPE html>
@@ -10,150 +11,12 @@
 	
 
 	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
 
-	<!-- Core JS files -->
-	<script src="{% static 'js/main/jquery.min.js' %}"></script>
-	<script src="{% static 'js/main/bootstrap.bundle.min.js' %}"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
-	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
-	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
-	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
-	<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
-	<script src="https://kit.fontawesome.com/e81d17d39f.js" crossorigin="anonymous"></script>
-
-
-	<script src="{% static 'js/app.js' %}"></script>
-	<script src="{% static 'js/demo_pages/learning_detailed.js' %}"></script>
 	<!-- /theme JS files -->
 	
 
 </head>
 <body>
-
-	<!-- Main navbar -->
-	<div class="navbar navbar-expand-lg navbar-dark navbar-static">
-		<div class="d-flex flex-1 d-lg-none">
-			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-mobile">
-				<i class="icon-paragraph-justify3"></i>
-			</button>
-			<button type="button" class="navbar-toggler sidebar-mobile-main-toggle">
-				<i class="icon-transmission"></i>
-			</button>
-			<button type="button" class="navbar-toggler sidebar-mobile-right-toggle">
-				<i class="icon-arrow-right8"></i>
-			</button>
-		</div>
-
-		<div class="col-lg-3">
-			<a href="" class="text-decoration-none">
-				<h1 class="m-0"><span class="text-primary">V</span>LEARNING</h1>
-			</a>
-		</div>
-
-		<div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
-			
-
-
-			<ul class="navbar-nav ml-lg-auto">
-				<li class="nav-item dropdown">
-				<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-300">
-						<div class="dropdown-content-header">
-							<span class="font-weight-semibold">Users online</span>
-							<a href="#" class="text-body"><i class="icon-search4 font-size-base"></i></a>
-						</div>
-
-						<div class="dropdown-content-body dropdown-scrollable">
-							<ul class="media-list">
-								<li class="media">
-									<div class="mr-3">
-										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold">Jordana Ansley</a>
-										<span class="d-block text-muted font-size-sm">Lead web developer</span>
-									</div>
-									<div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold">Will Brason</a>
-										<span class="d-block text-muted font-size-sm">Marketing manager</span>
-									</div>
-									<div class="ml-3 align-self-center"><span class="badge badge-mark border-danger"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold">Hanna Walden</a>
-										<span class="d-block text-muted font-size-sm">Project manager</span>
-									</div>
-									<div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold">Dori Laperriere</a>
-										<span class="d-block text-muted font-size-sm">Business developer</span>
-									</div>
-									<div class="ml-3 align-self-center"><span class="badge badge-mark border-warning"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold">Vanessa Aurelius</a>
-										<span class="d-block text-muted font-size-sm">UX expert</span>
-									</div>
-									<div class="ml-3 align-self-center"><span class="badge badge-mark border-secondary"></span></div>
-								</li>
-							</ul>
-						</div>
-
-						<div class="dropdown-content-footer bg-light">
-							<a href="#" class="text-body mr-auto">All users</a>
-							<a href="#" class="text-body"><i class="icon-gear"></i></a>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
-			
-
-			<li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
-				<a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">
-					<img src="{% static 'images/placeholders/placeholder.jpg' %}"  class="rounded-pill mr-lg-2" height="34" alt="">
-					<span class="d-none d-lg-inline-block">{{User.Username}}</span>
-				</a>
-
-				<div class="dropdown-menu dropdown-menu-right">
-					<a href="{http://127.0.0.1:8000/edit_profile}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-					<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
-				</div>
-			</li>
-		</ul>
-	</div>
-	<!-- /main navbar -->
 
 
 	<!-- Page content -->
@@ -208,13 +71,20 @@
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="course-overview">
 								<div class="card-body">
-									<div class="mt-1 mb-4">
-										<h6 class="font-weight-semibold">Course overview </h6>
-										<p> {{request.Desc.overview_dec}} </p>
-									</div>
+										{% if descriptions %}
+											{{descriptions.html}}
+										{% endif %}
 
-									<h6 class="font-weight-semibold">What you will learn</h6>
-									<p class="mb-3"> {{request.Desc.first_dec}} </p>
+										<!-- {% if description.type_desc == '1' %}
+											<div class="mt-1 mb-4">
+												<h6 class="font-weight-semibold">Course overview </h6>
+												<p> {{description.text}} </p>
+											</div>
+										{% endif %}
+										{% if description.type_desc == '2' %}
+											<h6 class="font-weight-semibold">What you will learn</h6>
+											<p class="mb-3"> {{description.text}} </p>
+										{% endif %} -->
 
 									<div class="row">
 										<div class="col-sm-6">
