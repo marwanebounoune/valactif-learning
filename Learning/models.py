@@ -1,5 +1,9 @@
+from tkinter.tix import STATUS
 from django.db import models
 from django.core.validators import FileExtensionValidator
+
+from Accounts.models import User
+
 
 # Create your models here.
 PERMISSION_CHOICES = (
@@ -11,6 +15,10 @@ PERMISSION_CHOICES = (
 IMAGE_OR_TEXT_CHOICES = (
     ('1','Text'),
     ('2', 'Image')
+)
+STATUS = (
+    (0,"Draft"),
+    (1,"Publish")
 )
 
 class Lecons(models.Model):
@@ -43,3 +51,24 @@ class Desc(models.Model):
     pass
     class Meta:
         db_table = "Desc" 
+
+class Post(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_posts')
+    updated_on = models.DateTimeField(auto_now= True)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+    def __str__(self):
+        return str(self.title)
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    blog = models.ForeignKey(Post, on_delete=models.CASCADE)
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)   
+    dateTime=models.DateTimeField(auto_now_add=True)
+ 
+    def __str__(self):
+        return self.user.username +  " Comment: " + self.content
