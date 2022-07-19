@@ -67,12 +67,6 @@ def logout_custumized(request):
     return redirect('login')
 
 # @login_required(login_url='login')
-def home(request):
-    user = User.objects.filter(id=request.user.id)
-    context = {
-        'user': user
-    }
-    return render(request, 'main/index.html', context)
 
 
 

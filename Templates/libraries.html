@@ -10,7 +10,7 @@
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="{% static 'css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css"> 
-	<link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -21,6 +21,7 @@
 	<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
 	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
 	<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
+
 	<script src="{% static 'js/app.js' %}"></script>
 	<script src="{% static 'js/demo_pages/learning_detailed.js' %}"></script>
 	<!-- /theme JS files -->
@@ -28,13 +29,13 @@
 </head>
 <body>
       {% include 'partials/navBar.html' %}
-      <div class="page-container">
+      <div class="page-content">
          <!-- Page content -->
 
-         <div class="page-content">
+         <div class="content-wrapper">
          {% include 'partials/sideBar.html' %}
             <!-- Main content -->
-            <div class="content-wrapper">
+            <div class="content-inner">
                <!-- Page header -->
                <!-- /page header -->
                <!-- Content area -->
