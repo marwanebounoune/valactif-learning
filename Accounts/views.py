@@ -1,4 +1,5 @@
 import imp
+from urllib import request
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -19,20 +20,19 @@ def index(request):
     return render (request, 'home.html',{})
     
 def lecons(request):
-    descriptions = Desc.objects.get(lecon_id=1)
-    lecon = Lecons.objects.filter(id = 1)
-    context = {
-        'descriptions' : descriptions,
-        'lecon': lecon
-    }
-    return render(request, 'Lecons/indexDec.html',context)
+     """ descriptions = Desc.objects.get(lecon_id=1)
+     lecon = Lecons.objects.filter(id = 1)
+     context = {
+         'descriptions' : descriptions,
+         'lecon': lecon
+     } """
+     return render(request, 'Lecons/indexDec.html')
 
-
-# def store(request):
-#     context = {}
-#     return render(request,'store/store.html',context)
-
-   
+def leconsVideo(request):
+        
+       
+    return render(request, 'Lecons/VideoLec.html')
+  
 def login(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -110,3 +110,5 @@ def index(request):
         'second_dec' : request.Desc.second_dec,
     }
     return render(request, 'Lecons/indexDec.html',{'Desc':Desc})
+
+

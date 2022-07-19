@@ -1,0 +1,508 @@
+{%load static%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title> Valactif Learning </title> 
+	
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="{% static 'js/main/jquery.min.js' %}"></script>
+	<script src="{% static 'js/main/bootstrap.bundle.min.js' %}"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
+	<script src="{% static 'js/plugins/ui/fullcalendar/core/main.min.js' %}"></script>
+	<script src="{% static 'js/plugins/ui/fullcalendar/daygrid/main.min.js' %}"></script>
+	<script src="{% static 'js/plugins/ui/fullcalendar/timegrid/main.min.js' %}"></script>
+	<script src="{% static 'js/plugins/ui/fullcalendar/interaction/main.min.js' %}"></script>
+	<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
+	<script src="https://kit.fontawesome.com/e81d17d39f.js" crossorigin="anonymous"></script>
+
+
+	<script src="{% static 'js/app.js' %}"></script>
+	<script src="{% static 'js/demo_pages/learning_detailed.js' %}"></script>
+	<!-- /theme JS files -->
+	
+
+</head>
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-expand-lg navbar-dark navbar-static">
+		<div class="d-flex flex-1 d-lg-none">
+			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-mobile">
+				<i class="icon-paragraph-justify3"></i>
+			</button>
+			<button type="button" class="navbar-toggler sidebar-mobile-main-toggle">
+				<i class="icon-transmission"></i>
+			</button>
+			<button type="button" class="navbar-toggler sidebar-mobile-right-toggle">
+				<i class="icon-arrow-right8"></i>
+			</button>
+		</div>
+
+		<div class="col-lg-3">
+			<a href="" class="text-decoration-none">
+				<h1 class="m-0"><span class="text-primary">V</span>LEARNING</h1>
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
+			
+
+
+			<ul class="navbar-nav ml-lg-auto">
+				<li class="nav-item dropdown">
+				<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-300">
+						<div class="dropdown-content-header">
+							<span class="font-weight-semibold">Users online</span>
+							<a href="#" class="text-body"><i class="icon-search4 font-size-base"></i></a>
+						</div>
+
+						<div class="dropdown-content-body dropdown-scrollable">
+							<ul class="media-list">
+								<li class="media">
+									<div class="mr-3">
+										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
+									</div>
+									<div class="media-body">
+										<a href="#" class="media-title font-weight-semibold">Jordana Ansley</a>
+										<span class="d-block text-muted font-size-sm">Lead web developer</span>
+									</div>
+									<div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
+								</li>
+
+								<li class="media">
+									<div class="mr-3">
+										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
+									</div>
+									<div class="media-body">
+										<a href="#" class="media-title font-weight-semibold">Will Brason</a>
+										<span class="d-block text-muted font-size-sm">Marketing manager</span>
+									</div>
+									<div class="ml-3 align-self-center"><span class="badge badge-mark border-danger"></span></div>
+								</li>
+
+								<li class="media">
+									<div class="mr-3">
+										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
+									</div>
+									<div class="media-body">
+										<a href="#" class="media-title font-weight-semibold">Hanna Walden</a>
+										<span class="d-block text-muted font-size-sm">Project manager</span>
+									</div>
+									<div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
+								</li>
+
+								<li class="media">
+									<div class="mr-3">
+										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
+									</div>
+									<div class="media-body">
+										<a href="#" class="media-title font-weight-semibold">Dori Laperriere</a>
+										<span class="d-block text-muted font-size-sm">Business developer</span>
+									</div>
+									<div class="ml-3 align-self-center"><span class="badge badge-mark border-warning"></span></div>
+								</li>
+
+								<li class="media">
+									<div class="mr-3">
+										<img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
+									</div>
+									<div class="media-body">
+										<a href="#" class="media-title font-weight-semibold">Vanessa Aurelius</a>
+										<span class="d-block text-muted font-size-sm">UX expert</span>
+									</div>
+									<div class="ml-3 align-self-center"><span class="badge badge-mark border-secondary"></span></div>
+								</li>
+							</ul>
+						</div>
+
+						<div class="dropdown-content-footer bg-light">
+							<a href="#" class="text-body mr-auto">All users</a>
+							<a href="#" class="text-body"><i class="icon-gear"></i></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
+			
+
+			<li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
+				<a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">
+					<img src="{% static 'images/placeholders/placeholder.jpg' %}"  class="rounded-pill mr-lg-2" height="34" alt="">
+					<span class="d-none d-lg-inline-block">{{User.Username}}</span>
+				</a>
+
+				<div class="dropdown-menu dropdown-menu-right">
+					<a href="{% static 'http://127.0.0.1:8000/edit_profile' %}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+					<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+		
+		<!-- #####################/main sidebar ###################-->
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Page header -->
+				
+				<!-- /page header -->
+
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Course overview -->
+					<div class="card">
+						<div class="card-header header-elements-lg-inline">
+							<h5 class="card-title">Title</h5>
+
+							<div class="header-elements">
+								<ul class="list-inline list-inline-dotted mb-0 mt-2 mt-lg-0">
+									<li class="list-inline-item">Duration: <span class="font-weight-semibold">17</span></li>
+									
+								</ul>
+		                	</div>
+						</div>
+
+					
+					</div>
+					<!-- /course overview -->
+                    <!-- Video -->
+					<div class="card">
+						<div class="card-header header-elements-sm-inline">
+							<div class="row mb-5 pb-4">
+						<div class="col-12">
+							<!-- Video player 1422x800 -->
+							<video width="1050" height="500" controls="" autoplay="">
+							  <source src="{% static 'videos/Présentation_de_la_formation.mp4' %}"type="video/mp4">							  
+							Your browser does not support the video tag.
+							</video>
+						</div>
+					</div>
+                        	</div>
+				
+                    <!-- Video -->
+                    <!-- Course Desc -->
+			             <div class="tab-content">
+							<div class="tab-pane fade show active" id="course-overview">
+								<div class="card-body">
+									<div class="mt-1 mb-4">
+										<h3 class="font-weight-semibold">{% block title %} {{ object.title }} {% endblock title %} </h3>
+										<p>   {{ object.content | safe }}  </p>
+									</div>
+
+									<h6 class="font-weight-semibold">What you will learn</h6>
+									<p class="mb-3"> {{request.Desc.first_dec}} </p>
+
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="mb-4">
+												<dl>
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Salamander much that on much
+				                                	</dt>
+					                                <dd>Like partook magic this enthusiastic tasteful far crud otter this the ferret honey iguana. Together prim and limpet much extravagantly quail longing.</dd>
+
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Well far some raccoon
+				                                	</dt>
+					                                <dd>Python laudably euphemistically since this copious much human this briefly hello ouch less one diligent however impotently made gave a slick up much.</dd>
+
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Goldfish rapidly that far
+				                                	</dt>
+					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
+
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Gregor then turned to look out
+				                                	</dt>
+					                                <dd>Then sluggishly this camel learned woodchuck far stretched unspeakable notwithstanding the walked owing stung mellifluously glumly rooster.</dd>
+					                            </dl>
+				                            </div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="mb-4">
+												<dl>
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Misunderstood cuffed more depending
+				                                	</dt>
+					                                <dd>And earthworm dear arose bald agilely sad so below cowered within ceremonially therefore via much this symbolically and newt capably.</dd>
+
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Voluble much saddled mechanic
+				                                	</dt>
+					                                <dd>Much took between less goodness jay mallard kneeled gnashed this up strong cooperative. A collection of textile samples lay spread.</dd>
+
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	Before some one more
+				                                	</dt>
+					                                <dd>Pending some contrary rabbit up that the more conditionally ouch confidently far so was darn logic thus dove the juicily because that placed otter.</dd>
+
+					                                <dt class="font-size-sm font-weight-bold text-uppercase">
+														<i class="fas fa-check"></i>
+					                                	So slit more darn hey well wore
+				                                	</dt>
+					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
+					                            </dl>
+				                            </div>
+										</div>
+				                    </div>
+
+				                    <h6 class="font-weight-semibold">Course program</h6>
+									So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame
+								</div>
+
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Lessons</th>
+												<th>Name</th>
+												<th>Description</th>
+												<th>Duration</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td><a href="#">Introduction</a></td>
+												<td>One morning, when Gregor Samsa woke from troubled dreams, he found himself</td>
+												<td>10 hours</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td><a href="#">Design tools</a></td>
+												<td>He lay on his armour-like back, and if he lifted his head a little he could</td>
+												<td>20 hours</td>
+												
+											</tr>
+											<tr>
+												<td>3</td>
+												<td><a href="#">Workspace</a></td>
+												<td>The bedding was hardly able to cover it and seemed ready to slide off moment</td>
+												<td>35 hours</td>
+												
+											</tr>
+											<tr>
+												<td>4</td>
+												<td><a href="#">Creating effects</a></td>
+												<td>A collection of textile samples lay spread out on the table - Samsa salesman</td>
+												<td>25 hours</td>
+												
+											</tr>
+											<tr>
+												<td>5</td>
+												<td><a href="#">Digital design</a></td>
+												<td>Drops of rain could be heard hitting the pane, which made him feel quite sad</td>
+												<td>50 hours</td>
+												
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							
+
+							<div class="tab-pane fade" id="course-schedule">
+								<div class="card-body">
+									<div class="schedule"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- /course Desc -->		
+			</div>
+			<!-- /inner content -->
+
+		</div>
+		<!-- /main content -->
+
+
+		<!-- Right sidebar -->
+		<div class="sidebar sidebar-light sidebar-right sidebar-expand-lg">
+
+			<!-- Expand button -->
+			<button type="button" class="btn btn-sidebar-expand sidebar-control sidebar-right-toggle">
+				<i class="icon-arrow-right13"></i>
+			</button>
+			<!-- /expand button -->
+
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- Header -->
+				<div class="sidebar-section sidebar-section-body d-flex align-items-center pb-0">
+					<h5 class="mb-0">Course : </h5>
+					<div class="ml-auto">
+						<button type="button" class="btn btn-outline-light text-body border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-right-toggle d-none d-lg-inline-flex">
+							<i class="icon-transmission"></i>
+						</button>
+
+						<button type="button" class="btn btn-outline-light text-body border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-right-toggle d-lg-none">
+							<i class="icon-cross2"></i>
+						</button>
+					</div>
+				</div>
+				<!-- /header -->
+                <!-- Attendees -->
+				<div class="sidebar-section">
+				<div class="sidebar-section-body">
+						<ul class="media-list">
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 1</a>
+								</div>
+
+								<div class="ml-3 align-self-center">
+									<div class="dropdown">
+									<!--- <a href="#" class="text-body" data-toggle="dropdown"><i class="icon-more2"></i></a> -->
+									</div>
+								</div>
+							</li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 2</a>
+								</div>
+							</li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">								
+									<a class="font-weight-semibold" href="#">Chapitre 3</a>
+                                </div>
+							</li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 4</a>
+								</div>
+                            </li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 5</a>
+
+								</div>
+							</li>
+                            <li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 6</a>
+								</div>
+                            </li>
+                            <li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 7</a>
+								</div>
+                            </li>
+                            <li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 8</a>
+								</div>
+                            </li>
+                            <li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 9</a>
+								</div>
+                            </li>
+                            <li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="#">Chapitre 10</a>
+								</div>
+                            </li>
+						</ul>
+					</div>
+				</div>
+				<!-- /attendees -->
+			</div>
+			<!-- /sidebar content -->
+        </div>
+		<!-- /right sidebar -->
+     </div>
+	<!-- /page content -->
+
+</body>
+</html>
+{% endblock %}

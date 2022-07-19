@@ -5,11 +5,17 @@ from .models import Lecons, Chapitres, Desc
 
 
 class DescAdmin(admin.ModelAdmin):
-    list_display =  ('id', 'title', 'text', 'type_desc','image_or_text', 'image', 'lecon_id', 'chapitre_id')
+    list_display =  ('id', 'title', 'description', 'type_desc','image_or_text', 'image', 'lecon_id', 'chapitre_id')
 
 class LeconsAdmin(admin.ModelAdmin):
     list_display =  ('name_lecon', 'nbr_chapitres', 'price', 'duree', 'url_photo')
-
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'status','created_on')
+    list_filter = ("status",)
+    search_fields = ['title', 'content']
+    prepopulated_fields = {'slug': ('title',)}
+    
 admin.site.register(Lecons, LeconsAdmin)
 admin.site.register(Chapitres)
 admin.site.register(Desc, DescAdmin)
+
