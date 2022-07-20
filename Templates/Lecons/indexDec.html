@@ -83,29 +83,14 @@
 										<div class="col-sm-6">
 											<div class="mb-4">
 												<dl>
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Salamander much that on much
-				                                	</dt>
-					                                <dd>Like partook magic this enthusiastic tasteful far crud otter this the ferret honey iguana. Together prim and limpet much extravagantly quail longing.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Well far some raccoon
-				                                	</dt>
-					                                <dd>Python laudably euphemistically since this copious much human this briefly hello ouch less one diligent however impotently made gave a slick up much.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Goldfish rapidly that far
-				                                	</dt>
-					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Gregor then turned to look out
-				                                	</dt>
-					                                <dd>Then sluggishly this camel learned woodchuck far stretched unspeakable notwithstanding the walked owing stung mellifluously glumly rooster.</dd>
+													{% for courseDesc in courseDescs %}
+															<dt class="font-size-sm font-weight-bold text-uppercase">
+																<i class="icon-checkmark3 text-primary mr-2"></i>
+																Salamander much that on much{{courseDesc.title}}
+															</dt>
+															<dd>Like partook magic this enthusiastic tasteful far crud otter this the ferret honey iguana. Together prim and limpet much extravagantly quail longing.</dd>
+															
+													{% endfor %}
 					                            </dl>
 				                            </div>
 										</div>
@@ -876,177 +861,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- /course overview -->
-					
-					<!-- Course overview -->
-					<div class="card">
-
-						<div class="card-header header-elements-lg-inline">
-							<h5 class="card-title">{{lecon.name_lecon}}</h5>
-
-							<div class="header-elements">
-								<ul class="list-inline list-inline-dotted mb-0 mt-2 mt-lg-0">
-									<li class="list-inline-item">Rating: <span class="font-weight-semibold">4.85</span></li>
-									<li class="list-inline-item">
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fa fa-star checked"></i>
-										<span class="text-muted ml-1">(439)</span>
-									</li>
-								</ul>
-		                	</div>
-						</div>
-						<div class="nav-tabs-responsive bg-light border-top">
-							<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
-								<li class="nav-item"><a href="#course-overview" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Overview</a></li>
-								<li class="nav-item"><a href="#course-schedule" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i> Schedule</a></li>
-							</ul>
-						</div>
-						{% for post in queryset %}
-						<div class="tab-content">
-							
-							<div class="tab-pane fade show active" id="course-overview">
-								<div class="card-body">
-									<div class="mt-1 mb-4">
-										<h6 class="font-weight-semibold">{{post.title}}  <br><small>by {{post.author}}</small>  </h6>
-										<p> {{post.content| truncatechars:210}}</p>
-										<a href="blog/{{post.slug}}" class="btn btn-primary">Read More {% if user.is_superuser %}<a href="delete_blog_post/{{post.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a>
-									</div>
-						            <h6 class="font-weight-semibold">What you will learn</h6>
-									<p class="mb-3">  </p>
-
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="mb-4">
-												<dl>
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Salamander much that on much
-				                                	</dt>
-					                                <dd>Like partook magic this enthusiastic tasteful far crud otter this the ferret honey iguana. Together prim and limpet much extravagantly quail longing.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Well far some raccoon
-				                                	</dt>
-					                                <dd>Python laudably euphemistically since this copious much human this briefly hello ouch less one diligent however impotently made gave a slick up much.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Goldfish rapidly that far
-				                                	</dt>
-					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Gregor then turned to look out
-				                                	</dt>
-					                                <dd>Then sluggishly this camel learned woodchuck far stretched unspeakable notwithstanding the walked owing stung mellifluously glumly rooster.</dd>
-					                            </dl>
-				                            </div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="mb-4">
-												<dl>
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Misunderstood cuffed more depending
-				                                	</dt>
-					                                <dd>And earthworm dear arose bald agilely sad so below cowered within ceremonially therefore via much this symbolically and newt capably.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Voluble much saddled mechanic
-				                                	</dt>
-					                                <dd>Much took between less goodness jay mallard kneeled gnashed this up strong cooperative. A collection of textile samples lay spread.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	Before some one more
-				                                	</dt>
-					                                <dd>Pending some contrary rabbit up that the more conditionally ouch confidently far so was darn logic thus dove the juicily because that placed otter.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-														<i class="fas fa-check"></i>
-					                                	So slit more darn hey well wore
-				                                	</dt>
-					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
-					                            </dl>
-				                            </div>
-										</div>
-				                    </div>
-
-				                    <h6 class="font-weight-semibold">Course program</h6>
-									So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame
-								</div>
-
-								<div class="table-responsive">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Lessons</th>
-												<th>Name</th>
-												<th>Description</th>
-												<th>Duration</th>
-												
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td><a href="#">Introduction</a></td>
-												<td>One morning, when Gregor Samsa woke from troubled dreams, he found himself</td>
-												<td>10 hours</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td><a href="#">Design tools</a></td>
-												<td>He lay on his armour-like back, and if he lifted his head a little he could</td>
-												<td>20 hours</td>
-												
-											</tr>
-											<tr>
-												<td>3</td>
-												<td><a href="#">Workspace</a></td>
-												<td>The bedding was hardly able to cover it and seemed ready to slide off moment</td>
-												<td>35 hours</td>
-												
-											</tr>
-											<tr>
-												<td>4</td>
-												<td><a href="#">Creating effects</a></td>
-												<td>A collection of textile samples lay spread out on the table - Samsa salesman</td>
-												<td>25 hours</td>
-												
-											</tr>
-											<tr>
-												<td>5</td>
-												<td><a href="#">Digital design</a></td>
-												<td>Drops of rain could be heard hitting the pane, which made him feel quite sad</td>
-												<td>50 hours</td>
-												
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-                            
-						
-							
-
-							<div class="tab-pane fade" id="course-schedule">
-								<div class="card-body">
-									<div class="schedule"></div>
-								</div>
-							</div>
-						</div>
-						{% endfor %}
-
-					</div>
-
 					<!-- /course overview -->
 
 

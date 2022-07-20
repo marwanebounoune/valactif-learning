@@ -25,14 +25,16 @@ def PostList(request, id):
     queryset = Desc.objects.filter(lecon_id=id)
     lecon = Lecons.objects.get(id=id)
     # nbrDesc3 = queryset
-    print("lecon", lecon.name_lecon)
+    print("lecon", round(countCourseDescs/2))
     context = {
         'courseOverviews': courseOverviews,
         'whatYouWillLearns': whatYouWillLearns,
         'courseDescs': courseDescs,
         'coursePrograms': coursePrograms,
-        'countCourseDescs' : countCourseDescs,
-        'lecon': lecon
+        'countCourseDescs1' : countCourseDescs/2,
+        'lecon': lecon,
+        'i': round(countCourseDescs/2),
+        'j': countCourseDescs/2
     }
     return render(request, 'Lecons/indexDec.html', context)
     
