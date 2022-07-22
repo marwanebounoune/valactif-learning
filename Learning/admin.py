@@ -9,6 +9,8 @@ class DescAdmin(admin.ModelAdmin):
 
 class LeconsAdmin(admin.ModelAdmin):
     list_display =  ('name_lecon', 'nbr_chapitres', 'price', 'duree', 'url_photo')
+class ChapitresAdmin(admin.ModelAdmin):
+    list_display =  ('name_chapitres', 'type_chapitres', 'lecon_id', 'duree', 'status')
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'status','created_on')
     list_filter = ("status",)
@@ -16,6 +18,6 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     
 admin.site.register(Lecons, LeconsAdmin)
-admin.site.register(Chapitres)
+admin.site.register(Chapitres, ChapitresAdmin)
 admin.site.register(Desc, DescAdmin)
 

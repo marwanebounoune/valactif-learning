@@ -3,36 +3,39 @@
 {%load static%}
 {% block content %}
 <style>
-	.video{
+	html {
+		box-sizing: border-box;
+	}
+	
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+	
+	body {
+		margin: 0;
+		padding: 0;
+		display:flex;
+		background:#7A419B;
+		min-height:100vh;
+		background: linear-gradient(135deg, #7c1599 0%,#921099 48%,#7e4ae8 100%);
 		background-size:cover;
 		align-items: center;
 		justify-content: center;
 	}
+	
 	.player {
-		max-width:auto;
+		max-width:750px;
+		border:5px solid rgba(0,0,0,0.2);
 		box-shadow:0 0 20px rgba(0,0,0,0.2);
 		position: relative;
 		font-size: 0;
 		overflow: hidden;
-		margin: 0;
-		padding: 0;
-		display:flex;
 	}
-	.image {
-		max-width:auto;
-		position: relative;
-		overflow: hidden;
-		margin: 0;
-		padding: 0;
-		display:flex;
-		width: 100%;
-		background-size:cover;
-		align-items: center;
-		justify-content: center;
-	}
+	
 	.player__video {
 		width: 100%;
 	}
+	
 	.player__button {
 		background:none;
 		border:0;
@@ -44,9 +47,11 @@
 		max-width:50px;
 		min-width: 50px;
 	}
+	
 	.player__button:focus {
 		border-color: #ffc600;
 	}
+	
 	.player__icon {
 		background:none;
 		color:white;
@@ -56,10 +61,12 @@
 		/*border: 1px solid white;*/
 		text-align: center;
 	}
+	
 	.player__slider {
 		width:10px;
 		height:30px;
 	}
+	
 	.player__controls {
 		display:flex;
 		position: absolute;
@@ -70,21 +77,27 @@
 		flex-wrap:wrap;
 		background:rgba(0,0,0,0.2);
 	}
+	
 	.player:hover .player__controls {
 		transform: translateY(0);
 	}
+	
 	.player:hover .progress {
 		height:15px;
 	}
+	
 	.player__controls > * {
 		flex:1;
 	}
+	
 	.buttons_and_scrubbers {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
+	
+	
 	.progress {
 		display:flex;
 		flex:10;
@@ -95,21 +108,27 @@
 		background:rgba(0,0,0,0.5);
 		cursor:ew-resize;
 	}
+	
 	.progress__filled {
 		width:0;
 		background-color:#ffc600;
 		flex:0;
 		flex-basis:0;
 	}
+	
+	/* unholy css to style input type="range" */
+	
 	input[type=range] {
 		-webkit-appearance: none;
 		background: transparent;
 		width: 100%;
 		margin: 0 5px;
 	}
+	
 	input[type=range]:focus {
 		outline: none;
 	}
+	
 	input[type=range]::-webkit-slider-runnable-track {
 		width: 100%;
 		height: 8.4px;
@@ -119,6 +138,7 @@
 		border-radius: 1.3px;
 		border: 0.2px solid rgba(1, 1, 1, 0);
 	}
+	
 	input[type=range]::-webkit-slider-thumb {
 		height: 15px;
 		width: 15px;
@@ -129,9 +149,11 @@
 		margin-top: -3.5px;
 		box-shadow:0 0 2px rgba(0,0,0,0.2);
 	}
+	
 	input[type=range]:focus::-webkit-slider-runnable-track {
 		background: #bada55;
 	}
+	
 	input[type=range]::-moz-range-track {
 		width: 100%;
 		height: 8.4px;
@@ -141,6 +163,7 @@
 		border-radius: 1.3px;
 		border: 0.2px solid rgba(1, 1, 1, 0);
 	}
+	
 	input[type=range]::-moz-range-thumb {
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(13, 13, 13, 0);
 		height: 15px;
@@ -180,26 +203,26 @@
 		                	</div>
 						</div>
 						<!-- Video -->
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-10" >
-								
-								<div class="mb-4">
-									<div class="video">
-										<div class="player">
-											<!-- Video player 1422x800 -->
-											<video class="player__video viewer" controls="" autoplay="">
-											<source src="{% static 'videos/Présentation_de_la_formation.mp4' %}"type="video/mp4">							  
-											Your browser does not support the video tag.
-											</video>
-										</div>
+<div class="player">
+    <video class="player__video viewer"src={{lecon.url_demo}}></video>
+    <div class="player__controls">
+        <div class="progress">
+            <div class="progress__filled"></div>
+        </div>
+        <div class="buttons_and_scrubbers">
+            <button class="player__button toggle material-icons" title="Toggle Play">play_arrow
+            </button>
+            <div class="player__icon material-icons">volume_up</div>
+            <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
+            <div class="player__icon material-icons">av_timer</div>
+            <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
 
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-1"></div>
-						</div>
-						<br>
+            <button data-skip="-10" class="player__button material-icons">replay_10</button>
+            <button data-skip="30" class="player__button material-icons">forward_30</button>
+            <button class="player__button fullscreen material-icons">fullscreen</button>
+        </div>
+    </div>
+</div>
 						<!-- Video -->
 						<div class="nav-tabs-responsive bg-light border-top">
 							<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
@@ -239,15 +262,15 @@
 					                            </dl>
 				                            </div>
 										</div>
-										<div class="col-sm-7 ">
-											<div class="mb-4 ">
+										<div class="col-sm-7">
+											<div class="mb-4">
 												<dl>
 													{% for courseDescsImage in courseDescsImages %}
 														<dt class="font-size-sm font-weight-bold text-uppercase">
 															<i class="icon-checkmark3 text-primary mr-2"></i>
 															Misunderstood cuffed more depending
 														</dt>
-														<img src={{courseDescsImage.image}}  class="video player__video viewer">
+														<img src={{courseDescsImage.image}} height="500px" width="850px">
 														<br>
 														<br>
 														<dd>{{courseDescsImage.description}}</dd>
@@ -274,21 +297,51 @@
 											</tr>
 										</thead>
 										<tbody>
-											{% for chapitre in chapitres %}
 											<tr>
 												<td>1</td>
-												<td><a href="#">{{chapitre.name_chapitres}}</a></td>
-												<td>{{chapitre.introduction}}</td>
+												<td><a href="#">Introduction</a></td>
+												<td>One morning, when Gregor Samsa woke from troubled dreams, he found himself</td>
 												<td>10 hours</td>
-												<!-- {% if chapitre%} -->
 												<td><span class="badge badge-secondary">Closed</span></td>
 												<td>Oct 21st, 2016</td>
 											</tr>
-											{% endfor %}
+											<tr>
+												<td>2</td>
+												<td><a href="#">Design tools</a></td>
+												<td>He lay on his armour-like back, and if he lifted his head a little he could</td>
+												<td>20 hours</td>
+												<td><span class="badge badge-primary">Registration</span></td>
+												<td>Oct 22nd, 2016</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td><a href="#">Workspace</a></td>
+												<td>The bedding was hardly able to cover it and seemed ready to slide off moment</td>
+												<td>35 hours</td>
+												<td><span class="badge badge-danger">On time</span></td>
+												<td>Oct 23rd, 2016</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td><a href="#">Creating effects</a></td>
+												<td>A collection of textile samples lay spread out on the table - Samsa salesman</td>
+												<td>25 hours</td>
+												<td><span class="badge badge-danger">On time</span></td>
+												<td>Oct 24th, 2016</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td><a href="#">Digital design</a></td>
+												<td>Drops of rain could be heard hitting the pane, which made him feel quite sad</td>
+												<td>50 hours</td>
+												<td><span class="badge badge-danger">On time</span></td>
+												<td>Oct 25th, 2016</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
+
 							<div class="tab-pane fade" id="course-schedule">
 								<div class="card-body">
 									<div class="schedule"></div>
@@ -342,7 +395,7 @@
 						<tbody>
 							<tr>
 								<td>Duration:</td>
-								<td class="font-weight-semibold text-right">{{lecon.duree}}</td>
+								<td class="font-weight-semibold text-right">10 hours</td>
 							</tr>
 							<tr>
 								<td>Status:</td>
@@ -352,7 +405,7 @@
 							</tr>
 							<tr>
 								<td>Lessons:</td>
-								<td class="font-weight-semibold text-right">{{lecon.nbr_chapitres}} Lessons</td>
+								<td class="font-weight-semibold text-right">12 lessons</td>
 							</tr>
 							<tr>
 								<td>Trainer:</td>
@@ -360,7 +413,7 @@
 							</tr>
 							<tr>
 								<td>Attendees:</td>
-								<td class="font-weight-semibold text-right">{{lecon.duree}}</td>
+								<td class="font-weight-semibold text-right">382 people</td>
 							</tr>
 							<tr>
 								<td>Rating:</td>
@@ -386,14 +439,13 @@
 
 					<div class="sidebar-section-body">
 						<ul class="media-list">
-							{% for chapitre in chapitres %}
 							<li class="media">
 								<a href="#" class="mr-3">
 									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
 								<div class="media-body">
-									<a class="font-weight-semibold" href='http://127.0.0.1:8000/lecon/{{lecon.id}}/chapitre/{{chapitre.id}}'>{{chapitre.name_chapitres}}</a>
+									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 1</a>
 								</div>
 
 								<div class="ml-3 align-self-center">
@@ -402,7 +454,47 @@
 									</div>
 								</div>
 							</li>
-							{% endfor %}
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 2</a>
+								</div>
+							</li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">								
+									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 3</a>
+                                </div>
+							</li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 4</a>
+								</div>
+                            </li>
+
+							<li class="media">
+								<a href="#" class="mr-3">
+									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
+								</a>
+
+								<div class="media-body">
+									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 5</a>
+
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -417,8 +509,130 @@
 		</div>
 		<!-- /right sidebar -->
 	</div>
-	<!-- /page content -->
+	<!-- /page content --><script>
+	const video = document.querySelector('.player__video');
+	const play = document.querySelector('.toggle');
+	
+	const playVideo = () => {
+		if (video.paused) {
+			video.play();
+			play.textContent = "pause";
+		} else {
+			video.pause();
+			play.textContent = "play_arrow";
+		}
+	};
+	
+	const playVideoOnKeyUp = (e) => {
+		if (video.paused && e.keyCode === 32) {
+			video.play();
+			play.textContent = "pause";
+		} else if (!video.paused && e.keyCode === 32) {
+			video.pause();
+			play.textContent = "play_arrow";
+		}
+	};
+	
+	// Add event listener to play button.
+	play.addEventListener('click', playVideo);
+	// Add event listener to window.
+	window.addEventListener('keyup', playVideoOnKeyUp);
+	
+	// ------------------------------------------
+	
+	// Add event listener to volume and speed scrubbers.
+	const scrubbers = document.querySelectorAll('[type="range"]');
+	
+	// Must use regular function. Code breaks using arrow function.
+	const volumeAndSpeed = (event) => {
+		// Assign this.value to the VIDEO object this.name.
+		const scrubber = event.target;
+		video[scrubber.name] = scrubber.value;
+	};
+	
+	// Scrubbers need change/click + mousemove event.
+	scrubbers.forEach(
+		scrubber => scrubber.addEventListener('click', volumeAndSpeed));
+	scrubbers.forEach(
+		scrubber => scrubber.addEventListener('mousemove', volumeAndSpeed));
+	
+	// ------------------------------------------
+	
+	// Add event listener to skip buttons (10s back, 25s forwards).
+	const skipButtons = document.querySelectorAll('button[data-skip]');
+	
+	const skipVideo = (event) => {
+		const button = event.target;
+		if (button.dataset.skip === "-10") {
+			video.currentTime -= 10;
+		} else if (button.dataset.skip === "30") {
+			video.currentTime += 30;
+		}
+	};
+	
+	skipButtons.forEach(button => button.addEventListener('click', skipVideo));
+	
+	// ------------------------------------------
+	
+	// Add fullscreen button and event listener to full screen button.
+	const fullScreen = document.querySelector('.fullscreen');
+	const player = document.querySelector('.player');
+	
+	// Clicking on fullscreen button, add :fullscreen to the class player.
+	const videoFullscreen = () => {
+		if (player.requestFullscreen) {
+			player.requestFullscreen();
+		} else if (player.mozRequestFullScreen) { /* Firefox */
+			player.mozRequestFullScreen();
+		} else if (player.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+			player.webkitRequestFullscreen();
+		} else if (player.msRequestFullscreen) { /* IE/Edge */
+			player.msRequestFullscreen();
+		}
+		fullScreen.textContent = "fullscreen_exit";
+	
+		if (document.fullscreenElement) {
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitExitFullscreen) {
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+	
+			fullScreen.textContent = "fullscreen";
+		}
+	};
+	
+	fullScreen.addEventListener('click', videoFullscreen);
+	
+	// ------------------------------------------
+	
+	// Make progress bar track the progress.
+	const progressBackground = document.querySelector('.progress');
+	const progressBar = document.querySelector('.progress__filled');
+	
+	const trackingProgress = () => {
+		const duration = video.duration;
+		progressBar.style.flexBasis = ((video.currentTime / duration) * 100) + "%";
+	};
+	
+	const skipVideoOnProgressBar = () => {
+		const num = event.clientX - player.offsetLeft - 5;
+		const duration = video.duration;
+	
+		progressBar.style.flexBasis = (num * 100 / (player.offsetWidth - 10)) + "%";
+		video.currentTime = duration * num / (player.offsetWidth - 10);
+	};
+	
+	progressBackground.addEventListener('click', skipVideoOnProgressBar);
+	
+	video.addEventListener('timeupdate', trackingProgress);
+	</script>
 </body><!-- Global stylesheets -->
+
 <!-- /theme JS files -->
 </html>
 

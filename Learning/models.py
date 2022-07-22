@@ -16,15 +16,17 @@ IMAGE_OR_TEXT_CHOICES = (
     ('1','Text'),
     ('2', 'Image')
 )
-STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+STATUS_CHAPITRE = (
+    (0,"Non démaré"),
+    (1,"Encours"),
+    (2,"Términé")
 )
 
 class Lecons(models.Model):
     name_lecon = models.CharField(max_length=255, null=True, blank=True)
     nbr_chapitres = models.CharField(max_length=60, null=True, blank=True)
     url_photo = models.ImageField(upload_to='images/lecons/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg','tiff'])])
+    url_demo  = models.FileField(upload_to='videos/',null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     duree = models.CharField(max_length=21, null=True, blank=True)
     deleted = models.BooleanField(default=False, blank=True, null=True)
@@ -35,9 +37,12 @@ class Lecons(models.Model):
 class Chapitres(models.Model):
     name_chapitres =  models.CharField(max_length=255, null=True, blank=True)
     type_chapitres = models.CharField(max_length=255, null=True, blank=True)
-    url  = models.FileField(upload_to='videos/')
+    url  = models.FileField(upload_to='videos/', blank=True, null=True)
     lecon = models.ForeignKey(Lecons, on_delete=models.CASCADE)
     deleted = models.BooleanField(default=False, blank=True, null=True)
+    introduction = models.TextField()
+    duree = models.CharField(max_length=21, null=True, blank=True)
+    status = models.IntegerField(null=True, blank=True, choices=STATUS_CHAPITRE)
     pass
     class Meta:
         db_table = "Chapitres" 
