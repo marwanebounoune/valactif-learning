@@ -226,7 +226,7 @@
 										{% endfor %}
 									{% endif %}
 									<div class="row">
-										<div class="col-sm-5">
+										<div class="col-sm-6">
 											<div class="mb-4">
 												<dl>
 													{% for courseDesc in courseDescs %}
@@ -239,7 +239,7 @@
 					                            </dl>
 				                            </div>
 										</div>
-										<div class="col-sm-7 ">
+										<div class="col-sm-6 ">
 											<div class="mb-4 ">
 												<dl>
 													{% for courseDescsImage in courseDescsImages %}
@@ -265,7 +265,6 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>Lessons</th>
 												<th>Name</th>
 												<th>Description</th>
 												<th>Duration</th>
@@ -275,15 +274,13 @@
 										</thead>
 										<tbody>
 											{% for chapitre in chapitres %}
-											<tr>
-												<td>1</td>
-												<td><a href="#">{{chapitre.name_chapitres}}</a></td>
-												<td>{{chapitre.introduction}}</td>
-												<td>10 hours</td>
-												<!-- {% if chapitre%} -->
-												<td><span class="badge badge-secondary">Closed</span></td>
-												<td>Oct 21st, 2016</td>
-											</tr>
+												<tr>
+													<td><a href="http://127.0.0.1:8000/lecon/{{lecon.id}}/chapitre/{{chapitre.id}}">{{chapitre.name_chapitres}}</a></td>
+													<td>{{chapitre.introduction}}</td>
+													<td>{{chapitre.duree}}</td>
+													<td><span class="badge badge-secondary">Closed</span></td>
+													<td>Oct 21st, 2016</td>
+												</tr>
 											{% endfor %}
 										</tbody>
 									</table>
@@ -369,7 +366,7 @@
 									<i class="icon-star-full2 font-size-base text-warning"></i>
 									<i class="icon-star-full2 font-size-base text-warning"></i>
 									<i class="icon-star-full2 font-size-base text-warning"></i>
-									<i class="icon-star-full2 font-size-base text-warning"></i>
+									<i class="icon-star-full font-size-base"></i>
 								</td>
 							</tr>
 						</tbody>

@@ -11,7 +11,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <!-- <link href="{% static 'website/img/favicon.ico' %}" rel="icon"> -->
+    <link href="{% static 'website/img/favicon.ico' %}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -49,6 +49,7 @@
                 <div class="d-inline-flex align-items-center">
                     <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
                     <div class="text-left">
+    
                         <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
                         <small>info@valactif.com</small>
                     </div>
@@ -66,8 +67,6 @@
         </div>
     </div>
     <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -101,15 +100,12 @@
                         </div>
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Sign in</a>
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Register</a>
-
                     </div>
                 </nav>
             </div>
         </div>
     </div>
     <!-- Navbar End -->
-
-
     <!-- Carousel Start -->
     <div class="container-fluid p-0 pb-5 mb-5">
         <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -153,8 +149,6 @@
         </div>
     </div>
     <!-- Carousel End -->
-
-
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -174,10 +168,8 @@
         </div>
     </div>
     <!-- About End -->
-
-
     <!-- Category Start -->
-    <div class="container-fluid py-5">
+    <!-- <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-5">
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Subjects</h5>
@@ -258,10 +250,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Category Start -->
-
-
     <!-- Courses Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -270,126 +260,32 @@
                 <h1>Our Popular Courses</h1>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
+                {% for lecon in lecons %}
+                {% if forloop.counter <= 6 %}
+                <div class="col-lg-4 col-md-6 mb-4">´
                     <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'website/img/course-1.jpg' %}" alt="">
+                        <img class=" img-fluid " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
                         <div class="bg-secondary p-4">
                             <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                             <!--   <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small> -->
+                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{lecon.duree}} Min</small>
                             </div>
-                            <a class="h5 getLecon">Web design & development courses for beginner 1</a>
+                            <a class="h5" href="{% url 'lecons' lecon.id %}">{{lecon.name_lecon}}</a></a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                    <h5 class="m-0">$99</h5>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i> <small>{{lecon.get_level_display}}</small></h6>
+                                    <h5 class="m-0">{{lecon.price}} MAD</h5>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'website/img/course-2.jpg' %}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>250 Commandes</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                            </div>
-                            <a class="h5 getLecon">Web design & development courses for beginner 2</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                    <h5 class="m-0">$120</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'website/img/course-3.jpg' %}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>301 Commandes</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>45m</small>
-                            </div>
-                            <a class="h5 getLecon">Web design & development courses for beginner 3</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>5.0 <small>(34)</small></h6>
-                                    <h5 class="m-0">$45</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'website/img/course-4.jpg' %}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>85 Commandes</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                            </div>
-                            <a class="h5 getLecon">Web design & development courses for beginner 4</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>3.5 <small>(250)</small></h6>
-                                    <h5 class="m-0">$69</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'website/img/course-5.jpg' %}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>22 Commandes</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 10m</small>
-                            </div>
-                            <a class="h5 getLecon">Web design & development courses for beginner 5</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.0 <small>(2)</small></h6>
-                                    <h5 class="m-0">$89</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'website/img/course-6.jpg' %}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>5 Commandes</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>55m</small>
-                            </div>
-                            <a class="h5 getLecon">Web design & development courses for beginner 6</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>5.0 <small>(3)</small></h6>
-                                    <h5 class="m-0">$99</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div>  
+                </div> 
+                {% endif %}
+                {%endfor%}     
             </div>
         </div>
     </div>
     <!-- Courses End -->
-
-
-
-
-
-    
-
-
     <!-- Testimonial Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -427,8 +323,6 @@
         </div>
     </div>
     <!-- Testimonial End -->
-
-
     <!-- Blog Start -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
@@ -468,8 +362,6 @@
         </div>
     </div>
     <!-- Blog End -->
-
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -486,21 +378,20 @@
                     </div>
                     <div class="col-md-6 mb-5">
 						<h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Newsletter</h5>
-                <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-4">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
+                            <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
+                            <div class="w-100">
+                                <div class="input-group">
+                                    <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary px-4">Sign Up</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
          
-        </div>
     </div>
     <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
@@ -544,7 +435,7 @@
 
 <script>
     $(".getLecon").click(function( event ){
-        window.location.href = "http://127.0.0.1:8000/lecon/1"
+        window.location.href = ""
     })
 </script>
 <script src="{% static 'website/js/main.js' %}"></script>

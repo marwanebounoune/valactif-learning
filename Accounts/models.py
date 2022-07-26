@@ -35,7 +35,7 @@ class User(AbstractUser):
     genre = models.CharField(max_length=1, null=True, blank=True, choices=GENRE_CHOICES)
     pays = models.ForeignKey(Pays, on_delete=models.CASCADE, null=True, blank=True)
     ville = models.ForeignKey(Villes, on_delete=models.CASCADE, null=True, blank=True)
-    lecons = ArrayField(ArrayField(models.CharField(max_length=25, null=True)), blank=True, null=True)
+    lecons = ArrayField(ArrayField(models.IntegerField(null=True, blank=True),null=True, blank=True),null=True, blank=True)
     is_connected = models.BooleanField(default=False)
     pass
     class Meta:
