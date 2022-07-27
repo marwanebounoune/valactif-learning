@@ -280,7 +280,7 @@
 											<tbody>
 												{% for chapitre_i in chapitres %}
 													<tr>
-														<td><a href="http://127.0.0.1:8000/lecon/{{lecon.id}}/chapitre/{{chapitre_i.id}}">{{chapitre_i.name_chapitres}}</a></td>
+														<td><a href="{% url 'chapitre' lecon.id chapitre_i.id %}">{{chapitre_i.name_chapitres}}</a></td>
 														<td>{{chapitre_i.introduction}}</td>
 														<td>{{chapitre.duree}}</td>
 														{% if chapitre_i.id == chapitre.id %}
@@ -400,7 +400,7 @@
 								</a>
 
 								<div class="media-body">
-									<a class="font-weight-semibold" href='http://127.0.0.1:8000/lecon/{{lecon.id}}/chapitre/{{chapitre.id}}'>{{chapitre.name_chapitres}}</a>
+									<a class="font-weight-semibold" href="{% url 'chapitre' lecon.id chapitre.id %}">{{chapitre.name_chapitres}}</a>
 								</div>
 
 								<div class="ml-3 align-self-center">

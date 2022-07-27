@@ -98,8 +98,8 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Sign in</a>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Register</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login'%}">Sign in</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login'%}">Register</a>
                     </div>
                 </nav>
             </div>
@@ -253,38 +253,39 @@
     </div> -->
     <!-- Category Start -->
     <!-- Courses Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
-                <h1>Our Popular Courses</h1>
-            </div>
-            <div class="row">
-                {% for lecon in lecons %}
-                {% if forloop.counter <= 6 %}
-                <div class="col-lg-4 col-md-6 mb-4">´
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class=" img-fluid " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                             <!--   <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small> -->
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{lecon.duree}} Min</small>
-                            </div>
-                            <a class="h5" href="{% url 'lecons' lecon.id %}">{{lecon.name_lecon}}</a></a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i> <small>{{lecon.get_level_display}}</small></h6>
-                                    <h5 class="m-0">{{lecon.price}} MAD</h5>
+    {% if count != 0 %}
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
+                    <h1>Our Popular Courses</h1>
+                </div>
+                <div class="row">
+                    {% for lecon in lecons %}
+                        {% if forloop.counter <= 6 %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="rounded overflow-hidden mb-2">
+                                <img class=" img-fluid " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
+                                <div class="bg-secondary p-4">
+                                    <div class="d-flex justify-content-between mb-3">
+                                    <!--   <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small> -->
+                                        <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{lecon.duree}} Min</small>
+                                    </div>
+                                    <a class="h5" href="{% url 'lecons' lecon.id %}">{{lecon.name_lecon}}</a></a>
+                                    <div class="border-top mt-4 pt-4">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i> <small>{{lecon.get_level_display}}</small></h6>
+                                            <h5 class="m-0">{{lecon.price}} MAD</h5>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>  
-                </div> 
-                {% endif %}
-                {%endfor%}     
+                            </div>  
+                        </div> 
+                        {% endif %}
+                    {%endfor%}    
+                </div>
             </div>
-        </div>
-    </div>
+        {% endif %} 
     <!-- Courses End -->
     <!-- Testimonial Start -->
     <div class="container-fluid py-5">

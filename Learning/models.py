@@ -1,4 +1,3 @@
-from tkinter.tix import STATUS
 from django.db import models
 from django.core.validators import FileExtensionValidator
 

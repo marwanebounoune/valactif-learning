@@ -78,7 +78,11 @@ def getChapitre(request, id, pk):
 def home(request):
     user = User.objects.filter(id=request.user.id)
     lecons = Lecons.objects.all().order_by('-id')
+    count = len(lecons)
+    print(count)
     context = {
-        'user': user
+        'user': user,
+        'count': count,
+        'lecons': lecons
     }
-    return render(request, 'main/index.html', {"lecons":lecons})
+    return render(request, 'main/index.html')
