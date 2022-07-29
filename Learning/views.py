@@ -15,7 +15,7 @@ def getDesc(request):
 
 def getLecon(request, id):
     courseOverviews = Desc.objects.filter(lecon_id=id).filter(type_desc='1')
-    if(len(courseOverviews)==0):
+    if(len(courseOverviews) == 0):
         print("courseOverviews", len(courseOverviews))
         courseOverviews = None
     whatYouWillLearns = Desc.objects.filter(lecon_id=id).filter(type_desc='2')
@@ -23,7 +23,6 @@ def getLecon(request, id):
     courseDescsImages = Desc.objects.filter(lecon_id=id).filter(type_desc='3').filter(image_or_text='2')
     coursePrograms = Desc.objects.filter(lecon_id=id).filter(type_desc='4')
     countCourseDescs = courseDescs.count()
-    queryset = Desc.objects.filter(lecon_id=id)
     lecon = Lecons.objects.get(id=id)
     chapitres = Chapitres.objects.filter(lecon_id=id)
     context = {
@@ -76,13 +75,12 @@ def getChapitre(request, id, pk):
     return render(request, 'Lecons/VideoLec.html', context)
     
 def home(request):
-    user = User.objects.filter(id=request.user.id)
+    # user = User.objects.get(id=request.user.id)
     lecons = Lecons.objects.all().order_by('-id')
     count = len(lecons)
-    print(count)
     context = {
-        'user': user,
+        # 'user': user,
         'count': count,
         'lecons': lecons
     }
-    return render(request, 'main/index.html')
+    return render(request, 'main/index.html', context)
