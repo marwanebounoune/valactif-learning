@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
-
 from Accounts.models import User
 
 
@@ -20,6 +19,11 @@ STATUS_CHAPITRE = (
     (1,"Encours"),
     (2,"Términé")
 )
+LEVELS = (
+    (1,'Beginner'),
+    (2,'Intermediate'),
+    (3,'Advanced')
+)
 
 class Lecons(models.Model):
     name_lecon = models.CharField(max_length=255, null=True, blank=True)
@@ -28,7 +32,9 @@ class Lecons(models.Model):
     url_demo  = models.FileField(upload_to='videos/',null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     duree = models.CharField(max_length=21, null=True, blank=True)
+    level = models.IntegerField( null=True, blank=True, choices=LEVELS)
     deleted = models.BooleanField(default=False, blank=True, null=True)
+
     pass
     class Meta:
         db_table = "Lecons" 
@@ -58,3 +64,40 @@ class Desc(models.Model):
     pass
     class Meta:
         db_table = "Desc" 
+
+
+
+class About(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    pass
+    class Meta:
+        db_table = "About"
+
+
+class article(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    url_photo = models.ImageField(upload_to='images/article/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg','tiff'])])
+    title1 = models.TextField()
+    description1 = models.TextField()
+    title2 = models.TextField()
+    description2 = models.TextField()
+    title3 = models.TextField()
+    description3 = models.TextField()
+    title4 = models.TextField()
+    description4 = models.TextField()
+    title5 = models.TextField()
+    description5 = models.TextField()
+    pass
+    class Meta:
+        db_table = "article"
+
+class contact(models.Model):
+    name = models.TextField()
+    from_email = models.EmailField()
+    subject = models.TextField()
+    message = models.TextField()
+    pass
+    class Meta:
+        db_table = "contact"

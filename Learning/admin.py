@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Lecons, Chapitres, Desc
+from .models import Lecons, Chapitres, Desc, About, article
 
 # Register your models here.
 
@@ -16,8 +16,14 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ("status",)
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
-    
+
+class AboutAdmin (admin.ModelAdmin):
+    list_display = ('title', 'description')
+class articleadmin (admin.ModelAdmin):
+    list_display = ('title','description','url_photo','title1','description1','title2','description2','title3','description3','title4','description4','title5','description5')
+
 admin.site.register(Lecons, LeconsAdmin)
 admin.site.register(Chapitres, ChapitresAdmin)
 admin.site.register(Desc, DescAdmin)
-
+admin.site.register(About,AboutAdmin)
+admin.site.register(article,articleadmin)

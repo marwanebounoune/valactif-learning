@@ -1,3 +1,4 @@
+from turtle import title
 from urllib import request
 from django.shortcuts import render, redirect
 from django.views import generic
@@ -5,6 +6,7 @@ from django.views import generic
 from Accounts.models import User
 from .models import Chapitres, Lecons, Desc
 
+from .models import Lecons, Desc, About, article
 
 def getDesc(request):
     Text = Text.objects.filter(id=request.type_desc.id)
@@ -38,6 +40,7 @@ def getLecon(request, id):
         'chapitres': chapitres
     }
     return render(request, 'Lecons/indexDec.html', context)
+
 
 def getChapitre(request, id, pk):
     if(request.user.id != None):
@@ -74,13 +77,52 @@ def getChapitre(request, id, pk):
     }
     return render(request, 'Lecons/VideoLec.html', context)
     
+    
 def home(request):
-    # user = User.objects.get(id=request.user.id)
+    user = User.objects.filter(id=request.user.id)
     lecons = Lecons.objects.all().order_by('-id')
+    aboutus = About.objects.all()
+    sarticle = article.objects.all().order_by('-id')
     count = len(lecons)
     context = {
         # 'user': user,
         'count': count,
         'lecons': lecons
     }
-    return render(request, 'main/index.html', context)
+    return render(request, 'main/index.html', {"lecons":lecons,"aboutus" : aboutus,"sarticle": sarticle})
+
+def home_view(request):
+    qs = Lecons.objects.all()
+    template_name = 'index.html'
+    context = {'object_list': qs}
+    return render (request, template_name, context)
+
+
+
+def aboutus(request):
+    about = About.objects.all()
+
+    return render (request, 'main/about.html' ,{"about": about})
+
+
+def Courses(request):
+    course = Lecons.objects.all()
+    lecons = Lecons.objects.all().order_by('-id')
+
+    return render (request, 'main/courses.html',{"course": course,"lecons":lecons})
+
+
+def articles(request):
+    Article = article.objects.all()
+    sarticle = article.objects.all().order_by('-id')
+
+
+    return render (request, 'main/blog.html', {"Article": Article,"sarticle": sarticle})
+
+
+def singlearticle(request, id):
+    sarticle = article.objects.filter(id = id)
+
+
+    return render (request, 'main/article.html', {"sarticle":sarticle})
+

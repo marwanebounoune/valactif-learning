@@ -29,8 +29,6 @@ def lecons(request):
      return render(request, 'Lecons/indexDec.html')
 
 def leconsVideo(request):
-        
-       
     return render(request, 'Lecons/VideoLec.html')
   
 def login(request):

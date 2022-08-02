@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Accounts.apps.AccountsConfig',
     'Learning.apps.LearningConfig',
+    'Contact.apps.ContactConfig',
     'storages',
     'corsheaders',
 ]
@@ -91,13 +92,15 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'learning',
+        'NAME': 'learning2',
         'USER': 'postgres',
         'PASSWORD' : 'admin',
         'HOST': 'localhost'
     }
 }
 AUTH_USER_MODEL="Accounts.User"
+
+
 
 
 
@@ -186,68 +189,10 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'app.custom_storages.StaticStorage'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
 # AWS_DEFAULT_ACL = 'public-read'
@@ -300,3 +245,13 @@ else:
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Valactif_Learning/static')]
 '''
+
+
+
+#EMAILS
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "valactif.learning@gmail.com"
+EMAIL_HOST_PASSWORD = "lmvxvvehnxloqioz"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
