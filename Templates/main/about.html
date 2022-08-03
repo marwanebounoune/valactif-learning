@@ -91,7 +91,7 @@
                             <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
 							<a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                             <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
-                            <a href="{% url 'blog' %}" class="nav-item nav-link">Blog</a>
+                            <a href="{% url 'blogs' %}" class="nav-item nav-link">Blog</a>
                             <div class="nav-item dropdown">
                                <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -101,9 +101,8 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Sign in</a>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Register</a>
-
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login' %}">Sign in</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'signup' %}">Sign up</a>
                     </div>
                 </nav>
             </div>

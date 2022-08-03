@@ -1,0 +1,146 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Valactif learning</title>
+	<link rel="icon" type="image/png" href="{% static 'images/V-L.png' %}" sizes="16x16">
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+	<!-- Core JS files -->
+	<script src="{% static 'js/main/jquery.min.js' %}"></script>
+	<script src="{% static 'js/main/bootstrap.bundle.min.js' %}"></script>
+	<!-- /core JS files -->
+	<!-- Theme JS files -->
+	<script src="{% static 'js/app.js' %}"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	
+
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Content area -->
+				<div class="content d-flex justify-content-center align-items-center">
+
+					<!-- Registration form -->
+					<form method="POST" class="flex-fill" >
+						{% csrf_token %}
+						<div class="row">
+							<div class="col-lg-6 offset-lg-3">
+								<div class="card mb-0">
+									<div class="card-body">
+										<div class="text-center mb-3">
+											<i class="icon-plus3 icon-2x text-success border-success border-3 rounded-pill p-3 mb-3 mt-1"></i>
+											<h5 class="mb-0">Create account</h5>
+											<span class="d-block text-muted">All fields are required</span>
+										</div>
+
+										<div class="form-group form-group-feedback form-group-feedback-right">
+											<input type="text" class="form-control" id="newUsername" name="newUsername" placeholder="Create A Username (use only letters and numbers)" Required>
+											<div class="form-control-feedback">
+												<i class="icon-user-plus text-muted"></i>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group form-group-feedback form-group-feedback-right">
+													<input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name" Required>
+													<div class="form-control-feedback">
+														<i class="icon-user-check text-muted"></i>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-lg-6">
+												<div class="form-group form-group-feedback form-group-feedback-right">
+													<input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name" Required>
+													<div class="form-control-feedback">
+														<i class="icon-user-check text-muted"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group form-group-feedback form-group-feedback-right">
+													<input type="password" class="form-control" id="pass1" name="pass1" placeholder="Create Your Password" Required>
+													<div class="form-control-feedback">
+														<i class="icon-user-lock text-muted"></i>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-lg-6">
+												<div class="form-group form-group-feedback form-group-feedback-right">
+													<input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Your Password" Required>
+													<div class="form-control-feedback">
+														<i class="icon-user-lock text-muted"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group form-group-feedback form-group-feedback-right">
+													<input type="email" class="form-control" id="newEmail" name="newEmail" placeholder="Enter Your Email Address" Required>
+													<div class="form-control-feedback">
+														<i class="icon-mention text-muted"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group mb-0">
+											<label class="custom-control custom-checkbox">
+												<input type="checkbox" name="remember" class="custom-control-input" Required>
+												<span class="custom-control-label" >Accept <a href="#">&nbsp;terms of service</a></span>
+											</label>
+										</div>
+									</div>
+
+									<div class="card-footer bg-transparent text-right">
+										<button type="submit" class="btn btn-teal btn-labeled btn-labeled-right"><b><i class="icon-plus3"></i></b> Create account</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- /registration form -->
+
+				</div>
+				<!-- /content area -->
+
+
+				
+
+			</div>
+			<!-- /inner content -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</body>
+</html>

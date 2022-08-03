@@ -1,10 +1,21 @@
+from ast import If
+from base64 import urlsafe_b64decode
 from turtle import title
 from urllib import request
 from django.shortcuts import render, redirect
 from django.views import generic
 
 from Accounts.models import User
+from Accounts.views import login
 from .models import Lecons, Desc, About, article
+from django.shortcuts import  render, redirect
+from django.shortcuts import render
+
+
+
+
+
+
 
 # Create your views here.
 """ def Desc_list(request):
@@ -43,8 +54,6 @@ def home(request):
     lecons = Lecons.objects.all().order_by('-id')
     aboutus = About.objects.all()
     sarticle = article.objects.all().order_by('-id')
-
-
     context = {
         'user': user
     }
@@ -60,28 +69,28 @@ def home_view(request):
 
 def aboutus(request):
     about = About.objects.all()
-
     return render (request, 'main/about.html' ,{"about": about})
 
 
 def Courses(request):
     course = Lecons.objects.all()
     lecons = Lecons.objects.all().order_by('-id')
-
     return render (request, 'main/courses.html',{"course": course,"lecons":lecons})
 
 
-def articles(request):
+def allBlog(request):
     Article = article.objects.all()
     sarticle = article.objects.all().order_by('-id')
-
-
     return render (request, 'main/blog.html', {"Article": Article,"sarticle": sarticle})
 
 
 def singlearticle(request, id):
-    sarticle = article.objects.all()
+    Article = article.objects.all().exclude(id=id)
+    sarticle = article.objects.filter(id = id)
+    context = {
+        "Article": Article,
+        "sarticle": sarticle
+    }
+    return render (request, 'main/article.html', context)
 
-
-    return render (request, 'main/article.html', {"sarticle":sarticle})
 

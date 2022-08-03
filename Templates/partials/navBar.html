@@ -2,119 +2,164 @@
 <!-- Main navbar -->
 {% csrf_token %}
 
-<div class="navbar navbar-expand-lg navbar-dark navbar-static">
-   <div class="d-flex flex-1 d-lg-none">
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-mobile">
-         <i class="icon-paragraph-justify3"></i>
-      </button>
-      <button type="button" class="navbar-toggler sidebar-mobile-main-toggle">
-         <i class="icon-transmission"></i>
-      </button>
-      <button type="button" class="navbar-toggler sidebar-mobile-right-toggle">
-         <i class="icon-arrow-right8"></i>
-      </button>
-   </div>
+{% if user.is_authenticated == True %}
 
-   <div class="col-lg-3">
-      <a href="" class="text-decoration-none">
-         <h1 class="m-0"><span class="text-primary">V</span>LEARNING</h1>
-      </a>
-   </div>
-
-   <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
-      
-
-
-      <ul class="navbar-nav ml-lg-auto">
-         <li class="nav-item dropdown">
-         <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-300">
-               <div class="dropdown-content-header">
-                  <span class="font-weight-semibold">Users online</span>
-                  <a href="#" class="text-body"><i class="icon-search4 font-size-base"></i></a>
-               </div>
-
-               <div class="dropdown-content-body dropdown-scrollable">
-                  <ul class="media-list">
-                     <li class="media">
-                        <div class="mr-3">
-                           <img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-                        </div>
-                        <div class="media-body">
-                           <a href="#" class="media-title font-weight-semibold">Jordana Ansley</a>
-                           <span class="d-block text-muted font-size-sm">Lead web developer</span>
-                        </div>
-                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
-                     </li>
-
-                     <li class="media">
-                        <div class="mr-3">
-                           <img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-                        </div>
-                        <div class="media-body">
-                           <a href="#" class="media-title font-weight-semibold">Will Brason</a>
-                           <span class="d-block text-muted font-size-sm">Marketing manager</span>
-                        </div>
-                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-danger"></span></div>
-                     </li>
-
-                     <li class="media">
-                        <div class="mr-3">
-                           <img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-                        </div>
-                        <div class="media-body">
-                           <a href="#" class="media-title font-weight-semibold">Hanna Walden</a>
-                           <span class="d-block text-muted font-size-sm">Project manager</span>
-                        </div>
-                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
-                     </li>
-
-                     <li class="media">
-                        <div class="mr-3">
-                           <img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-                        </div>
-                        <div class="media-body">
-                           <a href="#" class="media-title font-weight-semibold">Dori Laperriere</a>
-                           <span class="d-block text-muted font-size-sm">Business developer</span>
-                        </div>
-                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-warning"></span></div>
-                     </li>
-
-                     <li class="media">
-                        <div class="mr-3">
-                           <img src="{% static 'images/placeholders/placeholder.jpg' %}"  width="36" height="36" class="rounded-circle" alt="">
-                        </div>
-                        <div class="media-body">
-                           <a href="#" class="media-title font-weight-semibold">Vanessa Aurelius</a>
-                           <span class="d-block text-muted font-size-sm">UX expert</span>
-                        </div>
-                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-secondary"></span></div>
-                     </li>
-                  </ul>
-               </div>
-
-               <div class="dropdown-content-footer bg-light">
-                  <a href="#" class="text-body mr-auto">All users</a>
-                  <a href="#" class="text-body"><i class="icon-gear"></i></a>
-               </div>
-            </div>
-         </li>
-      </ul>
-   </div>
-
-   <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
-      
-
-      <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
-         <a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">
-            <img src="{% static 'images/placeholders/placeholder.jpg' %}"  class="rounded-pill mr-lg-2" height="34" alt="">
-            <span class="d-none d-lg-inline-block">{{User.Username}}</span>
+<!-- Topbar Start -->
+<div class="container-fluid d-none d-lg-block">
+   <div class="row align-items-center py-4 px-xl-5">
+      <div class="col-lg-3">
+         <a href="" class="text-decoration-none">
+               <h1 class="m-0"><span class="text-primary">V</span>LEARNING</h1>
          </a>
-
-         <div class="dropdown-menu dropdown-menu-right">
-            <a href="{http://127.0.0.1:8000/edit_profile}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-            <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+      </div>
+      <div class="col-lg-3 text-right">
+         <div class="d-inline-flex align-items-center">
+               <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+               <div class="text-left">
+                  <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
+                  <small>Casablanca, Morocco</small>
+               </div>
          </div>
-      </li>
-   </ul>
+      </div>
+      <div class="col-lg-3 text-right">
+         <div class="d-inline-flex align-items-center">
+               <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
+               <div class="text-left">
+
+                  <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
+                  <small>info@valactif.com</small>
+               </div>
+         </div>
+      </div>
+      <div class="col-lg-3 text-right">
+         <div class="d-inline-flex align-items-center">
+               <i class="fa fa-2x fa-phone text-primary mr-3"></i>
+               <div class="text-left">
+                  <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
+                  <small>+212 528 0511 20</small>
+               </div>
+         </div>
+      </div>
+   </div>
 </div>
+<!-- Topbar End -->
+<!-- Navbar Start -->
+<div class="container-fluid">
+      <div class="row border-top px-xl-5">
+         <div class="col-lg-3 d-none d-lg-block">
+            <!--  <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
+               <h5 class="text-primary m-0">Home</h5>
+                  <i class="fa fa-angle-down text-primary"></i> 
+            </a> -->
+         </div>
+         <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                  <a href="" class="text-decoration-none d-block d-lg-none">
+                     <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
+                  </a>
+                  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                     <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                     <div class="navbar-nav py-0">
+                        <a href="#" class="nav-item nav-link">Home</a>
+                  <a href="#" class="nav-item nav-link">About</a>
+                        <a href="#" class="nav-item nav-link">Courses</a>
+                        <div class="nav-item dropdown">
+                           <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
+                              <div class="dropdown-menu rounded-0 m-0">
+                                 <a href="blog.html" class="dropdown-item">Blog List</a>
+                                 <a href="single.html" class="dropdown-item">Blog Detail</a>
+                              </div> -->
+                        </div>
+                        <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                     </div>
+                     <span class="d-none d-lg-inline-block">{{user.username}}</span>
+                  </div>
+            </nav>
+         </div>
+      </div>
+</div>
+<!-- Navbar End -->
+{% else %}
+
+   <!-- Topbar Start -->
+   <div class="container-fluid d-none d-lg-block">
+      <div class="row align-items-center py-4 px-xl-5">
+         <div class="col-lg-3">
+            <a href="" class="text-decoration-none">
+                  <h1 class="m-0"><span class="text-primary">V</span>LEARNING</h1>
+            </a>
+         </div>
+         <div class="col-lg-3 text-right">
+            <div class="d-inline-flex align-items-center">
+                  <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+                  <div class="text-left">
+                     <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
+                     <small>Casablanca, Morocco</small>
+                  </div>
+            </div>
+         </div>
+         <div class="col-lg-3 text-right">
+            <div class="d-inline-flex align-items-center">
+                  <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
+                  <div class="text-left">
+
+                     <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
+                     <small>info@valactif.com</small>
+                  </div>
+            </div>
+         </div>
+         <div class="col-lg-3 text-right">
+            <div class="d-inline-flex align-items-center">
+                  <i class="fa fa-2x fa-phone text-primary mr-3"></i>
+                  <div class="text-left">
+                     <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
+                     <small>+212 528 0511 20</small>
+                  </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Topbar End -->
+   <!-- Navbar Start -->
+   <div class="container-fluid">
+         <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+               <!--  <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
+                  <h5 class="text-primary m-0">Home</h5>
+                     <i class="fa fa-angle-down text-primary"></i> 
+               </a> -->
+            </div>
+            <div class="col-lg-9">
+               <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                     <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
+                     </a>
+                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav py-0">
+                           <a href="#" class="nav-item nav-link">Home</a>
+                     <a href="#" class="nav-item nav-link">About</a>
+                           <a href="#" class="nav-item nav-link">Courses</a>
+                           <div class="nav-item dropdown">
+                              <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
+                                 <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="blog.html" class="dropdown-item">Blog List</a>
+                                    <a href="single.html" class="dropdown-item">Blog Detail</a>
+                                 </div> -->
+                           </div>
+                           <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login'%}">Sign in</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login'%}">Register</a>
+                     </div>
+               </nav>
+            </div>
+         </div>
+   </div>
+   <!-- Navbar End -->
+{% endif %}
 <!-- /main navbar -->

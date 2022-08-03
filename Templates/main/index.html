@@ -89,7 +89,7 @@
                             <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
 							<a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                             <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
-                            <a href="{% url 'blog' %}" class="nav-item nav-link">Blog</a>
+                            <a href="{% url 'blogs' %}" class="nav-item nav-link">Blog</a>
                             <div class="nav-item dropdown">
                                <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -99,8 +99,8 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Sign in</a>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Register</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login' %}">Sign in</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'signup' %}">Sign up</a>
 
                     </div>
                 </nav>
@@ -112,15 +112,17 @@
     <div class="container-fluid p-0 pb-5 mb-5">
         <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#header-carousel" data-slide-to="1"></li>
-                <li data-target="#header-carousel" data-slide-to="2"></li>
+                {% for article in sarticle  %}
+                {% if forloop.counter <= 3 %}
+                <li data-target="#header-carousel" data-slide-to="{{forloop.counter}}-1" {% if forloop.counter == 1 %} class="active" {% endif %}></li>
+                {% endif %}
+                {% endfor %}
             </ol>
             <div class="carousel-inner">
                 {% for article in sarticle  %}
                 {% if forloop.counter <= 3 %}
-                <div class="carousel-item active" style="min-height: 300px;">
-                    <img class="position-relative w-100" src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" style="min-height: 300px; object-fit: cover;">
+                <div style="min-height: 300px;" {% if forloop.counter == 1 %} class="carousel-item active" {% else %}  class="carousel-item" {% endif %}>
+                    <img class="position-relative w-100" src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" style="min-height: 300px; object-fit: cover;"/>
                     <div class="carousel-caption d-flex align-items-center justify-content-center">
                         <div class="p-5" style="width: 100%; max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-md-3">Best Online Courses</h5>
@@ -249,22 +251,14 @@
     <!-- Courses Start -->
 
     <div class="container-fluid py-5">
-
-
         <div class="container py-5">
-
             <div class="text-center mb-5">
-
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
-
                 <h1>Our Popular Courses</h1>
             </div>
-           
             <div class="row">
                 {% for lecon in lecons %}
                 {% if forloop.counter <= 6 %}
-
-
                 <div class="col-lg-4 col-md-6 mb-4">´
                     <div class="rounded overflow-hidden mb-2">
                         <img class=" img-fluid " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
@@ -282,14 +276,11 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div> 
                 {% endif %}
                 {%endfor%}     
             </div>
-            
         </div>
-
     </div>
     <!-- Courses End -->
     <!-- Testimonial Start -->

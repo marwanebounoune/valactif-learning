@@ -6,7 +6,10 @@ urlpatterns = [
     path('', views.home, name='home'),#account
     path('about', views.aboutus, name='about'),
     path('courses', views.Courses, name='courses'),
-    path('blog', views.articles, name='blog'),
+    path('blogs', views.allBlog, name='blogs'),
     path('article/<id>/', views.singlearticle, name='article'),
+
+
+
 
 ]
