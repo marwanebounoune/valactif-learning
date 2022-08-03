@@ -28,8 +28,8 @@ def lecons(request):
      } """
      return render(request, 'Lecons/indexDec.html')
 
-def leconsVideo(request):
-    return render(request, 'Lecons/VideoLec.html')
+def profilUser(request):
+    return render(request, 'accounts/profil.html')
   
 def login(request):
     if request.user.is_authenticated:

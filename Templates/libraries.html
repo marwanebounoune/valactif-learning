@@ -6,26 +6,26 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Valactif Learning</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <meta content="Free HTML Templates" name="keywords">
+   <meta content="Free HTML Templates" name="description">
 
 
-    <!-- Favicon -->
-    <link href="{% static 'website/img/favicon.ico' %}" rel="icon">
+   <!-- Favicon -->
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+   <!-- Google Web Fonts -->
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
 
-    <!-- Font Awesome -->
+   <!-- Font Awesome -->
 
-    <!-- Libraries Stylesheet -->
+   <!-- Libraries Stylesheet -->
 
-    <!-- Customized Bootstrap Stylesheet -->
+   <!-- Customized Bootstrap Stylesheet -->
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="{% static 'css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css"> 
 	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
-   <link href="{% static 'website/css/style.css' %}" rel="stylesheet">
-   <link href="{% static 'website/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 	<!-- /global stylesheets -->
 
@@ -44,25 +44,7 @@
 
 </head>
 <body>
-      {% include 'partials/navBar.html' %}
-      <div class="page-content">
-         <!-- Page content -->
-
-         <div class="content-wrapper">
-         {% include 'partials/sideBar.html' %}
-            <!-- Main content -->
-            <div class="content-inner">
-               <!-- Page header -->
-               <!-- /page header -->
-               <!-- Content area -->
-               {% block content %}{% endblock %}
-               <!-- /content area -->
-            </div>
-            <!-- /main content -->
-         </div>
-         <!-- /page content -->
-      </div>
-      <!-- /page container -->
-      <!-- /page container -->
-   </body>
+	{% include 'partials/navBar.html' %}
+   {% block content %}{% endblock %}
+</body>
 </html>

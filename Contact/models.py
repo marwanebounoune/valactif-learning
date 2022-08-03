@@ -24,3 +24,5 @@ class Contacts(models.Model):
     message = models.TextField(null=True)
     def __str__(self):
         return self.nom
+    class Meta:
+        db_table = "Contacts"

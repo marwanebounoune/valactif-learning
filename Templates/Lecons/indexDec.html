@@ -278,7 +278,13 @@
 													<td><a href="{% url 'chapitre' lecon.id chapitre.id %}">{{chapitre.name_chapitres}}</a></td>
 													<td>{{chapitre.introduction}}</td>
 													<td>{{chapitre.duree}}</td>
-													<td><span class="badge badge-secondary">Closedsjsjsj</span></td>
+													{%  if chapitre.status == 1 %}
+													<td><span class="badge badge-secondary">En cours</span></td>
+													{% elif chapitre.status == 2 %}
+													<td><span class="badge badge-primary">Términé</span></td>
+													{% else %}
+													<td><span class="badge badge-danger">Non démaré</span></td>
+													{% endif %}
 													<td>Oct 21st, 2016</td>
 												</tr>
 											{% endfor %}
@@ -411,6 +417,7 @@
 			</div>
 			<!-- /sidebar content -->
 
+		</div>
 		</div>
 		<!-- /right sidebar -->
 	</div>

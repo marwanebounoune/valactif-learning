@@ -7,7 +7,7 @@ urlpatterns = [
 	path('login/', views.login, name="login"),
 	path('edit_profile/', views.UpdateUserView.as_view(), name="edit_user"),
 	#path('lecons/', views.lecons, name="lecons"),
-	path('leconsVideo/', views.leconsVideo, name="leconsVideo"), 	#path{'leconsVideo/', views.lecons, name="leconsVideo" },
+	path('profil/', views.profilUser, name="profilUser"), 	#path{'leconsVideo/', views.lecons, name="leconsVideo" },
  
 
 ]
