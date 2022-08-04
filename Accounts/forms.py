@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from .models import User
+from django.contrib.auth.forms import UserCreationForm
+
 
 """ class PasswordChangingForm(PasswordChangeForm):
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Old Password'}))
@@ -27,3 +29,5 @@ class EditUserProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', "last_name", 'email', 'tel1', 'photoProfile']
+
+

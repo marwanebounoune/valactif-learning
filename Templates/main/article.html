@@ -109,7 +109,7 @@
                             <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
 							<a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                             <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
-                            <a href="{% url 'blog' %}" class="nav-item nav-link">Blog</a>
+                            <a href="{% url 'blogs' %}" class="nav-item nav-link">Blog</a>
                             <div class="nav-item dropdown">
                                <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -119,9 +119,8 @@
                             </div>
                             <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Sign in</a>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="http://127.0.0.1:8000/login/?next=/">Register</a>
-
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login' %}">Sign in</a>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'signup' %}">Sign up</a>
                     </div>
                 </nav>
             </div>
@@ -147,12 +146,12 @@
 
     <section class="section wb">
         <div class="container">
-            {% for article in sarticle  %}
             <div class="row"> 
                 <div class="col-lg-10 offset-lg-1"  >
                     <div class="page-wrapper">
+                        {% for article in sarticle  %}
                         <div class="blog-title-area text-center" href="{% url 'article'  article.id %}">
-                            <h3>{{article.title}}<br></h3>
+                            <h3>{% block title %} {{article.title}} {% endblock title %}<br></h3>
                         </div><!-- end title -->
                         <div class="single-post-media">
                             <img src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" alt="" class="img-fluid">
@@ -180,15 +179,17 @@
                                 <p>{{article.description5}}</p> </p>
                             </div><!-- end pp -->
                         </div><!-- end content -->
+                        {%endfor%}  
                         <br> 
                         <br>
                         <br>
                         <div class="custombox clearfix">
                             <h4 class="small-title">You may also like</h4>
                             <div class="row">
+                                {% for article in Article  %}
+                                {% if forloop.counter <= 2 %}
                                 <div class="col-lg-6">
                                     <div class="blog-box">
-                                        {% if forloop.counter <= 2 %}
                                         <div class="post-media">
                                             <a href="{% url 'article' article.id %}"title="">
                                                 <img src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" alt="" class="img-fluid">
@@ -200,24 +201,10 @@
                                         <div class="blog-meta">
                                             <h4><a href="{% url 'article' article.id %}" title="">{{article.title}}</a></h4>
                                         </div><!-- end meta -->
-                                        {% endif %}
                                     </div><!-- end blog-box -->
                                 </div><!-- end col -->
-                                <div class="col-lg-6">
-                                    <div class="blog-box">
-                                        <div class="post-media">
-                                            <a href="{% url 'article' article.id %}" title="">
-                                                <img src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" alt="" class="img-fluid">
-                                                <div class="hovereffect">
-                                                    <span class=""></span>
-                                                </div><!-- end hover -->
-                                            </a>
-                                        </div><!-- end media -->
-                                        <div class="blog-meta">
-                                            <h4><a href="{% url 'article' article.id %}"  title="">{{article.title}}</a></h4>
-                                        </div><!-- end meta -->
-                                    </div><!-- end blog-box -->
-                                </div><!-- end col -->
+                                {% endif %}
+                                {%endfor%}  
                             </div><!-- end row -->
                         </div><!-- end custom-box -->
                         <hr class="invis1">
@@ -225,7 +212,7 @@
                     </div><!-- end page-wrapper -->
                 </div><!-- end col -->
             </div><!-- end row -->
-            {%endfor%}   
+ 
         </div><!-- end container -->
     </section>
 </div><!-- end wrapper -->    
@@ -259,7 +246,6 @@
                 </div>
             </div>
         </div>
-     
     </div>
 </div>
 <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
@@ -315,4 +301,4 @@
 
 </body>
 </html>
-{% endblock %}
+{% endblock content %}

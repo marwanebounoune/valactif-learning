@@ -283,10 +283,12 @@
 														<td><a href="{% url 'chapitre' lecon.id chapitre_i.id %}">{{chapitre_i.name_chapitres}}</a></td>
 														<td>{{chapitre_i.introduction}}</td>
 														<td>{{chapitre.duree}}</td>
-														{% if chapitre_i.id == chapitre.id %}
-															<td><span class="badge badge-primary">En cours</span></td>
+														{%  if chapitre_i.status == 1 %}
+														<td><span class="badge badge-secondary">En cours</span></td>
+														{% elif chapitre_i.status == 2 %}
+														<td><span class="badge badge-primary">Términé</span></td>
 														{% else %}
-															<td><span class="badge badge-secondary">Closed</span></td>
+														<td><span class="badge badge-danger">Non démaré</span></td>
 														{% endif %}
 														<td>Oct 21st, 2016</td>
 													</tr>

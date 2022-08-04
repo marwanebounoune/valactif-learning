@@ -1,9 +1,16 @@
 from urllib import request
-from django.shortcuts import render, redirect
-from django.views import generic
+from django.shortcuts import render
 from Accounts.models import User
 from .models import Chapitres, Lecons, Desc
 from .models import Lecons, Desc, About, article
+from django.shortcuts import  render
+from django.shortcuts import render
+
+
+
+
+
+
 
 def getDesc(request):
     Text = Text.objects.filter(id=request.type_desc.id)
@@ -95,22 +102,17 @@ def home_view(request):
 
 def aboutus(request):
     about = About.objects.all()
-
     return render (request, 'main/about.html' ,{"about": about})
 
 def Courses(request):
     course = Lecons.objects.all()
     lecons = Lecons.objects.all().order_by('-id')
-
     return render (request, 'main/courses.html',{"course": course,"lecons":lecons})
+
 
 def articles(request):
     Article = article.objects.all()
     sarticle = article.objects.all().order_by('-id')
-    if len(Article) == 0:
-        Article=None
-    if len(sarticle) == 0:
-        sarticle=None
     context = {
         'Article': Article,
         'sarticle': sarticle
@@ -120,3 +122,27 @@ def articles(request):
 def singlearticle(request, id):
     sarticle = article.objects.filter(id = id)
     return render (request, 'main/article.html', {"sarticle":sarticle})
+
+def allBlog(request):
+    Article = article.objects.all()
+    sarticle = article.objects.all().order_by('-id')
+    if len(Article) == 0:
+        Article=None
+    if len(sarticle) == 0:
+        sarticle=None
+    return render (request, 'main/blog.html', {"Article": Article,"sarticle": sarticle})
+
+
+def singlearticle(request, id):
+    Article = article.objects.all().exclude(id=id)
+    sarticle = article.objects.filter(id = id)
+    context = {
+        "Article": Article,
+        "sarticle": sarticle
+    }
+    return render (request, 'main/article.html', context)
+
+
+
+def offline(request):
+    return render (request, 'partials/offline.html')

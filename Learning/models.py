@@ -1,7 +1,5 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
-from Accounts.models import User
-
 
 # Create your models here.
 PERMISSION_CHOICES = (
@@ -92,12 +90,3 @@ class article(models.Model):
     pass
     class Meta:
         db_table = "article"
-
-class contact(models.Model):
-    name = models.TextField()
-    from_email = models.EmailField()
-    subject = models.TextField()
-    message = models.TextField()
-    pass
-    class Meta:
-        db_table = "contact"
