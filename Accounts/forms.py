@@ -31,3 +31,8 @@ class EditUserProfileForm(UserChangeForm):
         fields = ['username', 'first_name', "last_name", 'email', 'tel1', 'photoProfile']
 
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username','first_name', 'last_name', 'email')
+

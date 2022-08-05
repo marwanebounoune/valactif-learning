@@ -58,7 +58,8 @@
 											<input type="checkbox" name="remember" class="custom-control-input" checked>
 											<span class="custom-control-label">Remember</span>
 										</label>
-										<a href="login_password_recover.html" class="ml-auto">Forgot password?</a>
+										<a href="{% url 'password_reset' %}" class="ml-auto">Forgot password?</a>
+										
 									</div>
 									<div class="form-group">
 										<button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-arrow-right14 position-right"></i></button>

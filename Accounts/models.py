@@ -1,9 +1,12 @@
 from cgitb import text
 from unicodedata import name
 from django.db import models
+from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.contrib.postgres.fields import ArrayField
+from django.dispatch import receiver 
+from django.db.models.signals import post_save 
 
 
 # Create your models here.
@@ -40,3 +43,13 @@ class User(AbstractUser):
     pass
     class Meta:
         db_table = "User" 
+
+
+@receiver(post_save, sender=User) #add this
+def create_user_profile(sender, instance, created, **kwargs):
+		if created:
+			User.objects.create(user=instance)
+
+@receiver(post_save, sender=User) #add this
+def save_user_profile(sender, instance, **kwargs):
+		instance.User.save()
