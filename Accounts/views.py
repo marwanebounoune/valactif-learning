@@ -1,9 +1,4 @@
-import imp
-from urllib import request
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-
-from Learning.models import Lecons, Desc
 from .models import User
 from django.contrib import messages, auth
 from django.urls import reverse_lazy
@@ -11,7 +6,6 @@ from .forms import EditUserProfileForm
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -23,12 +17,6 @@ from django.core.mail import EmailMessage, send_mail
 from django.utils.encoding import force_str
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-
-
-
-
-
-
 
 # Create your views here.
 def index(request):
@@ -81,27 +69,11 @@ def logout_custumized(request):
     auth.logout(request)
     return redirect('login')
 
-# @login_required(login_url='login')
 
-
-
-# class DocumentCreateView(CreateView):
-#     model = Document
-#     fields = ['upload', ]
-#     success_url = reverse_lazy('home')
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         documents = Document.objects.all()
-#         context['documents'] = documents
-#         return context
-
-# def home(request):
-#     return render(request, 'home.html', {'posts': BlogPost.objects.all()})
 class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     form_class = EditUserProfileForm
     login_url = 'login'
-    template_name = "Accounts/edit_user_profile.html"
+    template_name = "accounts/edit_user_profile.html"
     success_url = reverse_lazy('home')
     success_message = "User updated"
     
@@ -130,12 +102,6 @@ def signup(request):
         email = request.POST['newEmail']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
-        print("username:",username)
-        print("fname:",fname)
-        print("lname:",lname)
-        print("email:",email)
-        print("pass1:",pass1)
-        print("pass2:",pass2)
         
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please try some other username.")
@@ -174,7 +140,7 @@ def signup(request):
         # Email Address Confirmation Email
         current_site = get_current_site(request)
         email_subject = "Confirm your Email VLearning!!"
-        message2 = render_to_string('Accounts/email_confirmation.html',{
+        message2 = render_to_string('accounts/email_confirmation.html',{
             
             'name': myuser.first_name,
             'domain': current_site.domain,
@@ -193,7 +159,7 @@ def signup(request):
         return redirect('login')
         
         
-    return render(request, "Accounts/signup.html")
+    return render(request, "accounts/signup.html")
 
 def activate(request,uidb64,token):
     try:

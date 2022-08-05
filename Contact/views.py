@@ -23,6 +23,10 @@ def homeContact(request):
         mail = request.POST['email']
         sujet = request.POST['subject']
         message = request.POST['message']
+        print("nom ->", nom)
+        print("mail ->", mail)
+        print("sujet ->", sujet)
+        print("message ->", message)
         if len(nom) == 0:
             erreur = 1
             messages.error(request, 'Merci de compléter le champs relatif au nom complet')

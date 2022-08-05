@@ -43,7 +43,7 @@ class Chapitres(models.Model):
     url  = models.FileField(upload_to='videos/', blank=True, null=True)
     lecon = models.ForeignKey(Lecons, on_delete=models.CASCADE)
     deleted = models.BooleanField(default=False, blank=True, null=True)
-    introduction = models.TextField()
+    introduction = models.TextField(blank=True, null=True)
     duree = models.CharField(max_length=21, null=True, blank=True)
     status = models.IntegerField(null=True, blank=True, choices=STATUS_CHAPITRE)
     pass
@@ -74,19 +74,19 @@ class About(models.Model):
 
 
 class article(models.Model):
-    title = models.TextField()
+    title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField()
     url_photo = models.ImageField(upload_to='images/article/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg','tiff'])])
-    title1 = models.TextField()
-    description1 = models.TextField()
-    title2 = models.TextField()
-    description2 = models.TextField()
-    title3 = models.TextField()
-    description3 = models.TextField()
-    title4 = models.TextField()
-    description4 = models.TextField()
-    title5 = models.TextField()
-    description5 = models.TextField()
+    title1 = models.CharField(max_length=255, null=True, blank=True)
+    description1 = models.TextField(null=True, blank=True)
+    title2 = models.CharField(max_length=255, null=True, blank=True)
+    description2 = models.TextField(null=True, blank=True)
+    title3 = models.CharField(max_length=255, null=True, blank=True)
+    description3 = models.TextField(null=True, blank=True)
+    title4 = models.CharField(max_length=255, null=True, blank=True)
+    description4 = models.TextField(null=True, blank=True)
+    title5 = models.CharField(max_length=255, null=True, blank=True)
+    description5 = models.TextField(null=True, blank=True)
     pass
     class Meta:
         db_table = "article"
