@@ -1,16 +1,9 @@
-from urllib import request
 from django.shortcuts import render
 from Accounts.models import User
 from .models import Chapitres, Lecons, Desc
 from .models import Lecons, Desc, About, article
 from django.shortcuts import  render
 from django.shortcuts import render
-
-
-
-
-
-
 
 def getDesc(request):
     Text = Text.objects.filter(id=request.type_desc.id)
@@ -22,15 +15,29 @@ def getDesc(request):
 def getLecon(request, id):
     courseOverviews = Desc.objects.filter(lecon_id=id).filter(type_desc='1')
     if(len(courseOverviews) == 0):
-        print("courseOverviews", len(courseOverviews))
         courseOverviews = None
     whatYouWillLearns = Desc.objects.filter(lecon_id=id).filter(type_desc='2')
+    if(len(whatYouWillLearns)==0):
+        whatYouWillLearns = None
     courseDescs = Desc.objects.filter(lecon_id=id).filter(type_desc='3').filter(image_or_text='1')
+    if(len(courseDescs)==0):
+        courseDescs = None
     courseDescsImages = Desc.objects.filter(lecon_id=id).filter(type_desc='3').filter(image_or_text='2')
+    if(len(courseDescsImages)==0):
+        courseDescsImages = None
     coursePrograms = Desc.objects.filter(lecon_id=id).filter(type_desc='4')
+    if(len(coursePrograms)==0):
+        coursePrograms = None
     countCourseDescs = courseDescs.count()
     lecon = Lecons.objects.get(id=id)
     chapitres = Chapitres.objects.filter(lecon_id=id)
+    chapitres_ = None
+    for chap in chapitres:
+        if len(chap.introduction) < 250:
+            print("chap ->", len(chap.introduction))
+        else:
+            print("chap ->", chap.introduction[0:255])
+            chap.introduction = chap.introduction[0:255]+"..."
     context = {
         'courseOverviews': courseOverviews,
         'whatYouWillLearns': whatYouWillLearns,
@@ -68,6 +75,12 @@ def getChapitre(request, id, pk):
     lecon = Lecons.objects.get(id=id)
     chapitres = Chapitres.objects.filter(lecon_id=id)
     chapitre = Chapitres.objects.get(id=pk)
+    for chap in chapitres:
+        if len(chap.introduction) < 250:
+            print("chap ->", len(chap.introduction))
+        else:
+            print("chap ->", chap.introduction[0:255])
+            chap.introduction = chap.introduction[0:255]+"..."
     context = {
         'courseOverviews': courseOverviews,
         'whatYouWillLearns': whatYouWillLearns,

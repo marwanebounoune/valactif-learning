@@ -256,36 +256,38 @@
 				                            </div>
 										</div>
 				                    </div>
-
-				                    <h6 class="font-weight-semibold">Course program</h6>
-									So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame
+									{% if coursePrograms != None %}
+				                    	<h6 class="font-weight-semibold">Course program</h6>
+										{% for courseProgram in coursePrograms %}
+											<p class="mb-3">{{courseProgram.description}}</p>
+										{% endfor %}
+									{% endif %}
 								</div>
-
 								<div class="table-responsive">
 									<table class="table table-striped">
 										<thead>
-											<tr>
-												<th>Name</th>
-												<th>Description</th>
-												<th>Duration</th>
-												<th>Status</th>
-												<th>Date</th>
+											<tr class="row">
+												<th class="col-sm-1">Name</th>
+												<th class="col-sm-8">Description</th>
+												<th class="col-sm-1">Duration</th>
+												<th class="col-sm-1">Status</th>
+												<th class="col-sm-1">Date</th>
 											</tr>
 										</thead>
 										<tbody>
 											{% for chapitre in chapitres %}
-												<tr>
-													<td><a href="{% url 'chapitre' lecon.id chapitre.id %}">{{chapitre.name_chapitres}}</a></td>
-													<td>{{chapitre.introduction}}</td>
-													<td>{{chapitre.duree}}</td>
+												<tr class="row">
+													<td class="col-sm-1"><a href="{% url 'chapitre' lecon.id chapitre.id %}">{{chapitre.name_chapitres}}</a></td>
+													<td class="col-sm-8">{{chapitre.introduction}}</td>
+													<td class="col-sm-1">{{chapitre.duree}}</td>
 													{%  if chapitre.status == 1 %}
-													<td><span class="badge badge-secondary">En cours</span></td>
+													<td class="col-sm-1"><span class="badge badge-secondary">En cours</span></td>
 													{% elif chapitre.status == 2 %}
-													<td><span class="badge badge-primary">Términé</span></td>
+													<td class="col-sm-1"><span class="badge badge-primary">Términé</span></td>
 													{% else %}
-													<td><span class="badge badge-danger">Non démaré</span></td>
+													<td class="col-sm-1"><span class="badge badge-danger">Non démaré</span></td>
 													{% endif %}
-													<td>Oct 21st, 2016</td>
+													<td class="col-sm-1">Oct 21st, 2016</td>
 												</tr>
 											{% endfor %}
 										</tbody>
@@ -424,6 +426,13 @@
 	<!-- /page content -->
 </body><!-- Global stylesheets -->
 <!-- /theme JS files -->
-</html>
+<script>
+	var chapitres = "{{chapitres}}";
+	for(chapitre in chapitres){
+		console.log("Hello1", chapitre.introduction)
+		if(chapitre != null)
+			console.log("Hello2", chapitre.introduction)
+	}
+</script>
 
 {% endblock %}

@@ -195,6 +195,10 @@
 										</div>
 
 									</div>
+									<div class="mt-1 mb-4">
+										<h6 class="font-weight-semibold">Introduction</h6>
+											<p>{{chapitre.introduction}}</p>
+									</div>
 								</div>
 							</div>
 							<div class="col-sm-1"></div>
@@ -260,9 +264,12 @@
 				                            </div>
 										</div>
 				                    </div>
-
-				                    <h6 class="font-weight-semibold">Course program</h6>
-									So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame
+									{% if coursePrograms != None %}
+				                    	<h6 class="font-weight-semibold">Course program</h6>
+										{% for courseProgram in coursePrograms %}
+											<p class="mb-3">{{courseProgram.description}}</p>
+										{% endfor %}
+									{% endif %}
 								</div>
 
 								{% if chapitres != None %}
