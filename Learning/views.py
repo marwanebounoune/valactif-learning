@@ -28,7 +28,6 @@ def getLecon(request, id):
     coursePrograms = Desc.objects.filter(lecon_id=id).filter(type_desc='4')
     if(len(coursePrograms)==0):
         coursePrograms = None
-    countCourseDescs = courseDescs.count()
     lecon = Lecons.objects.get(id=id)
     chapitres = Chapitres.objects.filter(lecon_id=id)
     chapitres_ = None
@@ -44,10 +43,7 @@ def getLecon(request, id):
         'courseDescs': courseDescs,
         'courseDescsImages': courseDescsImages,
         'coursePrograms': coursePrograms,
-        'countCourseDescs1' : countCourseDescs/2,
         'lecon': lecon,
-        'i': round(countCourseDescs/2),
-        'j': countCourseDescs/2,
         'chapitres': chapitres
     }
     return render(request, 'Lecons/indexDec.html', context)
