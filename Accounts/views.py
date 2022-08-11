@@ -132,7 +132,7 @@ def signup(request):
         
         # Welcome Email
         subject = "Welcome to VLEARNING!!"
-        message = "Hello " + myuser.first_name + "!! \n" + "Welcome to GFG!! \nThank you for visiting our website\n. We have also sent you a confirmation email, please confirm your email address. \n\nThanking You\nVLEARNING team"        
+        message = "Hello " + myuser.first_name + "!! \n" + "Welcome to VLearning!! \nThank you for visiting our website.\nWe have also sent you a confirmation email, please confirm your email address.\n\nThanking You\nVLEARNING team"
         from_email = settings.EMAIL_HOST_USER
         to_list = [myuser.email]
         send_mail(subject, message, from_email, to_list, fail_silently=True)

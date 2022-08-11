@@ -8,6 +8,10 @@ PERMISSION_CHOICES = (
     ('3', 'Desc'),
     ('4', 'Footer desc')
 )
+TYPE_CHAPITRE = (
+    (1,'Vidéo'),
+    (2, 'PDF')
+)
 IMAGE_OR_TEXT_CHOICES = (
     ('1','Text'),
     ('2', 'Image')
@@ -39,7 +43,7 @@ class Lecons(models.Model):
 
 class Chapitres(models.Model):
     name_chapitres =  models.CharField(max_length=255, null=True, blank=True)
-    type_chapitres = models.CharField(max_length=255, null=True, blank=True)
+    type_chapitres = models.IntegerField(null=True, blank=True, choices=TYPE_CHAPITRE)
     url  = models.FileField(upload_to='videos/', blank=True, null=True)
     lecon = models.ForeignKey(Lecons, on_delete=models.CASCADE)
     deleted = models.BooleanField(default=False, blank=True, null=True)
@@ -63,15 +67,12 @@ class Desc(models.Model):
     class Meta:
         db_table = "Desc" 
 
-
-
 class About(models.Model):
     title = models.TextField()
     description = models.TextField()
     pass
     class Meta:
         db_table = "About"
-
 
 class article(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
