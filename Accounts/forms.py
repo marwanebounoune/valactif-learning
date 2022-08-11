@@ -1,7 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from .models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django_countries.widgets import CountrySelectWidget
+
+from Accounts import models
+
 
 
 """ class PasswordChangingForm(PasswordChangeForm):
@@ -12,27 +16,22 @@ from django.contrib.auth.forms import UserCreationForm
         model = User
         fields = ['old_password', 'new_password1', 'new_password2'] """
                 
-class EditUserProfileForm(UserChangeForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': "Enter your email"}))
-    
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter your first name"}))
 
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter your last name"}))
-
-    username = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter your username"}))
-
-    tel1 = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    
-
-
-    class Meta:
-        model = User
-        fields = ['username', 'first_name', "last_name", 'email', 'tel1', 'photoProfile']
 
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','first_name', 'last_name', 'email')
+        fields = '__all__'
+        widgets = {'country': CountrySelectWidget()}
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email','first_name', 'last_name']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = models.User
+        fields = ['tel1','tel2','genre','dateNaissance','country', 'photoProfile','username', 'email','first_name', 'last_name']

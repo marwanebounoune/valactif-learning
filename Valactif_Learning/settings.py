@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
+    'phonenumber_field',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'Learning.apps.LearningConfig',
     'storages',
     'corsheaders',
-    
+    'django_countries',
 ]
 X_FRAME_OPTIONS='SAMEORIGIN'
 MIDDLEWARE = [

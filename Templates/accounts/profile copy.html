@@ -1,6 +1,4 @@
-{%load static%}
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +22,7 @@
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="{% static 'images/placeholder.jpg' %}" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
@@ -40,82 +38,79 @@
                     <form>
                         <!-- Form Group (username)-->
                         <div class="mb-3">
-                            <b class="small mb-1" for="inputUsername">Username</b>
+                            <label class="small mb-1" for="inputUsername">Username</label>
 							<br>
-							<label>{{user.username}}</label>
+							<b>{{user.username}}</b>
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
-                                <b class="small mb-1" for="inputFirstName">First name</b>
+                                <label class="small mb-1" for="inputFirstName">First name</label>
 								<br>
-								<labelb>{{user.first_name}}</label>
+								<b>{{user.first_name}}</b>
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
-								<b class="m-b-10 f-w-600">Last name</b>
+                                <label class="small mb-1" for="inputLastName">Last name</label>
 								<br>
-								<label>{{user.last_name}}</label>
-
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <b class="small mb-1" for="inputPhone">Phone number 1</b>
-								<br>
-								<label>{{user.tel1}}</label>
-                            </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <b class="small mb-1" for="inputBirthday">Phone number 2</b>
-								<br>
-								<label>{{user.tel2}}</label>
-                            </div>
-                        </div>
-						<div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <b class="small mb-1" for="inputOrgName">Genre</b>
-								<br>
-                                {% if user.genre == 2 %}
-								<label>Homme</label>
-                                {% else %}
-								<label>Femme</label>
-                                {% endif %}
-                            </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <b class="small mb-1" for="inputBirthday">Date de naissance</b>
-								<br>
-								<label>{{user.dateNaissance}}</label>
+								<b>{{user.last_name}}</b>
                             </div>
                         </div>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
-                                <b class="small mb-1" for="inputOrgName">Pays</b>
+                                <label class="small mb-1" for="inputOrgName">Country</label>
 								<br>
-								<label>{{user.country}}</label>
+								<b>{{user.country}}</b>
                             </div>
                             <!-- Form Group (location)-->
                             <div class="col-md-6">
-                                <b class="small mb-1" for="inputLocation">Ville</b>
+                                <label class="small mb-1" for="inputLocation">Location</label>
 								<br>
-								<label>{{user.ville}}</blabel>
+								<b>{{user.adress}}</b>
                             </div>
                         </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
-                            <b class="small mb-1" for="inputEmailAddress">Email address</b>
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
 							<br>
-							<label>{{user.email}}</label>
+							<b>{{user.email}}</b>
                         </div>
                         <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number 1</label>
+								<br>
+								<b>{{user.tel1}}</b>
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Phone number 2</label>
+								<br>
+								<b>{{user.tel2}}</b>
+                            </div>
+                        </div>
+						<div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+								<br>
+								<b>{{user.username}}</b>
+                                <input class="form-control" id="inputPhone" disabled type="tel" placeholder="Enter your phone number" value="555-123-4567">
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Birthday</label>
+								<br>
+								<b>{{user.username}}</b>
+                                <input class="form-control" id="inputBirthday" disabled type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                            </div>
+                        </div>
                         <!-- Save changes button-->
-                        <button class="btn btn-primary" type="button" onclick="location.href='http://127.0.0.1:8000/account/editProfile/'"> changes</button>
+                        <button class="btn btn-primary" type="button"> changes</button> 
                     </form>
                 </div>
             </div>
