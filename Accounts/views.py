@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import User
 from django.contrib import messages, auth
 from django.urls import reverse_lazy
-from .forms import EditUserProfileForm
+from .forms import  ProfileUpdateForm, UserUpdateForm
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,6 +17,9 @@ from django.core.mail import EmailMessage, send_mail
 from django.utils.encoding import force_str
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.decorators import login_required
+from Accounts import forms
+
 
 # Create your views here.
 def index(request):
@@ -70,19 +73,6 @@ def logout_custumized(request):
     return redirect('login')
 
 
-class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
-    form_class = EditUserProfileForm
-    login_url = 'login'
-    template_name = "accounts/edit_user_profile.html"
-    success_url = reverse_lazy('home')
-    success_message = "User updated"
-    
-    def get_object(slef):
-        return slef.request.user 
-    
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Please submit the form carefully")
-        return redirect('home') 
 
 def index(request):
     Desc = {
@@ -102,7 +92,6 @@ def signup(request):
         email = request.POST['newEmail']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
-        
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please try some other username.")
             return redirect('home')
@@ -186,3 +175,59 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
         " If you don't receive an email, " \
         "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('users-home')
+
+
+
+def profile(request):
+    return render(request, 'accounts/profile.html')
+
+@login_required
+def update_profile(request):
+    if request.method == 'GET':
+        return render(request, 'accounts/editProfile.html')
+    elif request.method == 'POST':
+        newFirstName = request.POST["newFirstName"]
+        newLastName = request.POST["newLastName"]
+        newPhone1 = request.POST["newPhone1"]
+        newPhone2 = request.POST["newPhone2"]
+        newGenre = request.POST["newGenre"]
+        newBirthday = request.POST["newBirthday"]
+        newPays = request.POST["newPays"]
+        newVille = request.POST["newVille"]
+        newEmailAddress = request.POST["newEmailAddress"]
+        print("newGenre", newGenre)
+        print("newBirthday", newBirthday)
+        print("newPays", newPays)
+        print("newVille", newVille)
+        userUpdate = User.objects.get(username = request.user)
+        userUpdate.first_name = newFirstName
+        userUpdate.last_name = newLastName
+        userUpdate.tel1 = newPhone1
+        userUpdate.tel2 = newPhone2
+        userUpdate.genre = newGenre
+        userUpdate.dateNaissance = newBirthday
+        userUpdate.country = newPays
+        userUpdate.ville = newVille
+        userUpdate.email = newEmailAddress
+        userUpdate.save()
+        return redirect('profile')
+        
+
+# def update_profile(request):
+#     msg = None
+#     if request.method == 'GET':
+#         country = User.objects.values('country') 
+#         form = User()
+#         context = {
+#             "countries":country,
+#             "form": form
+#         }
+#         print("context", context)
+#         return render(request, 'accounts/editProfile.html', context)
+#     elif request.method == 'POST':
+#         form = forms.ProfileUpdateForm(request.POST,instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             msg='Nice'
+#     form = forms.ProfileUpdateForm(instance=request.user)
+#     return render (request, 'accounts/editProfile.html',{'form':form})
