@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
@@ -89,7 +88,6 @@
                                             <input type="radio" id="huey" name="newGenre" value="2" {% if user.genre == 2 %} checked {% endif %}>
                                         </td>
                                     </tr>
-
                                 </table>
                                 </div>
                             <div class="col-md-6">
@@ -102,7 +100,7 @@
                                 <script type= "text/javascript" src = "{% static 'countries.js' %}"></script>
                                 <b class="small mb-1" for="inputcountry">Pays</b>
 								<br>
-                                <select class="form-control" value ="{{user.country}}"  id="country" name ="newPays" ></select>
+                                <select class="form-control" value ="{user.country}}"  id="country" name ="newPays" checked ></select>
                             </div>
                             <div class="col-md-6">
                                 <b class="small mb-1" for="inputLocation">Ville</b>
@@ -117,7 +115,6 @@
                         </div>
                         <button class="btn btn-primary" type="submit">Enregistrer les modifications</button> 
                         <button type="reset" class="btn btn-primary">Reset</button>
-
                     </form>
                 </div>
             </div>

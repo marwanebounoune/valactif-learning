@@ -1,5 +1,6 @@
 from ast import If
 from base64 import urlsafe_b64decode
+from multiprocessing import context
 from turtle import title
 from urllib import request
 from django.shortcuts import render, redirect
@@ -10,8 +11,7 @@ from Accounts.views import login
 from .models import Lecons, Desc, About, article
 from django.shortcuts import  render, redirect
 from django.shortcuts import render
-
-
+from django.core.paginator import Paginator
 
 
 
@@ -75,13 +75,20 @@ def aboutus(request):
 def Courses(request):
     course = Lecons.objects.all()
     lecons = Lecons.objects.all().order_by('-id')
-    return render (request, 'main/courses.html',{"course": course,"lecons":lecons})
+    page = Paginator(course, 6)
+    page_list = request.GET.get('page')
+    page = page.get_page(page_list)
+    return render (request, 'main/courses.html',{"course": course,"lecons":lecons,'page' : page})
 
 
 def allBlog(request):
     Article = article.objects.all()
     sarticle = article.objects.all().order_by('-id')
-    return render (request, 'main/blog.html', {"Article": Article,"sarticle": sarticle})
+    page = Paginator(Article, 6)
+    page_list = request.GET.get('page')
+    page = page.get_page(page_list)
+    
+    return render (request, 'main/blog.html' ,{"Article": Article,"sarticle": sarticle, 'page' : page})
 
 
 def singlearticle(request, id):
@@ -94,3 +101,15 @@ def singlearticle(request, id):
     return render (request, 'main/article.html', context)
 
 
+# def index (request):
+#     data = article.objects.all()
+#     page = Paginator(data, 3)
+#     page_list = request.GET.get('page')
+#     page = page.get_page(page_list)
+#     context = {
+#         'page' : page,
+#     }
+
+    
+
+#     return render (request, 'main/blog.html',context )
