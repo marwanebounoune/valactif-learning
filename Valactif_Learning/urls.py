@@ -24,8 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Learning.urls')),
     path('accounts/', include('Accounts.urls')),
-    path('contact/', include('Contact.urls')),
-   # path('', blog_views.home, name='home')
+    path('contacts/', include('Contact.urls')),
+    path('settings/', include('Settings.urls')),
 ]
 
 if settings.DEBUG:

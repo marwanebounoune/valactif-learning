@@ -178,40 +178,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 
 
 
-def profile(request):
-    return render(request, 'accounts/profile.html')
-
-@login_required
-def update_profile(request):
-    if request.method == 'GET':
-        return render(request, 'accounts/editProfile.html')
-    elif request.method == 'POST':
-        newFirstName = request.POST["newFirstName"]
-        newLastName = request.POST["newLastName"]
-        newPhone1 = request.POST["newPhone1"]
-        newPhone2 = request.POST["newPhone2"]
-        newGenre = request.POST["newGenre"]
-        newBirthday = request.POST["newBirthday"]
-        newPays = request.POST["newPays"]
-        newVille = request.POST["newVille"]
-        newEmailAddress = request.POST["newEmailAddress"]
-        print("newGenre", newGenre)
-        print("newBirthday", newBirthday)
-        print("newPays", newPays)
-        print("newVille", newVille)
-        userUpdate = User.objects.get(username = request.user)
-        userUpdate.first_name = newFirstName
-        userUpdate.last_name = newLastName
-        userUpdate.tel1 = newPhone1
-        userUpdate.tel2 = newPhone2
-        userUpdate.genre = newGenre
-        userUpdate.dateNaissance = newBirthday
-        userUpdate.country = newPays
-        userUpdate.ville = newVille
-        userUpdate.email = newEmailAddress
-        userUpdate.save()
-        return redirect('profile')
-        
+ 
 
 # def update_profile(request):
 #     msg = None

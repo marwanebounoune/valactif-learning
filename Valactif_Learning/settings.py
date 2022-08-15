@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Accounts.apps.AccountsConfig',
     'Learning.apps.LearningConfig',
     'Contact.apps.ContactConfig',
+    'Settings.apps.SettingsConfig',
     'storages',
     'corsheaders',
 ]
@@ -95,7 +96,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'learning2',
+        'NAME': 'V_L',
         'USER': 'postgres',
         'PASSWORD' : 'admin',
         'HOST': 'localhost'

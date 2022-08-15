@@ -8,3 +8,4 @@ pip install django-admin-interface
 pip install django-phonenumber-field
 pip install phonenumbers
 pip install django-countries
+pip install djangorestframework

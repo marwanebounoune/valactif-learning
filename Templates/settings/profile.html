@@ -1,0 +1,456 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>VLearning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    {% include 'partials/navBar.html' %}
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2" src="{% static 'images/placeholder.jpg' %}" alt="">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                     <!-- <button class="btn btn-primary" type="button">Upload new image</button>  -->
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form action="#" enctype="multipart/form-data" id="update_user">
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <b class="small mb-1" for="inputUsername">Username</b>
+							<br>
+							<label>{{user.username}}</label>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputFirstName">First name</b>
+								<br>
+								<label>{{user.first_name}}</label>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+								<b class="m-b-10 f-w-600">Last name</b>
+								<br>
+								<label>{{user.last_name}}</label>
+
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputPhone">Phone number 1</b>
+								<br>
+                                {% if user.tel1 == None %}
+                                <label>---</label>
+                                {% else %}
+                                <label>{{user.tel1}}</label>
+                                {% endif %}
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputBirthday">Phone number 2</b>
+								<br>
+                                {% if user.tel2 == none %}
+                                <label>---</label>
+                                {% else %}
+                                <label>{{user.tel2}}</label>
+                                {% endif %}
+                            </div>
+                        </div>
+						<div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputOrgName">Genre</b>
+								<br>
+                                {% if user.country == None %}
+                                <label>---</label>
+                                {% else %}
+                                    {% if user.genre == 2 %}
+                                    <label>Homme</label>
+                                    {% else %}
+                                    <label>Femme</label>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputBirthday">Date de naissance</b>
+								<br>
+                                {% if user.dateNaissance == None %}
+                                <label>---</label>
+                                {% else %}
+                                <label>{{user.dateNaissance}}</label>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputOrgName">Pays</b>
+								<br>
+                                {% if user.country == None %}
+                                <label>---</label>
+                                {% else %}
+                                <label>{{user.country}}</label>
+                                {% endif %}
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <b class="small mb-1" for="inputLocation">Ville</b>
+								<br>
+                                {% if user.ville == None %}
+                                <label>---</label>
+                                {% else %}
+                                <label>{{user.ville}}</label>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <b class="small mb-1" for="inputEmailAddress">Email address</b>
+							<br>
+							<label>{{user.email}}</label>
+                        </div>
+                        <!-- Form Row-->
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="button" onclick="location.href='http://127.0.0.1:8000/settings/editProfile/'"> changes</button>
+                        <a class="btn btn-primary" type="button" onclick="editLinkOnClick()"> changes</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- editer d'un reference-->
+            <div class="modal fade" id="modal_update_ref" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&#215;</button>
+                         <h5 class="modal-title">Editer la reference</h5>
+                      </div>
+                      <!--form--> 
+                      <form action="#" enctype="multipart/form-data" id="update_my_pin">
+                         {% csrf_token %}
+                         <div class="modal-body">
+                            <!-- id pin -->
+                            <input type="text" name="my_pin_id" class="form-control" id="my_pin_id" style="display:none"/>
+                            <!--/id pin-->
+                            <!-- lat & lng-->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="category-title">
+                                     <span><p>Info génerale de bien</p></span>
+                                  </div>
+                                  <div id="collapse2" style="margin-bottom:5px;">
+                                     <div class="col-sm-6">
+                                        <label>latitude</label> <input type="text" placeholder="latitude" name="latitude" class="form-control" id="latitudeInputUpdate" onkeypress="return isDecimal(event)" readonly/>
+                                     </div>
+                                     <div class="col-sm-6">
+                                        <label>longitude</label> <input type="text" placeholder="longitude" name="longitude" class="form-control" id="longitudeInputUpdate" onkeypress="return isDecimal(event)" readonly/>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- lat & lng-->
+                            <!--Region et ville-->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="col-sm-6" style="margin-top:5px;">
+                                     <label>Région</label>
+                                     <select data-placeholder="Selectionner une région" class="select-size-lg " name="region" id="region_update">
+                                        <option></option>
+                                        <optgroup>
+                                        <option value="1">Tanger-Tétouan-Al Hoceïma (1)</option>
+                                        <option value="2">l'Oriental (2)</option>
+                                        <option value="3">Fès-Meknès (3)</option>
+                                        <option value="4">Rabat-Salé-Kénitra (4)</option>
+                                        <option value="5">Béni Mellal-Khénifra (5)</option>
+                                        <option value="6">Casablanca-Settats (6)</option>
+                                        <option value="7">Marrakech-Safi (7)</option>
+                                        <option value="8">Drâa-Tafilalet (8)</option>
+                                        <option value="9">Souss-Massa (9)</option>
+                                        <option value="10">Guelmim-Oued Noun (10)</option>
+                                        <option value="11">Laâyoune-Sakia El Hamra (11)</option>
+                                        <option value="12">Dakhla-Oued Ed Dahab (12)</option>
+                                        </optgroup>
+                                     </select>
+                                  </div>
+                                  <div class="col-sm-6" style="margin-top:5px;">
+                                     <label>ville</label>
+                                     <select data-placeholder="Selectionner une ville" class="select-size-lg " name="ville" id="selected_ville_update">
+                                        <option></option>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <!--/Region et ville-->
+                            <!-- type de bien -->
+                            <div class="form-group" id="DivTypeDeBien3">
+                               <div class="row">
+                                  <div class="col-sm-12">
+                                     <legend class="text-size-mini text-muted no-border no-padding">Type de bien</legend>
+                                     <select data-placeholder="Selectionner le type de bien" class="select-size-lg" name="type_de_bien" id="IdTypeBienUpdate">
+                                        <option></option>
+                                        <optgroup label="Types">
+                                              <option value="1">Residentiel</option>
+                                              <option value="2">Villa</option>
+                                              <option value="3">Maison</option>
+                                              <option value="4">Professionnel</option>
+                                              <option value="5">Commercial</option>
+                                              <option value="6">Industriel</option>
+                                              <option value="7">Terrain villa</option>
+                                              <option value="8">Terrain industriel</option>
+                                              <option value="9">Terrain urbain</option>
+                                              <option value="10">Terrain agricole</option>
+                                        </optgroup>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- /type de bien -->
+                            <!-- /type de reference -->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="col-sm-12" style="margin-top:5px;">
+                                     <label>Type de reference</label>
+                                     <select data-placeholder="Selectionner le type de bien" class="select-size-lg" name="type_de_reference" id="selected_type_reference_update">
+                                        <option></option>
+                                        <optgroup>
+                                           <option value="1">Vente</option>
+                                           <option value="2">Location</option>
+                                           <option value="3">Rapport</option>
+                                        </optgroup>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- /type de reference -->
+                            <!-- type de reference localisée ou non localisée-->
+                            <div class="form-group" id="is_localized_update">
+                               <legend class="text-size-mini text-muted no-border no-padding">localisée/non localisée</legend>
+                               <div class="radio-inline">
+                                  <input type="radio" class="styled"  name="localisee_nonLocalisee" id="localisee_update" checked="checked" value="localisee"/>
+                                  <label for="localisee_update">Localisée</label>
+                               </div>
+                               <div class="radio-inline">
+                                  <input type="radio" class="styled"  name="localisee_nonLocalisee" id="non_localisee_update"  value="non_localisee"/>
+                                  <label for="non_localisee_update">Non localisée </label>	
+                               </div>
+                            </div>
+                            <!-- /type de reference localisée ou non localisée-->
+                            <!-- nom de la rue-->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="col-sm-12">
+                                     <label>Nom de la rue</label>
+                                     <input type="text" placeholder="Le nom de la rue" name="adresseRue" id="adresseRue_update" class="form-control" />
+                                  </div>
+                               </div>
+                            </div>
+                            <!--/nom de la rue-->
+                            <!-- chute_fonciere -->
+                            <div class="form-group" style="display:none" id="chute_fonciere_edit">
+                               <div class="row">
+                                  <div class="col-sm-12">
+                                     <label>Quote-part terrain (éstimée)</label> <input type="text" onkeypress="return isNumber(event)"  name="chute_fonciereEdt" id="chute_fonciereEdt" class="form-control" />
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- /chute_fonciere -->
+                            <!-- surface -->
+                            <div class="form-group" >
+                               <div class="row">
+                                  <div class="col-sm-12" id="surface_update_div">
+                                     <label>Surface</label> <input type="text" onkeypress="return isNumber(event)"  name="surf_update" class="form-control" id="surf_update"/>
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- /surface -->
+                            <!-- prix unitaire du bien-->
+                            <div class="form-group" id="pri_unit_tot_up" >
+                               <div class="row">
+                                  <div class="col-sm-6">
+                                     <label id="label-prix-unitaire-vente-update">Prix unitaire</label>
+                                     <label id="label-prix-unitaire-loyer-update" style="display: none;" >Loyer unitaire</label>
+                                     <input type="text" onkeypress="return isNumber(event)" name="prix_unit_update" class="form-control" id="prix_unit_update" />
+                                  </div>
+                                  <div class="col-sm-6">
+                                     <label  id="label-prix-total-vente-update">Prix total</label>
+                                     <label id="label-prix-total-loyer-update" style="display: none;">Loyer total</label>
+                                     <input type="text" onkeypress="return isNumber(event)"  name="prix_total_update" class="form-control" id="prix_total_update" />
+                                  </div>                                    
+                               </div>
+                            </div>
+                            <!--/prix unitaire du bien-->
+                            <!-- prix total-->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="col-sm-12">
+                                     <label>contact</label> <input type="text" placeholder="contact" name="contact-update" class="form-control" id="contact-update"/>
+                                  </div>
+                               </div>
+                            </div>
+                            <!--/prix total-->
+                            <!-- description-->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="col-sm-12">
+                                     <label>Description</label> 
+                                     <textarea type="text" placeholder="Description" name="description" class="form-control" id="desc_update"></textarea>
+                                  </div>
+                               </div>
+                            </div>
+                            <!--/description-->
+                            <!-- #tag-->
+                            <div class="form-group">
+                               <div class="row">
+                                  <div class="col-sm-12">                                       
+                                     <span class="text-size-mini text-muted no-border no-padding">Tags (Optionnel)</span>
+                                     <select data-placeholder="#" name="tag" id="tag_update" multiple="multiple" class="select-multiple-tags form-control"></select>
+ 
+                                  </div>
+                                  
+                               </div>
+                            </div>
+                            <!--/#tag-->
+                            <!-- submit form-->
+                            <div class="modal-footer">
+                               <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                               <button type="submit" class="btn btn-primary">Editer réference</button>
+                            </div>
+                         </div>
+                      </form>
+                      <!--/form--> 
+                   </div>
+                </div>
+             </div>
+             <!-- /editer d'un reference-->
+<style type="text/css">
+body{margin-top:20px;
+background-color:#f2f6fc;
+color:#69707a;
+}
+.img-account-profile {
+    height: 10rem;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+}
+.card .card-header {
+    font-weight: 500;
+}
+.card-header:first-child {
+    border-radius: 0.35rem 0.35rem 0 0;
+}
+.card-header {
+    padding: 1rem 1.35rem;
+    margin-bottom: 0;
+    background-color: rgba(33, 40, 50, 0.03);
+    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+}
+.form-control, .dataTable-input {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #69707a;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c5ccd6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.nav-borders .nav-link.active {
+    color: #0061f2;
+    border-bottom-color: #0061f2;
+}
+.nav-borders .nav-link {
+    color: #69707a;
+    border-bottom-width: 0.125rem;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+</style>
+<script type="text/javascript">
+    $("#update_user").submit(function( event ) {
+        event.preventDefault ();
+        /* récupération du formulaire à transmettre */
+        const formData = new FormData(this);
+        /* definir l URL pour l'exécution du filtrage*/
+        fetch("http://193.70.90.13:80/map/update_my_pin/",{
+            method: 'POST',//définir la method du submit du form
+            mode : 'same-origin',
+            credentials: 'same-origin' ,
+            body : formData//définir la formulaire pour le url
+        })
+        .then((resp) => resp.json())
+        .then(function(data) { 
+            /* récupération des donnees et affichage des nouveaux pins */
+            if (data.id == null || typeof data.id === 'undefined') {
+                notification( data['message'] );
+            }
+            else {
+                notificationSuccess('success message', 'La reference a été modifié avec succès' );
+                if($("#content").is(":visible")){
+                pinLinkOnClick(data.id);
+                }
+                $("#tag_update").empty().trigger("change");
+                $('#modal_update_ref').modal('toggle');
+                getTags();
+            }
+        });
+    });
+    //---------------------------------------------------------editLinkOnClick---------------------------------------------------------
+    function editLinkOnClick(){
+        //$(".leaflet-popup").remove();
+        var url = 'http://127.0.0.1:8000/settings/user_detail/'
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            console.log("data -> ", data)
+        });
+    }
+</script>
+</body>
+</html>
