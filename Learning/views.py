@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from multiprocessing import context
 from Accounts.models import User
 from .models import Chapitres, Lecons, Desc
 from .models import Lecons, Desc, About, article
 from django.shortcuts import  render
-from django.shortcuts import render
+
+from django.core.paginator import Paginator
+
 
 def getDesc(request):
     Text = Text.objects.filter(id=request.type_desc.id)
@@ -116,7 +118,19 @@ def aboutus(request):
 def Courses(request):
     course = Lecons.objects.all()
     lecons = Lecons.objects.all().order_by('-id')
-    return render (request, 'main/courses.html',{"course": course,"lecons":lecons})
+    if len(course) == 0:
+        course=None
+        page=1
+    else:
+        page = Paginator(course, 6)
+        page_list = request.GET.get('page')
+        page = page.get_page(page_list)
+    context = {
+        'course': course,
+        'lecons': lecons,
+        'page' : page
+    }
+    return render (request, 'main/courses.html',context)
 
 
 def articles(request):
@@ -137,9 +151,21 @@ def allBlog(request):
     sarticle = article.objects.all().order_by('-id')
     if len(Article) == 0:
         Article=None
+        page=1
+    else:
+        page = Paginator(Article, 6)
+        page_list = request.GET.get('page')
+        page = page.get_page(page_list)
     if len(sarticle) == 0:
         sarticle=None
-    return render (request, 'main/blog.html', {"Article": Article,"sarticle": sarticle})
+    context = {
+        'Article': Article,
+        'sarticle': sarticle,
+        'page' : page
+    }
+    
+    
+    return render (request, 'main/blog.html' ,context)
 
 
 def singlearticle(request, id):
@@ -150,8 +176,6 @@ def singlearticle(request, id):
         "sarticle": sarticle
     }
     return render (request, 'main/article.html', context)
-
-
 
 def offline(request):
     return render (request, 'partials/offline.html')

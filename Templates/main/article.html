@@ -184,6 +184,7 @@
                         <br>
                         <br>
                         <div class="custombox clearfix">
+                           
                             <h4 class="small-title">You may also like</h4>
                             <div class="row">
                                 {% for article in Article  %}
@@ -192,13 +193,13 @@
                                     <div class="blog-box">
                                         <div class="post-media">
                                             <a href="{% url 'article' article.id %}"title="">
-                                                <img src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" alt="" class="img-fluid">
+                                                <img src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" alt="" class="img-fluid image-resize">
                                                 <div class="hovereffect">
                                                     <span class=""></span>
                                                 </div><!-- end hover -->
                                             </a>
                                         </div><!-- end media -->
-                                        <div class="blog-meta">
+                                        <div class="blog-meta ">
                                             <h4><a href="{% url 'article' article.id %}" title="">{{article.title}}</a></h4>
                                         </div><!-- end meta -->
                                     </div><!-- end blog-box -->
@@ -277,7 +278,11 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+<style>
+    .image-resize {
+        height: 240px
+    }
+</style>
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -65,15 +65,15 @@
                 {% if forloop.counter <= 6 %}
                 <div class="col-lg-4 col-md-6 mb-4">´
                     <div class="rounded overflow-hidden mb-2">
-                        <img class=" img-fluid " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
-                        <div class="bg-secondary p-4">
+                        <img class=" img-fluid image-res  " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
+                        <div class="bg-secondary p-4 image-resize">
                             <div class="d-flex justify-content-between mb-3">
                              <!--   <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small> -->
                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{lecon.duree}} Min</small>
                             </div>
                             <a class="h5" href="{% url 'lecons' lecon.id %}">{{lecon.name_lecon}}</a></a>
                             <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between image-resize">
                                     <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i> <small>{{lecon.get_level_display}}</small></h6>
                                     <h5 class="m-0">{{lecon.price}} MAD</h5>
                                 </div>
@@ -136,7 +136,7 @@
                 {% if forloop.counter <= 3 %}
                 <div class="col-lg-4 mb-4">
                     <div class="blog-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}"" alt="">
+                        <img class="img-fluid image-fix" src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}"" alt="">
                         <a class="blog-overlay text-decoration-none" href="{% url 'article' article.id %}">
                             <h5 class="text-white mb-3">{{article.title}}</h5>
                             <p class="text-primary m-0"></p>
@@ -150,6 +150,18 @@
     </div>
     <!-- Blog End -->
 
+
+<style>
+        .image-resize {
+            height: 240px
+        }
+        .image-res {
+            height: 350px
+        }
+        .image-fix {
+            height: 300px;
+        }
+    </style>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
