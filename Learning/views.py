@@ -122,7 +122,7 @@ def Courses(request):
         course=None
         page=1
     else:
-        page = Paginator(course, 6)
+        page = Paginator(course, 9)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
     context = {
@@ -153,7 +153,7 @@ def allBlog(request):
         Article=None
         page=1
     else:
-        page = Paginator(Article, 6)
+        page = Paginator(Article, 9)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
     if len(sarticle) == 0:

@@ -208,8 +208,10 @@
 						<div class="nav-tabs-responsive bg-light border-top">
 							<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
 								<li class="nav-item"><a href="#course-overview" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Overview</a></li>
-								<li class="nav-item"><a href="#course-attendees" class="nav-link" data-toggle="tab"><i class="icon-people mr-2"></i> Attendees</a></li>
-								<li class="nav-item"><a href="#course-schedule" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i> Schedule</a></li>
+								<li class="nav-item"><a href="#course-pdf" class="nav-link" data-toggle="tab"><i class="icon-people mr-2"></i>PDF</a></li>
+								<li class="nav-item"><a href="#course-notes" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i>Notes</a></li>
+								<li class="nav-item"><a href="#course-discussions" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i>Discussions</a></li>
+								<li class="nav-item"><a href="#course-ressources" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i>Resources</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
@@ -305,9 +307,26 @@
 									</div>
 								{% endif %}
 							</div>
-							<div class="tab-pane fade" id="course-schedule">
+							<div class="tab-pane fade" id="course-pdf">
 								<div class="card-body">
-									<div class="schedule"></div>
+									<div class="schedule">course-pdf
+										<embed src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/Media/PDF-lecons/DocTest.pdf" width=1500 height=1000 type='application/pdf'/>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="course-notes">
+								<div class="card-body">
+									<div class="schedule">course-notes</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="course-discussions">
+								<div class="card-body">
+									<div class="schedule">course-discussions</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="course-ressources">
+								<div class="card-body">
+									<div class="schedule">course-ressources</div>
 								</div>
 							</div>
 						</div>

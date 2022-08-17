@@ -1,3 +1,4 @@
+from distutils.log import error
 from django.shortcuts import render, redirect
 from .models import User
 from django.contrib import messages, auth
@@ -86,6 +87,7 @@ def index(request):
 
 def signup(request):
     if request.method == "POST":
+        erreur = 0
         username = request.POST['newUsername']
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -97,18 +99,22 @@ def signup(request):
             return redirect('home')
         
         if User.objects.filter(email=email).exists():
+            erreur = 1
             messages.error(request, "Email Already Registered!!")
             return redirect('home')
         
         if len(username)>20:
+            erreur = 1
             messages.error(request, "Username must be under 20 charcters!!")
             return redirect('home')
         
         if pass1 != pass2:
+            erreur = 1
             messages.error(request, "Passwords didn't matched!!")
             return redirect('home')
         
         if not username.isalnum():
+            erreur = 1
             messages.error(request, "Username must be Alpha-Numeric!!")
             return redirect('home')
         
@@ -117,7 +123,7 @@ def signup(request):
         myuser.last_name = lname
         myuser.is_active = False
         myuser.save()
-        messages.success(request, "Your Account has been created succesfully!! Please check your email to confirm your email address in order to activate your account.")
+        messages.success(request, "Votre compte a été créé avec succès! Veuillez vérifier votre e-mail pour confirmer votre adresse e-mail afin d'activer votre compte.")
         
         # Welcome Email
         subject = "Welcome to VLEARNING!!"
@@ -130,7 +136,6 @@ def signup(request):
         current_site = get_current_site(request)
         email_subject = "Confirm your Email VLearning!!"
         message2 = render_to_string('accounts/email_confirmation.html',{
-            
             'name': myuser.first_name,
             'domain': current_site.domain,
             'uid': urlsafe_base64_encode(force_bytes(myuser.pk)),
