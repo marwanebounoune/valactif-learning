@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'storages',
     'corsheaders',
     'django_countries',
+    'django_extensions',
 ]
 X_FRAME_OPTIONS='SAMEORIGIN'
 MIDDLEWARE = [
@@ -312,3 +313,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'creationaine@gmail.com'
 EMAIL_HOST_PASSWORD = 'bynixvqnyfdsfyst'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

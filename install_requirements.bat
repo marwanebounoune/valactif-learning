@@ -6,3 +6,4 @@ pip install django-storages
 
 python -m pip install Pillow
 python -m pip install django-cors-headers
+pip install django-extensions
