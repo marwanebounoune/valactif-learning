@@ -27,7 +27,11 @@
 		<div class="content-wrapper">
 			<!-- Inner content -->
 			<div class="content-inner">
+				{% include 'partials/navBarLogIn.html' %}
 				<!-- Content area -->
+				<br>
+				<br>
+				<br>
 				<div class="content d-flex justify-content-center align-items-center">
 					<!-- Login form -->
 					<form class="login-form wmin-sm-400" action="{% url 'login' %}" method="POST">
@@ -78,6 +82,7 @@
 					<!-- /login form -->
 				</div>
 				<!-- /content area -->
+                {% include 'partials/footer.html' %}
 			</div>
 			<!-- /inner content -->
 		</div>
