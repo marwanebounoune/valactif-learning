@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Accounts.apps.AccountsConfig',
     'Learning.apps.LearningConfig',
+    'Contact.apps.ContactConfig',
+    'Settings.apps.SettingsConfig',
     'storages',
     'corsheaders',
-    'django_countries',
-    'django_extensions',
 ]
-X_FRAME_OPTIONS='SAMEORIGIN'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,7 +73,7 @@ ROOT_URLCONF = 'Valactif_Learning.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR,'Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +96,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb1',
+        'NAME': 'learning',
         'USER': 'postgres',
         'PASSWORD' : 'mixside',
         'HOST': 'localhost'
@@ -191,68 +192,10 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'app.custom_storages.StaticStorage'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-west-3.amazonaws.com'
 # AWS_DEFAULT_ACL = 'public-read'
@@ -310,10 +253,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Valactif_Learning/static')]
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'creationaine@gmail.com'
-EMAIL_HOST_PASSWORD = 'bynixvqnyfdsfyst'
+EMAIL_HOST_USER = "valactif.learning@gmail.com"
+EMAIL_HOST_PASSWORD = "lmvxvvehnxloqioz"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-GRAPH_MODELS = {
-  'all_applications': True,
-  'group_models': True,
-}
+# GRAPH_MODELS = {
+#   'all_applications': True,
+#   'group_models': True,
+# }

@@ -7,7 +7,6 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.postgres.fields import ArrayField
 from django.dispatch import receiver 
 from django.db.models.signals import post_save 
-from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
 
@@ -35,8 +34,8 @@ class Villes(models.Model):
 class User(AbstractUser):
     photoProfile = models.FileField(upload_to='images/profiles/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg','tiff'])])
     phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
-    tel1 = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True)
-    tel2 = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True)
+    tel1 = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True, null=True, blank=True)
+    tel2 = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True, null=True, blank=True)
     dateNaissance = models.DateField(max_length=1, null=True, blank=True)
     adresse = models.CharField(max_length=500, null=True, blank=True)
     url_linkedIn = models.CharField(max_length=500, null=True, blank=True)
@@ -59,11 +58,4 @@ class User(AbstractUser):
 # def save_user_profile(sender, instance, **kwargs):
 # 		instance.User.save()
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    country = CountryField()
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-    bio = models.TextField()
 
-    def __str__(self):
-        return self.user.username

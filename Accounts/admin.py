@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import User,Villes,Pays
 from django.contrib.auth.admin import UserAdmin as origin
-from .models import Profile
 
 
 #enregistrement du model User
@@ -13,6 +12,5 @@ class UserAdmin(origin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Villes)
 admin.site.register(Pays)
-admin.site.register(Profile)
 
 

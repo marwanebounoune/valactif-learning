@@ -2,36 +2,169 @@
 {% extends "libraries.html" %}
 {%load static%}
 {% block content %}
+<style>
+	.video{
+		background-size:cover;
+		align-items: center;
+		justify-content: center;
+	}
+	.player {
+		max-width:auto;
+		box-shadow:0 0 20px rgba(0,0,0,0.2);
+		position: relative;
+		font-size: 0;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+		display:flex;
+	}
+	.image {
+		max-width:auto;
+		position: relative;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+		display:flex;
+		width: 100%;
+		background-size:cover;
+		align-items: center;
+		justify-content: center;
+	}
+	.player__video {
+		width: 100%;
+	}
+	.player__button {
+		background:none;
+		border:0;
+		line-height:1;
+		color:white;
+		outline:0;
+		padding: 0;
+		cursor:pointer;
+		max-width:50px;
+		min-width: 50px;
+	}
+	.player__button:focus {
+		border-color: #ffc600;
+	}
+	.player__icon {
+		background:none;
+		color:white;
+		outline:0;
+		padding: 0 0 0 5px;
+		max-width:40px;
+		/*border: 1px solid white;*/
+		text-align: center;
+	}
+	.player__slider {
+		width:10px;
+		height:30px;
+	}
+	.player__controls {
+		display:flex;
+		position: absolute;
+		bottom:0;
+		width: 100%;
+		transform: translateY(100%) translateY(-5px);
+		transition:all .3s;
+		flex-wrap:wrap;
+		background:rgba(0,0,0,0.2);
+	}
+	.player:hover .player__controls {
+		transform: translateY(0);
+	}
+	.player:hover .progress {
+		height:15px;
+	}
+	.player__controls > * {
+		flex:1;
+	}
+	.buttons_and_scrubbers {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.progress {
+		display:flex;
+		flex:10;
+		position: relative;
+		flex-basis:100%;
+		height:5px;
+		transition:height 0.3s;
+		background:rgba(0,0,0,0.5);
+		cursor:ew-resize;
+	}
+	.progress__filled {
+		width:0;
+		background-color:#ffc600;
+		flex:0;
+		flex-basis:0;
+	}
+	input[type=range] {
+		-webkit-appearance: none;
+		background: transparent;
+		width: 100%;
+		margin: 0 5px;
+	}
+	input[type=range]:focus {
+		outline: none;
+	}
+	input[type=range]::-webkit-slider-runnable-track {
+		width: 100%;
+		height: 8.4px;
+		cursor: pointer;
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+		background: rgba(255,255,255,0.8);
+		border-radius: 1.3px;
+		border: 0.2px solid rgba(1, 1, 1, 0);
+	}
+	input[type=range]::-webkit-slider-thumb {
+		height: 15px;
+		width: 15px;
+		border-radius: 50px;
+		background: #ffc600;
+		cursor: pointer;
+		-webkit-appearance: none;
+		margin-top: -3.5px;
+		box-shadow:0 0 2px rgba(0,0,0,0.2);
+	}
+	input[type=range]:focus::-webkit-slider-runnable-track {
+		background: #bada55;
+	}
+	input[type=range]::-moz-range-track {
+		width: 100%;
+		height: 8.4px;
+		cursor: pointer;
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+		background: #ffffff;
+		border-radius: 1.3px;
+		border: 0.2px solid rgba(1, 1, 1, 0);
+	}
+	input[type=range]::-moz-range-thumb {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(13, 13, 13, 0);
+		height: 15px;
+		width: 15px;
+		border-radius: 50px;
+		background: #ffc600;
+		cursor: pointer;
+	}
+</style>
 <body>
-
-
 	<!-- Page content -->
 	<div class="page-content">
-
 		<!-- Main sidebar -->
-		
 		<!-- #####################/main sidebar ###################-->
-
-
 		<!-- Main content -->
 		<div class="content-wrapper">
-
 			<!-- Inner content -->
 			<div class="content-inner">
-
-				<!-- Page header -->
-				
-				<!-- /page header -->
-
-
 				<!-- Content area -->
 				<div class="content">
-
 					<!-- Course overview -->
 					<div class="card">
 						<div class="card-header header-elements-lg-inline">
 							<h5 class="card-title">{{lecon.name_lecon}}</h5>
-
 							<div class="header-elements">
 								<ul class="list-inline list-inline-dotted mb-0 mt-2 mt-lg-0">
 									<li class="list-inline-item">Rating: <span class="font-weight-semibold">4.85</span></li>
@@ -46,1052 +179,154 @@
 								</ul>
 		                	</div>
 						</div>
+						<!-- Video -->
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-10" >
+								
+								<div class="mb-4">
+									<div class="video">
+										<div class="player">
+											<!-- Video player 1422x800 -->
+											<video class="player__video viewer" controls="" autoplay="">
+											<source src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_demo}}"type="video/mp4">							  
+											Your browser does not support the video tag.
+											</video>
+										</div>
 
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+						<br>
+						<!-- Video -->
 						<div class="nav-tabs-responsive bg-light border-top">
 							<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
-								<li class="nav-item"><a href="#course-overview" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Overview</a></li>
-								<li class="nav-item"><a href="#course-attendees" class="nav-link" data-toggle="tab"><i class="icon-people mr-2"></i> Attendees</a></li>
-								<li class="nav-item"><a href="#course-schedule" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i> Schedule</a></li>
+								<li class="nav-item"><a href="#course-overview" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i>Overview</a></li>
+								<li class="nav-item"><a href="#course-pdf" class="nav-link" data-toggle="tab"><i class="icon-people mr-2"></i>PDF</a></li>
+								<li class="nav-item"><a href="#course-notes" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i>Notes</a></li>
+								<li class="nav-item"><a href="#course-discussions" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i>Discussions</a></li>
+								<li class="nav-item"><a href="#course-ressources" class="nav-link" data-toggle="tab"><i class="icon-calendar3 mr-2"></i>Resources</a></li>
 							</ul>
 						</div>
-
-						<div class="tab-content">countCourseOverview
+						<div class="tab-content">
 							<div class="tab-pane fade show active" id="course-overview">
 								<div class="card-body">
-									{% if ctx.type_desc == '1'%}
-									<h1>Course overview</h1>
-									<h3>{{ctx.description}}</h3>
-									{% elif ctx.type_desc == '2'%}
-									<h1>What you will learn</h1>
-									<h3>{{ctx.description}}</h3>
+									{% if courseOverviews != None %}
+										<div class="mt-1 mb-4">
+											<h6 class="font-weight-semibold">Course overview</h6>
+											{% for courseOverview in courseOverviews %}
+												<p>{{courseOverview.description}}</p>
+											{% endfor %}
+										</div>
 									{% endif %}
-									<h1>----------------------------------------</h1>
-									<div class="mt-1 mb-4">
-										<h6 class="font-weight-semibold">Course overview</h6>
-										{% for courseOverview in courseOverviews %}
-											<p>{{courseOverview.description}}</p>
-										{% endfor %}
-									</div>
-
-									<h6 class="font-weight-semibold">What you will learn</h6>
+									{% if whatYouWillLearns != None %}
+										<h6 class="font-weight-semibold">What you will learn</h6>
 										{% for whatYouWillLearn in whatYouWillLearns %}
 											<p class="mb-3">{{whatYouWillLearn.description}}</p>
 										{% endfor %}
-									<p class="mb-3">Some cow goose out and sweeping wow the skillfully goodness one crazily far some jeez darn well so peevish pending nudged categorically in between about much alas handsome intolerable devotedly helpfully smiled momentously next much this this next sweepingly far. Together prim and limpet much extravagantly quail longing a ouch that walking a jeepers flamingo more.</p>
-
+									{% endif %}
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="mb-4">
 												<dl>
 													{% for courseDesc in courseDescs %}
-															<dt class="font-size-sm font-weight-bold text-uppercase">
-																<i class="icon-checkmark3 text-primary mr-2"></i>
-																Salamander much that on much{{courseDesc.title}}
-															</dt>
-															<dd>Like partook magic this enthusiastic tasteful far crud otter this the ferret honey iguana. Together prim and limpet much extravagantly quail longing.</dd>
-															
+														<dt class="font-size-sm font-weight-bold text-uppercase">
+															<i class="icon-checkmark3 text-primary mr-2"></i>
+															{{courseDesc.title}}
+														</dt>
+														<dd>{{courseDesc.description}}</dd>
 													{% endfor %}
 					                            </dl>
 				                            </div>
 										</div>
-
-										<div class="col-sm-6">
-											<div class="mb-4">
+										<div class="col-sm-6 ">
+											<div class="mb-4 ">
 												<dl>
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Misunderstood cuffed more depending
-				                                	</dt>
-					                                <dd>And earthworm dear arose bald agilely sad so below cowered within ceremonially therefore via much this symbolically and newt capably.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Voluble much saddled mechanic
-				                                	</dt>
-					                                <dd>Much took between less goodness jay mallard kneeled gnashed this up strong cooperative. A collection of textile samples lay spread.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	Before some one more
-				                                	</dt>
-					                                <dd>Pending some contrary rabbit up that the more conditionally ouch confidently far so was darn logic thus dove the juicily because that placed otter.</dd>
-
-					                                <dt class="font-size-sm font-weight-bold text-uppercase">
-					                                	<i class="icon-checkmark3 text-primary mr-2"></i>
-					                                	So slit more darn hey well wore
-				                                	</dt>
-					                                <dd>Well far some raccoon knew goose and crud behind salmon amenable oh the poignant sufficiently yikes a naked showed far reindeer imminently.</dd>
+													{% for courseDescsImage in courseDescsImages %}
+														<dt class="font-size-sm font-weight-bold text-uppercase">
+															<i class="icon-checkmark3 text-primary mr-2"></i>
+															Misunderstood cuffed more depending
+														</dt>
+														<img src={{courseDescsImage.image}}  class="video player__video viewer">
+														<br>
+														<br>
+														<dd>{{courseDescsImage.description}}</dd>
+													{% endfor %}
 					                            </dl>
 				                            </div>
 										</div>
 				                    </div>
-
-				                    <h6 class="font-weight-semibold">Course program</h6>
-									So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame
+									{% if coursePrograms != None %}
+				                    	<h6 class="font-weight-semibold">Course program</h6>
+										{% for courseProgram in coursePrograms %}
+											<p class="mb-3">{{courseProgram.description}}</p>
+										{% endfor %}
+									{% endif %}
 								</div>
-
 								<div class="table-responsive">
 									<table class="table table-striped">
 										<thead>
-											<tr>
-												<th>Lessons</th>
-												<th>Name</th>
-												<th>Description</th>
-												<th>Duration</th>
-												<th>Status</th>
-												<th>Date</th>
+											<tr class="row">
+												<th class="col-sm-1">Name</th>
+												<th class="col-sm-8">Description</th>
+												<th class="col-sm-1">Duration</th>
+												<th class="col-sm-1">Status</th>
+												<th class="col-sm-1">Date</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td><a href="#">Introduction</a></td>
-												<td>One morning, when Gregor Samsa woke from troubled dreams, he found himself</td>
-												<td>10 hours</td>
-												<td><span class="badge badge-secondary">Closed</span></td>
-												<td>Oct 21st, 2016</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td><a href="#">Design tools</a></td>
-												<td>He lay on his armour-like back, and if he lifted his head a little he could</td>
-												<td>20 hours</td>
-												<td><span class="badge badge-primary">Registration</span></td>
-												<td>Oct 22nd, 2016</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td><a href="#">Workspace</a></td>
-												<td>The bedding was hardly able to cover it and seemed ready to slide off moment</td>
-												<td>35 hours</td>
-												<td><span class="badge badge-danger">On time</span></td>
-												<td>Oct 23rd, 2016</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td><a href="#">Creating effects</a></td>
-												<td>A collection of textile samples lay spread out on the table - Samsa salesman</td>
-												<td>25 hours</td>
-												<td><span class="badge badge-danger">On time</span></td>
-												<td>Oct 24th, 2016</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td><a href="#">Digital design</a></td>
-												<td>Drops of rain could be heard hitting the pane, which made him feel quite sad</td>
-												<td>50 hours</td>
-												<td><span class="badge badge-danger">On time</span></td>
-												<td>Oct 25th, 2016</td>
-											</tr>
+											{% for chapitre in chapitres %}
+												<tr class="row">
+													<td class="col-sm-1"><a href="{% url 'chapitre' lecon.id chapitre.id %}">{{chapitre.name_chapitres}}</a></td>
+													<td class="col-sm-8">{{chapitre.introduction}}</td>
+													<td class="col-sm-1">{{chapitre.duree}}</td>
+													{%  if chapitre.status == 1 %}
+													<td class="col-sm-1"><span class="badge badge-secondary">En cours</span></td>
+													{% elif chapitre.status == 2 %}
+													<td class="col-sm-1"><span class="badge badge-primary">Términé</span></td>
+													{% else %}
+													<td class="col-sm-1"><span class="badge badge-danger">Non démaré</span></td>
+													{% endif %}
+													<td class="col-sm-1">Oct 21st, 2016</td>
+												</tr>
+											{% endfor %}
 										</tbody>
 									</table>
 								</div>
 							</div>
-
-							<div class="tab-pane fade" id="course-attendees">
+							<div class="tab-pane fade" id="course-pdf">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Hanna Dorman</h6>
-														<span class="text-muted">UX/UI designer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Benjamin Loretti</h6>
-														<span class="text-muted">Network engineer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Vanessa Aurelius</h6>
-														<span class="text-muted">Front end guru</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">William Brenson</h6>
-														<span class="text-muted">Chief officer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">James Alexander</h6>
-														<span class="text-muted">Lead developer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Nathan Jacobson</h6>
-														<span class="text-muted">Lead UX designer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Margo Baker</h6>
-														<span class="text-muted">Sales manager</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Barbara Walden</h6>
-														<span class="text-muted">SEO specialist</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Lucy North</h6>
-														<span class="text-muted">UX/UI designer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Vicky Barna</h6>
-														<span class="text-muted">Network engineer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Hugo Bills</h6>
-														<span class="text-muted">Front end guru</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Tony Gurrano</h6>
-														<span class="text-muted">CEO and Founder</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Jeremy Victorino</h6>
-														<span class="text-muted">Marketing specialist</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Monica Smith</h6>
-														<span class="text-muted">Financial officer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Bastian Miller</h6>
-														<span class="text-muted">Web developer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Jordana Mills</h6>
-														<span class="text-muted">Designer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Buzz Brenson</h6>
-														<span class="text-muted">Business developer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Zachary Willson</h6>
-														<span class="text-muted">Network engineer</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">William Miles</h6>
-														<span class="text-muted">Front end dev</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-xl-3 col-lg-6">
-											<div class="card card-body">
-												<div class="media">
-													<div class="mr-3">
-														<a href="#">
-															<img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" width="42" height="42" alt="">
-														</a>
-													</div>
-
-													<div class="media-body">
-														<h6 class="mb-0">Freddy Walden</h6>
-														<span class="text-muted">Marketing specialist</span>
-													</div>
-
-													<div class="ml-3 align-self-center">
-														<div class="list-icons">
-									                    	<div class="dropdown">
-										                    	<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-										                    	<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Start chat</a>
-																	<a href="#" class="dropdown-item"><i class="icon-phone2"></i> Make a call</a>
-																	<a href="#" class="dropdown-item"><i class="icon-mail5"></i> Send mail</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-statistics"></i> Statistics</a>
-																</div>
-									                    	</div>
-								                    	</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="d-flex justify-content-center my-2">
-										<ul class="pagination">
-											<li class="page-item disabled"><a href="#" class="page-link"><i class="icon-arrow-left8"></i></a></li>
-											<li class="page-item active"><a href="#" class="page-link">1</a></li>
-											<li class="page-item"><a href="#" class="page-link">2</a></li>
-											<li class="page-item"><a href="#" class="page-link">3</a></li>
-											<li class="page-item"><a href="#" class="page-link">4</a></li>
-											<li class="page-item"><a href="#" class="page-link">5</a></li>
-											<li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right8"></i></a></li>
-										</ul>
+									<div class="schedule">course-pdf
+										<embed src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/Media/PDF-lecons/DocTest.pdf" width=1500 height=1000 type='application/pdf'/>
 									</div>
 								</div>
 							</div>
-
-							<div class="tab-pane fade" id="course-schedule">
+							<div class="tab-pane fade" id="course-notes">
 								<div class="card-body">
-									<div class="schedule"></div>
+									<div class="schedule">course-notes</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="course-discussions">
+								<div class="card-body">
+									<div class="schedule">course-discussions</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="course-ressources">
+								<div class="card-body">
+									<div class="schedule">course-ressources</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- /course overview -->
-
-
-					<!-- About author -->
-					<div class="card">
-						<div class="card-header header-elements-sm-inline">
-							<h5 class="card-title">About the author</h5>
-
-							<div class="header-elements">
-								<div class="list-icons list-icons-extended">
-			                    	<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Google Drive"><i class="icon-google-drive"></i></a>
-			                    	<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Twitter"><i class="icon-twitter"></i></a>
-			                    	<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Github"><i class="icon-github"></i></a>
-			                    	<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Linked In"><i class="icon-linkedin"></i></a>
-		                    	</div>
-							</div>
-						</div>
-
-						<div class="media card-body flex-column flex-lg-row m-0">
-							<div class="mr-lg-3 mb-2 mb-lg-0">
-								<a href="#">
-									<img src="{% static 'images/placeholders/placeholder.jpg' %}"  class="rounded-circle" width="64" height="64" alt="">
-								</a>
-							</div>
-
-							<div class="media-body">
-								<h6 class="media-title font-weight-semibold">James Alexander</h6>
-								<p>So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily</p>
-
-								<ul class="list-inline list-inline-dotted mb-0">
-									<li class="list-inline-item"><a href="#">Author profile</a></li>
-									<li class="list-inline-item"><a href="#">All courses by James</a></li>
-									<li class="list-inline-item"><a href="#">https://website.com</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /about author -->
-
-
-					<!-- Discussion -->
-					<div class="card">
-						<div class="card-header header-elements-sm-inline">
-							<h6 class="card-title font-weight-semibold">Discussion</h6>
-							<div class="header-elements">
-								<ul class="list-inline list-inline-dotted text-muted mb-0">
-									<li class="list-inline-item">42 comments</li>
-									<li class="list-inline-item">75 pending review</li>
-								</ul>
-		                	</div>
-						</div>
-
-						<div class="card-body">
-							<ul class="media-list">
-								<li class="media flex-column flex-lg-row">
-									<div class="mr-lg-3 mb-2 mb-lg-0">
-										<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}"class="rounded-circle" width="38" height="38" alt=""></a>
-									</div>
-
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#" class="font-weight-semibold">William Jennings</a>
-											<span class="text-muted ml-3">Just now</span>
-										</div>
-
-										<p>He moonlight difficult engrossed an it sportsmen. Interested has all devonshire difficulty gay assistance joy. Unaffected at ye of compliment alteration to.</p>
-
-										<ul class="list-inline list-inline-dotted font-size-sm">
-											<li class="list-inline-item">114 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-											<li class="list-inline-item"><a href="#">Reply</a></li>
-											<li class="list-inline-item"><a href="#">Edit</a></li>
-										</ul>
-									</div>
-								</li>
-
-								<li class="media flex-column flex-lg-row">
-									<div class="mr-lg-3 mb-2 mb-lg-0">
-										<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}"class="rounded-circle" width="38" height="38" alt=""></a>
-									</div>
-
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#" class="font-weight-semibold">Margo Baker</a>
-											<span class="text-muted ml-3">5 minutes ago</span>
-										</div>
-
-										<p>Place voice no arise along to. Parlors waiting so against me no. Wishing calling are warrant settled was luckily. Express besides it present if at an opinion visitor.</p>
-
-										<ul class="list-inline list-inline-dotted font-size-sm">
-											<li class="list-inline-item">90 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-											<li class="list-inline-item"><a href="#">Reply</a></li>
-											<li class="list-inline-item"><a href="#">Edit</a></li>
-										</ul>
-									</div>
-								</li>
-
-								<li class="media flex-column flex-lg-row">
-									<div class="mr-lg-3 mb-2 mb-lg-0">
-										<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}"class="rounded-circle" width="38" height="38" alt=""></a>
-									</div>
-
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#" class="font-weight-semibold">James Alexander</a>
-											<span class="text-muted ml-3">7 minutes ago</span>
-										</div>
-
-										<p>Savings her pleased are several started females met. Short her not among being any. Thing of judge fruit charm views do. Miles mr an forty along as he.</p>
-
-										<ul class="list-inline list-inline-dotted font-size-sm">
-											<li class="list-inline-item">70 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-											<li class="list-inline-item"><a href="#">Reply</a></li>
-											<li class="list-inline-item"><a href="#">Edit</a></li>
-										</ul>
-
-										<div class="media flex-column flex-lg-row">
-											<div class="mr-lg-3 mb-2 mb-lg-0">
-												<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}"class="rounded-circle" width="38" height="38" alt=""></a>
-											</div>
-
-											<div class="media-body">
-												<div class="media-title">
-													<a href="#" class="font-weight-semibold">Jack Cooper</a>
-													<span class="text-muted ml-3">10 minutes ago</span>
-												</div>
-
-												<p>She education get middleton day agreement performed preserved unwilling. Do however as pleased offence outward beloved by present. By outward neither he so covered.</p>
-
-												<ul class="list-inline list-inline-dotted font-size-sm">
-													<li class="list-inline-item">67 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-													<li class="list-inline-item"><a href="#">Reply</a></li>
-													<li class="list-inline-item"><a href="#">Edit</a></li>
-												</ul>
-
-												<div class="media flex-column flex-lg-row">
-													<div class="mr-lg-3 mb-2 mb-lg-0">
-														<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}"class="rounded-circle" width="38" height="38" alt=""></a>
-													</div>
-
-													<div class="media-body">
-														<div class="media-title">
-															<a href="#" class="font-weight-semibold">Natalie Wallace</a>
-															<span class="text-muted ml-3">1 hour ago</span>
-														</div>
-
-														<p>Juvenile proposal betrayed he an informed weddings followed. Precaution day see imprudence sympathize principles. At full leaf give quit to in they up.</p>
-
-														<ul class="list-inline list-inline-dotted font-size-sm">
-															<li class="list-inline-item">54 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-															<li class="list-inline-item"><a href="#">Reply</a></li>
-															<li class="list-inline-item"><a href="#">Edit</a></li>
-														</ul>
-													</div>
-												</div>
-
-												<div class="media flex-column flex-lg-row">
-													<div class="mr-lg-3 mb-2 mb-lg-0">
-														<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}" class="rounded-circle" width="38" height="38" alt=""></a>
-													</div>
-
-													<div class="media-body">
-														<div class="media-title">
-															<a href="#" class="font-weight-semibold">Nicolette Grey</a>
-															<span class="text-muted ml-3">2 hours ago</span>
-														</div>
-
-														<p>Although moreover mistaken kindness me feelings do be marianne. Son over own nay with tell they cold upon are. Cordial village and settled she ability law herself.</p>
-
-														<ul class="list-inline list-inline-dotted font-size-sm">
-															<li class="list-inline-item">41 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-															<li class="list-inline-item"><a href="#">Reply</a></li>
-															<li class="list-inline-item"><a href="#">Edit</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
-
-								<li class="media flex-column flex-lg-row">
-									<div class="mr-lg-3 mb-2 mb-lg-0">
-										<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}"class="rounded-circle" width="38" height="38" alt=""></a>
-									</div>
-
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#" class="font-weight-semibold">Victoria Johnson</a>
-											<span class="text-muted ml-3">3 hours ago</span>
-										</div>
-
-										<p>Finished why bringing but sir bachelor unpacked any thoughts. Unpleasing unsatiable particular inquietude did nor sir.</p>
-
-										<ul class="list-inline list-inline-dotted font-size-sm">
-											<li class="list-inline-item">32 <a href="#"><i class="icon-arrow-up22 text-success"></i></a><a href="#"><i class="icon-arrow-down22 text-danger"></i></a></li>
-											<li class="list-inline-item"><a href="#">Reply</a></li>
-											<li class="list-inline-item"><a href="#">Edit</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</div>
-
-						<div class="card-body">
-							<div class="mb-3">
-								<div id="add-comment">Get his declared appetite distance his together now families. Friends am himself at on norland it viewing. Suspected elsewhere you belonging continued commanded she...</div>
-							</div>
-							
-							<div class="text-right">
-								<button type="button" class="btn btn-primary"><i class="icon-plus22 mr-1"></i> Add comment</button>
-							</div>
-						</div>
-					</div>
-
-				
-					<!-- /discussion -->
 				</div>
 				<!-- /content area -->
-
-
-				<!-- Footer -->
-				
-				<!-- /footer -->
-
 			</div>
 			<!-- /inner content -->
-
 		</div>
 		<!-- /main content -->
-
-
 		<!-- Right sidebar -->
 		<div class="sidebar sidebar-light sidebar-right sidebar-expand-lg">
 
@@ -1131,7 +366,7 @@
 						<tbody>
 							<tr>
 								<td>Duration:</td>
-								<td class="font-weight-semibold text-right">10 hours</td>
+								<td class="font-weight-semibold text-right">{{lecon.duree}}</td>
 							</tr>
 							<tr>
 								<td>Status:</td>
@@ -1141,7 +376,7 @@
 							</tr>
 							<tr>
 								<td>Lessons:</td>
-								<td class="font-weight-semibold text-right">12 lessons</td>
+								<td class="font-weight-semibold text-right">{{lecon.nbr_chapitres}} Lessons</td>
 							</tr>
 							<tr>
 								<td>Trainer:</td>
@@ -1149,7 +384,7 @@
 							</tr>
 							<tr>
 								<td>Attendees:</td>
-								<td class="font-weight-semibold text-right">382 people</td>
+								<td class="font-weight-semibold text-right">{{lecon.duree}}</td>
 							</tr>
 							<tr>
 								<td>Rating:</td>
@@ -1158,7 +393,7 @@
 									<i class="icon-star-full2 font-size-base text-warning"></i>
 									<i class="icon-star-full2 font-size-base text-warning"></i>
 									<i class="icon-star-full2 font-size-base text-warning"></i>
-									<i class="icon-star-full2 font-size-base text-warning"></i>
+									<i class="icon-star-full font-size-base"></i>
 								</td>
 							</tr>
 						</tbody>
@@ -1175,13 +410,14 @@
 
 					<div class="sidebar-section-body">
 						<ul class="media-list">
+							{% for chapitre in chapitres %}
 							<li class="media">
 								<a href="#" class="mr-3">
 									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
 								</a>
 
 								<div class="media-body">
-									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 1</a>
+									<a class="font-weight-semibold" href="{% url 'chapitre' lecon.id chapitre.id %}">{{chapitre.name_chapitres}}</a>
 								</div>
 
 								<div class="ml-3 align-self-center">
@@ -1190,47 +426,7 @@
 									</div>
 								</div>
 							</li>
-
-							<li class="media">
-								<a href="#" class="mr-3">
-									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
-								</a>
-
-								<div class="media-body">
-									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 2</a>
-								</div>
-							</li>
-
-							<li class="media">
-								<a href="#" class="mr-3">
-									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
-								</a>
-
-								<div class="media-body">								
-									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 3</a>
-                                </div>
-							</li>
-
-							<li class="media">
-								<a href="#" class="mr-3">
-									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
-								</a>
-
-								<div class="media-body">
-									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 4</a>
-								</div>
-                            </li>
-
-							<li class="media">
-								<a href="#" class="mr-3">
-									<img src="{% static 'images/video (1).png' %}"  width="40" height="40" class="rounded-circle" alt="">
-								</a>
-
-								<div class="media-body">
-									<a class="font-weight-semibold" href="http://127.0.0.1:8000/leconsVideo/">Chapitre 5</a>
-
-								</div>
-							</li>
+							{% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -1243,28 +439,19 @@
 			<!-- /sidebar content -->
 
 		</div>
+		</div>
 		<!-- /right sidebar -->
-
 	</div>
 	<!-- /page content -->
-
 </body><!-- Global stylesheets -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-<link href="{% static 'css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css"> 
-<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
-<!-- /global stylesheets -->
-
-<!-- Core JS files -->
-<script src="{% static 'js/main/jquery.min.js' %}"></script>
-<script src="{% static 'js/main/bootstrap.bundle.min.js' %}"></script>
-<!-- /core JS files -->
-<!-- Theme JS files -->
-<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
-<script src="{% static 'js/plugins/ui/fullcalendar/main.min.js' %}"></script>
-<script src="{% static 'js/plugins/editors/summernote/summernote.min.js' %}"></script>
-<script src="{% static 'js/app.js' %}"></script>
-<script src="{% static 'js/demo_pages/learning_detailed.js' %}"></script>
 <!-- /theme JS files -->
-</html>
+<script>
+	var chapitres = "{{chapitres}}";
+	for(chapitre in chapitres){
+		console.log("Hello1", chapitre.introduction)
+		if(chapitre != null)
+			console.log("Hello2", chapitre.introduction)
+	}
+</script>
 
 {% endblock %}

@@ -12,41 +12,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <!-- Mobile Metas -->
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Favicon -->
     <link href="{% static 'website/img/favicon.ico' %}" rel="icon">
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
-
       <!-- Bootstrap core CSS -->
       <link href="{% static 'css-home/css/bootstrap.min.css' %}" rel="stylesheet">
-
       <!-- FontAwesome Icons core CSS -->
       <link href="{% static 'css-home/css/font-awesome.min.css' %}" rel="stylesheet">
-  
       <!-- Custom styles for this template -->
       <link href="{% static 'css-home/css/font-awesome.min.css' %}" rel="stylesheet">
-  
       <!-- Responsive styles for this template -->
       <link href="{% static 'css-home/style.css' %}" rel="stylesheet">
-  
       <!-- Colors for this template -->
       <link href="{% static 'css-home/css/colors.css' %}" rel="stylesheet">
-  
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
     <!-- Libraries Stylesheet -->
     <link href="{% static 'website/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'website/css/style.css' %}" rel="stylesheet">
 </head>
-
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid d-none d-lg-block">
@@ -117,7 +106,7 @@
                                     <a href="single.html" class="dropdown-item">Blog Detail</a>
                                 </div> -->
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                         </div>
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'login' %}">Sign in</a>
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'signup' %}">Sign up</a>
@@ -127,11 +116,7 @@
         </div>
     </div>
     <!-- Navbar End -->
-
-   
     <!--- Article -->
-
-
 <div id="wrapper">
     <div class="collapse top-search" id="collapseExample">
         <div class="card card-block">
@@ -143,7 +128,6 @@
             </div><!-- end newsletter -->
         </div>
     </div><!-- end top-search -->
-
     <section class="section wb">
         <div class="container">
             <div class="row"> 
@@ -158,25 +142,25 @@
                         </div><!-- end media -->
                         <div class="blog-content">  
                             <div class="pp">
-                                <p>{{article.description}}</p> 
-                                <h3><strong>{{article.title1}}</strong></h3>
-                                <p>{{article.description1}}</p> </p>
+                                <p>{{ article.description|default_if_none:"&nbsp;" }}</p>
+                                <h3><strong>{{ article.title1|default_if_none:"&nbsp;" }}</strong></h3>
+                                <p>{{ article.description1|default_if_none:"&nbsp;" }}</p>
                             </div><!-- end pp -->
                             <!-- <img src="" alt="" class="img-fluid img-fullwidth"> -->
                             <div class="pp">
-                                <h3><strong>{{article.title2}} </strong></h3>
+                                <h3><strong>{{ article.title2|default_if_none:"&nbsp;" }}</strong></h3>
                                  <br>
-                                <p>{{article.description2}}</p>
-                                <h3><strong>{{article.title3}} </strong></h3>
-                                <p> {{article.description3}}</p>
+                                <p>{{ article.description2|default_if_none:"&nbsp;" }}</p>
+                                <h3><strong>{{ article.title3|default_if_none:"&nbsp;" }} </strong></h3>
+                                <p> {{ article.description3|default_if_none:"&nbsp;" }}</p>
                             </div><!-- end pp -->
                             <div class="pp">
-                                <h3><strong>{{article.title4}}</strong></h3>
-                                <p>{{article.description4}}</p> </p>
+                                <h3><strong>{{ article.title4|default_if_none:"&nbsp;" }}</strong></h3>
+                                <p>{{ article.description4|default_if_none:"&nbsp;" }}</p> </p>
                             </div><!-- end pp -->
                             <div class="pp">
-                                <h3><strong>{{article.title5}}</strong></h3>
-                                <p>{{article.description5}}</p> </p>
+                                <h3><strong>{{ article.title5|default_if_none:"&nbsp;" }}</strong></h3>
+                                <p>{{ article.description5|default_if_none:"&nbsp;" }}</p> </p>
                             </div><!-- end pp -->
                         </div><!-- end content -->
                         {%endfor%}  
@@ -184,8 +168,7 @@
                         <br>
                         <br>
                         <div class="custombox clearfix">
-                           
-                            <h4 class="small-title">You may also like</h4>
+                            <h4 class="small-title">AUTRES ARTICLES RECOMMANDÉS</h4>
                             <div class="row">
                                 {% for article in Article  %}
                                 {% if forloop.counter <= 2 %}
@@ -213,7 +196,6 @@
                     </div><!-- end page-wrapper -->
                 </div><!-- end col -->
             </div><!-- end row -->
- 
         </div><!-- end container -->
     </section>
 </div><!-- end wrapper -->    
@@ -274,29 +256,20 @@
     </div>
 </div>
 <!-- Footer End -->
-
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 <style>
     .image-resize {
         height: 240px
     }
-
 </style>
-
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'website/lib/easing/easing.min.js' %}"></script>
 <script src="{% static 'website/lib/owlcarousel/owl.carousel.min.js' %}"></script>
-
-
 <!-- Template Javascript -->
-
-
 <script src="{% static 'website/js/main.js' %}"></script>
-
 <!-- Core JavaScript
     ================================================== -->
     <script src="{% static 'css-home/js/jquery.min.js' %}"></script>
@@ -304,7 +277,6 @@
     <script src="{% static 'css-home/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'css-home/js/masonry.js' %}"></script>
     <script src="{% static 'css-home/js/custom.js' %}"></script>
-
 </body>
 </html>
 {% endblock content %}

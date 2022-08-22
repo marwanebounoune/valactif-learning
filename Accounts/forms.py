@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django_countries.widgets import CountrySelectWidget
 
 from Accounts import models
 
@@ -23,7 +22,6 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = '__all__'
-        widgets = {'country': CountrySelectWidget()}
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:

@@ -1,0 +1,16 @@
+
+{% extends "libraries2.html" %}
+{%load static%}
+{% block content %}
+
+<div class="content d-flex justify-content-center align-items-center">
+    <div class="flex-fill">
+        <div class="text-center mb-4">
+            <img src="{% static 'images/error_bg.svg' %}" class="img-fluid mb-4" height="230" alt="">
+            <h1 class="display-3 font-weight-semibold line-height-1 mb-2">404</h1>
+            <h5>Oups, une erreur s'est produite.<br>La ressource demandée est introuvable sur ce serveur.</h5>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
