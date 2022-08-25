@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Settings.apps.SettingsConfig',
     'storages',
     'corsheaders',
+    'django_admin_sticky_notes',
 ]
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
@@ -96,9 +97,9 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'V_L',
+        'NAME': 'learning',
         'USER': 'postgres',
-        'PASSWORD' : 'admin',
+        'PASSWORD' : 'mixside',
         'HOST': 'localhost'
     }
 }
@@ -256,3 +257,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "valactif.learning@gmail.com"
 EMAIL_HOST_PASSWORD = "lmvxvvehnxloqioz"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# GRAPH_MODELS = {
+#   'all_applications': True,
+#   'group_models': True,
+# }

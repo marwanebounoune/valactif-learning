@@ -2,7 +2,8 @@
 {% extends "libraries2.html" %}
 {%load static%}
 {% block content %}
-    <div class="container-fluid page-header" style="margin-bottom: 90px;">
+
+    <div class="container-fluid page-header1" style="margin-bottom: 90px;">
         <div class="container">
             <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                 <h3 class="display-4 text-white text-uppercase">Courses</h3>
@@ -15,25 +16,17 @@
         </div>
     </div>
     <!-- Header End -->
-
-
     <!-- Courses Start -->
     <div class="container-fluid py-5">
-
-
         <div class="container py-5">
-
             <div class="text-center mb-5">
-
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">All Courses</h5>
-
             </div>
-           
             <div class="row ">
                 {% for lecon in page.object_list %}
-                <div class="col-lg-4 col-md-6 mb-4">´
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="rounded overflow-hidden mb-2 ">
-                        <img class=" img-fluid image-res  " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
+                        <img class=" image-res  " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
                         <div class="bg-secondary p-4 image-resize">
                             <div class="d-flex justify-content-between mb-3 ">
                              <!--   <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small> -->
@@ -52,7 +45,6 @@
                 </div> 
                 {%endfor%}     
             </div>
-            
             <div class="col-12">
                 <nav aria-label="Page navigation">
                     <ul class="pagination pagination-lg justify-content-center mb-0">
@@ -90,8 +82,6 @@
 
     </div>
     <!-- Courses End -->
-
-
     <style>
         .image-resize {
             height: 240px
@@ -99,10 +89,11 @@
         .image-res {
             height: 350px
         }
+        .page-header1 {
+         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://valactif-crm1.s3.eu-west-3.amazonaws.com/images/pexels-francesco-ungaro-96422.jpg"), no-repeat center center;
+         background-size: cover;
+        }
     </style>
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-
 {% endblock %}

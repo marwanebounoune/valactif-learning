@@ -118,20 +118,10 @@ def aboutus(request):
 def Courses(request):
     course = Lecons.objects.all()
     lecons = Lecons.objects.all().order_by('-id')
-    if len(course) == 0:
-        course=None
-        page=1
-    else:
-        page = Paginator(course, 9)
-        page_list = request.GET.get('page')
-        page = page.get_page(page_list)
-    context = {
-        'course': course,
-        'lecons': lecons,
-        'page' : page
-    }
-    return render (request, 'main/courses.html',context)
-
+    page = Paginator(course, 9)
+    page_list = request.GET.get('page')
+    page = page.get_page(page_list)
+    return render (request, 'main/courses.html',{"course": course,"lecons":lecons,'page' : page})
 
 def articles(request):
     Article = article.objects.all()
@@ -149,23 +139,12 @@ def singlearticle(request, id):
 def allBlog(request):
     Article = article.objects.all()
     sarticle = article.objects.all().order_by('-id')
-    if len(Article) == 0:
-        Article=None
-        page=1
-    else:
-        page = Paginator(Article, 9)
-        page_list = request.GET.get('page')
-        page = page.get_page(page_list)
-    if len(sarticle) == 0:
-        sarticle=None
-    context = {
-        'Article': Article,
-        'sarticle': sarticle,
-        'page' : page
-    }
+    page = Paginator(Article, 9)
+    page_list = request.GET.get('page')
+    page = page.get_page(page_list)
     
-    
-    return render (request, 'main/blog.html' ,context)
+    return render (request, 'main/blog.html' ,{"Article": Article,"sarticle": sarticle, 'page' : page})
+
 
 
 def singlearticle(request, id):

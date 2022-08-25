@@ -25,6 +25,7 @@ def editProfile(request):
         newPays = request.POST["newPays"]
         newVille = request.POST["newVille"]
         newEmailAddress = request.POST["newEmailAddress"]
+        newPhotoProfile = request.POST["newPhotoProfile"]
         print("newGenre", newGenre)
         print("newBirthday", newBirthday)
         print("newPays", newPays)
@@ -39,6 +40,7 @@ def editProfile(request):
         userUpdate.country = newPays
         userUpdate.ville = newVille
         userUpdate.email = newEmailAddress
+        newPhotoProfile.photoProfile = newPhotoProfile
         userUpdate.save()
         return redirect('getProfile')
       

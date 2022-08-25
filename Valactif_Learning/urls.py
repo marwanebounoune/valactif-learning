@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('Accounts.urls')),
     path('contacts/', include('Contact.urls')),
     path('settings/', include('Settings.urls')),
+    path('sticky-note', include("django_admin_sticky_notes.urls")),
 ]
 
 if settings.DEBUG:
