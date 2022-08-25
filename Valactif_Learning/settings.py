@@ -97,9 +97,9 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'learning',
+        'NAME': 'V_L',
         'USER': 'postgres',
-        'PASSWORD' : 'mixside',
+        'PASSWORD' : 'admin',
         'HOST': 'localhost'
     }
 }

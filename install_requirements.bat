@@ -9,3 +9,4 @@ pip install django-phonenumber-field
 pip install phonenumbers
 pip install django-countries
 pip install djangorestframework
+pip install django-admin-sticky-notes

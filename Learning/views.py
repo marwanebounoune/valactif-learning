@@ -54,7 +54,6 @@ def getChapitre(request, id, pk):
     if(request.user.id != None):
         userId = request.user.id
         user = User.objects.get(id=userId)
-        print("User ->", user)
     courseOverviews = Desc.objects.filter(lecon_id=id).filter(chapitre_id=pk).filter(type_desc='1')
     if(len(courseOverviews)==0):
         courseOverviews = None
