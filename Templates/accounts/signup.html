@@ -31,8 +31,12 @@
 
 			<!-- Inner content -->
 			<div class="content-inner">
+				{% include 'partials/navBarLogIn.html' %}
 
 				<!-- Content area -->
+				<br>
+				<br>
+				<br>
 				<div class="content d-flex justify-content-center align-items-center">
 
 					<!-- Registration form -->
@@ -115,7 +119,7 @@
 									</div>
 
 									<div class="card-footer bg-transparent text-right">
-										<button type="submit" class="btn btn-primary  btn-labeled btn-labeled-right"><b><i class="icon-plus3"></i></b> Create account</button>
+										<button type="submit" class="btn btn-primary  btn-labeled btn-labeled-right">Create account<b><i class="icon-plus3"></i></b> </button>
 									</div>
 								</div>
 							</div>
@@ -124,6 +128,7 @@
 					<!-- /registration form -->
 				</div>
 				<!-- /content area -->
+                {% include 'partials/footer.html' %}
 			</div>
 			<!-- /inner content -->
 		</div>

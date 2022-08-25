@@ -21,7 +21,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from Accounts import forms
 
-
+ 
 # Create your views here.
 def index(request):
     return render (request, 'home.html',{})

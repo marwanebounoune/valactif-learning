@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Settings.apps.SettingsConfig',
     'storages',
     'corsheaders',
+    'django_admin_sticky_notes',
 ]
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
