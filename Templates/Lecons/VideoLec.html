@@ -165,25 +165,11 @@
 					<div class="card">
 						<div class="card-header header-elements-lg-inline">
 							<h5 class="card-title">{{chapitre.name_chapitres}}</h5>
-							<div class="header-elements">
-								<ul class="list-inline list-inline-dotted mb-0 mt-2 mt-lg-0">
-									<li class="list-inline-item">Rating: <span class="font-weight-semibold">4.85</span></li>
-									<li class="list-inline-item">
-										<i class="icon-star-full2 font-size-base text-warning"></i>
-										<i class="icon-star-full2 font-size-base text-warning"></i>
-										<i class="icon-star-full2 font-size-base text-warning"></i>
-										<i class="icon-star-full2 font-size-base text-warning"></i>
-										<i class="icon-star-full2 font-size-base text-warning"></i>
-										<span class="text-muted ml-1">(439)</span>
-									</li>
-								</ul>
-		                	</div>
 						</div>
 						<!-- Video -->
 						<div class="row">
 							<div class="col-sm-1"></div>
 							<div class="col-sm-10" >
-								
 								<div class="mb-4">
 									<div class="video">
 										<div class="player">
@@ -193,7 +179,6 @@
 											Your browser does not support the video tag.
 											</video>
 										</div>
-
 									</div>
 									<div class="mt-1 mb-4">
 										<h6 class="font-weight-semibold">Introduction</h6>
@@ -273,7 +258,6 @@
 										{% endfor %}
 									{% endif %}
 								</div>
-
 								{% if chapitres != None %}
 									<div class="table-responsive">
 										<table class="table table-striped">
@@ -339,17 +323,13 @@
 		<!-- /main content -->
 		<!-- Right sidebar -->
 		<div class="sidebar sidebar-light sidebar-right sidebar-expand-lg">
-
 			<!-- Expand button -->
 			<button type="button" class="btn btn-sidebar-expand sidebar-control sidebar-right-toggle">
 				<i class="icon-arrow-right13"></i>
 			</button>
 			<!-- /expand button -->
-
-
 			<!-- Sidebar content -->
 			<div class="sidebar-content">
-
 				<!-- Header -->
 				<div class="sidebar-section sidebar-section-body d-flex align-items-center pb-0">
 					<h5 class="mb-0">Overview</h5>
@@ -357,67 +337,40 @@
 						<button type="button" class="btn btn-outline-light text-body border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-right-toggle d-none d-lg-inline-flex">
 							<i class="icon-transmission"></i>
 						</button>
-
 						<button type="button" class="btn btn-outline-light text-body border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-right-toggle d-lg-none">
 							<i class="icon-cross2"></i>
 						</button>
 					</div>
 				</div>
 				<!-- /header -->
-
-
 				<!-- Details -->
 				<div class="sidebar-section mb-2">
 					<div class="sidebar-section-body">
 						<a href="#" class="btn btn-primary btn-block">Take course</a>
 					</div>
-
 					<table class="table table-borderless table-xs">
 						<tbody>
 							<tr>
 								<td>Duration:</td>
-								<td class="font-weight-semibold text-right">{{lecon.duree}}</td>
-							</tr>
-							<tr>
-								<td>Status:</td>
-								<td class="text-right">
-									<span class="badge badge-primary">Registration</span>
-								</td>
-							</tr>
+								<td class="font-weight-semibold text-right">{{lecon.duree}} Min</td>
+							</tr>	
 							<tr>
 								<td>Lessons:</td>
 								<td class="font-weight-semibold text-right">{{lecon.nbr_chapitres}} Lessons</td>
 							</tr>
 							<tr>
-								<td>Trainer:</td>
-								<td class="font-weight-semibold text-right"><a href="#">Eugene Kopyov</a></td>
-							</tr>
-							<tr>
-								<td>Attendees:</td>
-								<td class="font-weight-semibold text-right">{{lecon.duree}}</td>
-							</tr>
-							<tr>
-								<td>Rating:</td>
-								<td class="text-right text-muted">
-									<i class="icon-star-full2 font-size-base text-warning"></i>
-									<i class="icon-star-full2 font-size-base text-warning"></i>
-									<i class="icon-star-full2 font-size-base text-warning"></i>
-									<i class="icon-star-full2 font-size-base text-warning"></i>
-									<i class="icon-star-full2 font-size-base text-warning"></i>
-								</td>
+								<td>Level:</td>
+								<td class="text-right text-muted">{{lecon.get_level_display}}</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<!-- /details -->
-
-
 				<!-- Attendees -->
 				<div class="sidebar-section">
 					<div class="sidebar-section-header">
 						<span class="font-weight-semibold">Course : </span>
 					</div>
-
 					<div class="sidebar-section-body">
 						<ul class="media-list">
 							{% for chapitre in chapitres %}
@@ -441,13 +394,8 @@
 					</div>
 				</div>
 				<!-- /attendees -->
-
-
-				
-
 			</div>
 			<!-- /sidebar content -->
-
 		</div>
 		<!-- /right sidebar -->
 	</div>
@@ -455,5 +403,4 @@
 </body><!-- Global stylesheets -->
 <!-- /theme JS files -->
 </html>
-
 {% endblock %}
