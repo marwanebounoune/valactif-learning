@@ -32,11 +32,11 @@ class Lecons(models.Model):
     nbr_chapitres = models.CharField(max_length=60, null=True, blank=True)
     url_photo = models.ImageField(upload_to='images/lecons/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg','tiff'])])
     url_demo  = models.FileField(upload_to='videos/',null=True, blank=True)
-    price = models.IntegerField(null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True, default=0)
     duree = models.CharField(max_length=21, null=True, blank=True)
     level = models.IntegerField( null=True, blank=True, choices=LEVELS)
     deleted = models.BooleanField(default=False, blank=True, null=True)
-
+    introduction = models.TextField(blank=True, null=True)
     pass
     class Meta:
         db_table = "Lecons" 

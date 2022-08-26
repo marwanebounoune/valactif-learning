@@ -62,20 +62,23 @@
                 {% if forloop.counter <= 6 %}
                 <div class="col-lg-4 col-md-6 mb-4">´
                     <div class="rounded overflow-hidden mb-2">
-                        <img class=" image-res " src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" >
                         <div class="bg-secondary p-4 image-resize">
                             <div class="d-flex justify-content-between mb-3">
                              <!--   <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>220 Commandes</small> -->
                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{lecon.duree}} Min</small>
                             </div>
-                            <a class="h5" href="{% url 'lecons' lecon.id %}">{{lecon.name_lecon}}</a></a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between image-resize">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i> <small>{{lecon.get_level_display}}</small></h6>
+                            <a class="h5" href="{% url 'lecons' lecon.id %}">{{lecon.name_lecon}}</a>
+                            <br/>
+                            <p class="h7">{{lecon.introduction}} nyhuhuhuhuhu bhnhbnnynunun hyununuuuj ujujujujjjuuj dmaseuwsdzfes ghvmhgfdhmhg hkwdfwhfjhwjfw fweh wefwejrhk wer</p>
+                        </div>
+                        <a href="{% url 'lecons' lecon.id %}"><img class=" image-res " href="{% url 'lecons' lecon.id %}" src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{lecon.url_photo}}" alt="" ></a>
+                        <div class="bg-secondary p-4 price-resize">
+                                <div class="d-flex justify-content-between price-resize">
+                                    <a href="{% url 'lecons' lecon.id %}" class="m-0">Voir plus ...</a>
                                     <h5 class="m-0">{{lecon.price}} MAD</h5>
                                 </div>
-                            </div>
                         </div>
+                        
                     </div>
                 </div> 
                 {% endif %}
@@ -126,8 +129,8 @@
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-5">
-                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Our Blog</h5>
-                <h1>Latest From Our Blog</h1>
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Articles</h5>
+                <h1>Derniers Articles</h1>
             </div>
             <div class="row pb-3">
                 {% for article in sarticle  %}
@@ -149,7 +152,10 @@
     <!-- Blog End -->
      <style>
         .image-resize {
-            height: 240px
+            height: 230px
+        }
+        .price-resize {
+            height: 70px
         }
         .image-res {
             height: 350px
