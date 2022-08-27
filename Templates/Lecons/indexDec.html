@@ -343,7 +343,7 @@
 				<!-- Details -->
 				<div class="sidebar-section mb-2">
 					<div class="sidebar-section-body">
-						<a href="#" class="btn btn-primary btn-block">Take course</a>
+						<a {% if user.is_authenticated == True %} href="#" {% else %} href="{% url 'login' %}" {% endif %} class="btn btn-primary btn-block">Take course</a>
 					</div>
 
 					<table class="table table-borderless table-xs">
