@@ -2,18 +2,52 @@
 {% extends "libraries2.html" %}
 {%load static%}
 {% block content %}
+<!-- Carousel Start -->
 <div class="container-fluid p-0 pb-5 mb-5">
     <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-        {% include 'main/banniere.html' %}
+        <ol class="carousel-indicators">
+            {% for article in sarticle  %}
+            {% if forloop.counter <= 3 %}
+            <li data-target="#header-carousel" data-slide-to="{{forloop.counter}}-1" {% if forloop.counter == 1 %} class="active" {% endif %}></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for article in sarticle  %}
+            {% if forloop.counter <= 3 %}
+            <div style="min-height: 300px;" {% if forloop.counter == 1 %} class="carousel-item active" {% else %}  class="carousel-item" {% endif %}>
+                <img class="position-relative w-100" src="https://valactif-crm1.s3.eu-west-3.amazonaws.com/{{article.url_photo}}" style="min-height: 300px; object-fit: cover;"/>
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    
+                <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
+                    <div class="big-tagline clearfix">
+                        <h2 style="color: white">Welcome to Valactif Learning</h2>
+                        <p class="lead">With Real Estate responsive How has Realiste contributed to this sector? The first and foremost point about the real estate market is that due to a large number. </p>
+                        <ul class="list-inline text-white m-0">
+                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
+                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Etsea et sit dolor amet ipsum</li>
+                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Diam dolor diam elitripsum vero.</li>
+                        </ul>
+                        <div class="btn-toolbar">
+                        <button data-scroll href="#gallery" class="btn btn-primary btn-radius grd1 btn-brd buttonBanniere">Liste des cours</button>
+                        <button data-scroll href="#gallery" class="btn btn-light btn-radius grd1 btn-brd buttonBanniere">Get Free Courses</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </div>
     <!-- Carousel End -->
     <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
+    <div class="container-fluid py-1">
+        <div class="container py-1">
             <div class="text-center mb-5">
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
-                <h1>Our Popular Courses</h1>
+                <h1>Derniers Cours</h1>
             </div>
             <div class="row">
                 {% for lecon in lecons %}
@@ -44,15 +78,15 @@
                     </div>
                 </div> 
                 {% endif %}
-                {%endfor%}   
+                {%endfor%}
                 <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="{% url 'courses'%}">Voir plus...</a>
             </div>
         </div>
     </div>
     <!-- Courses End -->
     <!-- Blog Start -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
+    <div class="container-fluid py-1">
+        <div class="container pt-1 pb-3">
             <div class="text-center mb-5">
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Articles</h5>
                 <h1>Derniers Articles</h1>
@@ -76,6 +110,9 @@
     </div>
     <!-- Blog End -->
      <style>
+        .buttonBanniere{
+            margin: 13px;
+        }  
         .gratuit{
             color: rgb(29, 187, 29);
         }
